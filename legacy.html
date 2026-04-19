@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KENTA — Legacy & Data</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir:    #050505;
+    --encre:   #0a0a0f;
+    --or:      #c9a84c;
+    --or-vif:  #e8c96d;
+    --or-pale: #f0dfa3;
+    --creme:   #E8DCC4;
+    --bronze:  #8B7355;
+    --texte:   #9a8f7a;
+    --vert:    #3a7d5a;
+    --bleu:    #4a7aaa;
+    --acier:   #6a8aaa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--creme);
+    font-family: Georgia, 'Times New Roman', serif;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 1.2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(5,5,5,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(139,115,85,0.15);
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif;
+    font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.3em; color: var(--or-pale);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--bronze); font-weight: 400; font-size: 0.65rem; letter-spacing: 0.2em; display: block; }
+  nav a.retour {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 0.2em;
+    color: var(--bronze); text-decoration: none;
+    transition: color 0.3s;
+  }
+  nav a.retour:hover { color: var(--or); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 2rem 5rem;
+  }
+
+  .orbe-wrap {
+    position: relative; width: 160px; height: 160px;
+    margin-bottom: 3rem;
+    animation: fadeIn 1.4s ease 0.3s both;
+  }
+  .orbe {
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: radial-gradient(ellipse at 38% 35%,
+      #f0f4ff 0%, #a0c0e8 18%, #4a7aaa 42%, #1a3a5a 70%, #050a10 100%);
+    box-shadow:
+      0 0 50px rgba(74,122,170,0.35),
+      0 0 100px rgba(201,168,76,0.15),
+      0 0 180px rgba(74,122,170,0.08),
+      inset 0 0 40px rgba(200,220,255,0.12);
+    animation: breathe-lg 5s ease-in-out infinite;
+  }
+  .orbe-ring {
+    position: absolute; inset: -14px;
+    border-radius: 50%;
+    border: 1px solid rgba(74,122,170,0.25);
+    animation: rotate 22s linear infinite;
+  }
+  .orbe-ring-2 {
+    position: absolute; inset: -28px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.12);
+    animation: rotate 38s linear infinite reverse;
+  }
+  .orbe-ring::before, .orbe-ring-2::before {
+    content: '';
+    position: absolute; top: -2px; left: 50%;
+    width: 4px; height: 4px; border-radius: 50%;
+    transform: translateX(-50%);
+  }
+  .orbe-ring::before { background: var(--acier); box-shadow: 0 0 8px var(--acier); }
+  .orbe-ring-2::before { background: var(--or); box-shadow: 0 0 8px var(--or); }
+
+  @keyframes breathe-lg {
+    0%,100% { box-shadow: 0 0 50px rgba(74,122,170,0.35), 0 0 100px rgba(201,168,76,0.15), 0 0 180px rgba(74,122,170,0.08), inset 0 0 40px rgba(200,220,255,0.12); }
+    50% { box-shadow: 0 0 70px rgba(74,122,170,0.5), 0 0 130px rgba(201,168,76,0.25), 0 0 220px rgba(74,122,170,0.12), inset 0 0 55px rgba(200,220,255,0.18); }
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700;
+    letter-spacing: 0.12em; color: var(--or-pale);
+    line-height: 1.1; margin-bottom: 0.4rem;
+    animation: fadeIn 1s ease 0.8s both;
+    text-shadow: 0 0 40px rgba(74,122,170,0.3);
+  }
+  .hero-sub {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.65rem, 1.4vw, 0.85rem);
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 2.5rem;
+    animation: fadeIn 1s ease 1s both;
+  }
+  .hero-ligne {
+    width: 120px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--or), transparent);
+    margin: 0 auto 2.5rem; animation: fadeIn 1s ease 1.2s both;
+  }
+  .hero-phrase {
+    font-size: clamp(1rem, 2vw, 1.2rem); color: var(--texte);
+    max-width: 560px; line-height: 2; margin-bottom: 2rem;
+    font-style: italic; animation: fadeIn 1s ease 1.4s both;
+  }
+  .hero-phrase strong { color: var(--creme); font-style: normal; }
+
+  .log-panel {
+    background: rgba(10,10,15,0.95);
+    border: 1px solid rgba(74,122,170,0.2);
+    border-left: 2px solid var(--acier);
+    padding: 1.2rem 1.8rem; max-width: 540px;
+    text-align: left; margin: 0 auto 2.5rem;
+    font-family: 'Courier New', monospace; font-size: 0.75rem;
+    animation: fadeIn 1s ease 1.6s both;
+  }
+  .log-panel .ph {
+    color: var(--bronze); font-family: 'Cinzel', serif;
+    font-size: 0.58rem; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  .ll { color: var(--texte); margin-bottom: 0.3rem; line-height: 1.6; }
+  .ll .src { color: var(--or-pale); }
+  .ll .val { color: var(--vert); }
+  .ll .bl  { color: var(--acier); }
+  .ll .warn { color: #c9844c; }
+  .ll em { font-style: italic; color: #b8a888; }
+
+  .cta-group {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeIn 1s ease 1.8s both;
+  }
+  .btn-or {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--noir);
+    background: linear-gradient(135deg, var(--or-vif), var(--or), var(--bronze));
+    padding: 0.8rem 2.2rem; border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-or:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-creme {
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem; letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--creme); background: transparent;
+    padding: 0.8rem 2.2rem; border: 1px solid rgba(139,115,85,0.4);
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.3s, color 0.3s; display: inline-block;
+  }
+  .btn-creme:hover { border-color: var(--or); color: var(--or-pale); }
+
+  .sep {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin: 5rem auto; max-width: 700px; padding: 0 2rem;
+  }
+  .sep-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--bronze)); }
+  .sep-line.right { background: linear-gradient(to left, transparent, var(--bronze)); }
+  .sep-sym { color: var(--or); font-family: 'Cinzel', serif; font-size: 1.2rem; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--bronze);
+    text-align: center; margin-bottom: 0.8rem;
+  }
+  .section-titre {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600;
+    color: var(--or-pale); text-align: center;
+    margin-bottom: 3rem; letter-spacing: 0.04em; line-height: 1.3;
+  }
+
+  .capacites {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(74,122,170,0.1);
+    border: 1px solid rgba(74,122,170,0.1);
+    margin-bottom: 5rem;
+  }
+  .cap {
+    background: var(--encre); padding: 1.8rem 1.5rem;
+    transition: background 0.3s;
+  }
+  .cap:hover { background: #0d0d14; }
+  .cap-sym { font-size: 1.4rem; margin-bottom: 0.7rem; display: block; opacity: 0.8; }
+  .cap-nom {
+    font-family: 'Cinzel', serif;
+    font-size: 0.8rem; font-weight: 600;
+    color: var(--or-pale); margin-bottom: 0.4rem; letter-spacing: 0.05em;
+  }
+  .cap-desc { font-size: 0.72rem; color: var(--texte); line-height: 1.7; }
+  .cap-type {
+    display: inline-block; margin-top: 0.6rem;
+    font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--acier); padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(74,122,170,0.25);
+  }
+
+  .argument {
+    background: var(--encre);
+    border: 1px solid rgba(139,115,85,0.2);
+    border-left: 3px solid var(--acier);
+    padding: 2.5rem;
+    margin-bottom: 5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .argument-titre {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem; font-weight: 600;
+    color: var(--or-pale); margin-bottom: 1rem; line-height: 1.3;
+  }
+  .argument-texte {
+    font-size: 0.88rem; color: var(--texte);
+    line-height: 1.9; font-style: italic;
+  }
+  .argument-texte strong { color: var(--creme); font-style: normal; }
+  .argument-liste { list-style: none; }
+  .argument-liste li {
+    font-size: 0.82rem; color: var(--texte);
+    line-height: 1.8; padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(139,115,85,0.12);
+    display: flex; gap: 0.8rem; align-items: flex-start;
+  }
+  .argument-liste li:last-child { border-bottom: none; }
+  .argument-liste .ic { color: var(--or); flex-shrink: 0; }
+  .argument-liste .ic.v { color: var(--vert); }
+
+  .tableau {
+    width: 100%; border-collapse: collapse;
+    margin-bottom: 5rem;
+    border: 1px solid rgba(139,115,85,0.15);
+  }
+  .tableau th {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 1.2rem 1.5rem; text-align: left;
+    background: var(--encre); color: var(--bronze);
+    border-bottom: 1px solid rgba(139,115,85,0.2);
+  }
+  .tableau th.nous { color: var(--or); }
+  .tableau td {
+    padding: 1rem 1.5rem; font-size: 0.8rem;
+    border-bottom: 1px solid rgba(139,115,85,0.08);
+    color: var(--texte); vertical-align: top; line-height: 1.6;
+  }
+  .tableau td:first-child { color: var(--creme); font-weight: 500; }
+  .tableau td.nous { color: var(--or-pale); }
+  .tableau tr:last-child td { border-bottom: none; }
+  .tableau tr:hover td { background: rgba(10,10,15,0.5); }
+
+  .deploiement {
+    background: var(--encre);
+    border: 1px solid rgba(139,115,85,0.2);
+    padding: 3rem 2.5rem; margin-bottom: 5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+  }
+  .deploiement-titre {
+    font-family: 'Cinzel', serif;
+    font-size: 1.6rem; font-weight: 700;
+    color: var(--or-pale); margin-bottom: 0.8rem; line-height: 1.2;
+  }
+  .deploiement-sub {
+    font-size: 0.85rem; color: var(--texte);
+    line-height: 1.9; font-style: italic; margin-bottom: 1.5rem;
+  }
+
+  .cmd-block {
+    background: var(--noir);
+    border: 1px solid rgba(74,122,170,0.18);
+    padding: 1.4rem 1.6rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.78rem; line-height: 2; color: var(--texte);
+  }
+  .cmd-block .prompt { color: var(--or); user-select: none; }
+  .cmd-block .cmd { color: var(--creme); }
+  .cmd-block .ok { color: var(--vert); }
+  .cmd-block .comment { color: #4a3a28; font-style: italic; }
+  .cmd-block .bl { color: var(--acier); }
+
+  .cursor::after { content: '|'; animation: blink 1s step-end infinite; color: var(--or); }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .tarifs {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(74,122,170,0.1);
+    border: 1px solid rgba(74,122,170,0.1);
+    margin-bottom: 5rem;
+  }
+  .tarif { background: var(--encre); padding: 2rem 1.5rem; text-align: center; }
+  .tarif-who {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 1rem;
+  }
+  .tarif-prix {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--or); margin-bottom: 0.4rem; display: block;
+  }
+  .tarif-unite { font-size: 0.7rem; color: var(--texte); margin-bottom: 1.2rem; display: block; }
+  .tarif-desc { font-size: 0.75rem; color: var(--texte); line-height: 1.7; font-style: italic; }
+
+  .phrase {
+    text-align: center; padding: 5rem 2rem;
+    border-top: 1px solid rgba(139,115,85,0.18);
+    border-bottom: 1px solid rgba(139,115,85,0.18);
+    margin-bottom: 4rem;
+  }
+  .phrase blockquote {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.9rem); font-weight: 600;
+    color: var(--creme); line-height: 1.6;
+    max-width: 640px; margin: 0 auto 1.5rem;
+  }
+  .phrase blockquote em { color: var(--or); font-style: normal; }
+  .phrase cite {
+    font-size: 0.62rem; color: var(--bronze);
+    letter-spacing: 0.2em; text-transform: uppercase; font-style: normal;
+  }
+
+  footer {
+    padding: 2.5rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(139,115,85,0.18);
+    font-size: 0.68rem; color: var(--bronze);
+    max-width: 900px; margin: 0 auto;
+  }
+  footer a { color: var(--or); text-decoration: none; }
+  footer a:hover { color: var(--or-pale); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    .capacites { grid-template-columns: repeat(2, 1fr); }
+    .argument { grid-template-columns: 1fr; gap: 2rem; }
+    .deploiement { grid-template-columns: 1fr; }
+    .tarifs { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">KENTA <span>Organisme numérique souverain</span></a>
+  <a href="index.html" class="retour">← Accueil</a>
+</nav>
+
+<section class="hero">
+  <div class="orbe-wrap">
+    <div class="orbe"></div>
+    <div class="orbe-ring"></div>
+    <div class="orbe-ring-2"></div>
+  </div>
+
+  <h1>Legacy<br>& Data</h1>
+  <p class="hero-sub">Audit · Signature · Mémoire · Air-gapped</p>
+  <div class="hero-ligne"></div>
+
+  <p class="hero-phrase">
+    Ton code legacy s'exécute depuis 30 ans.<br>
+    KENTA l'audite, signe chaque résultat,<br>
+    <strong>sans que ton code source quitte ton datacenter.</strong>
+  </p>
+
+  <div class="log-panel">
+    <div class="ph">● Kabuto — audit Java · 3 317 fichiers · ce soir</div>
+    <div class="ll"><span class="src">Kabuto →</span> <span class="bl">analyse_repo</span> <span style="color:#4a3a28;">· repo_java_metier/</span></div>
+    <div class="ll" style="padding-left:1rem;"><em>"Thread.sleep dans TransactionService.java ligne 142"</em></div>
+    <div class="ll" style="padding-left:1rem;font-size:0.7rem;">3 317 fichiers · <span class="warn">47 patterns détectés</span> · <span class="val">12 critiques</span></div>
+    <div class="ll" style="margin-top:0.5rem;"><span class="src">Iruka →</span> <span class="val">cristallisation</span> <span style="color:#4a3a28;">→ base_apprentissage.yaml</span></div>
+    <div class="ll"><span class="src">Minato →</span> <span class="val">hiraishin_signature · SHA-256 · signé</span></div>
+    <div class="ll" style="color:#4a3a28;font-size:0.68rem;margin-top:0.4rem;">✓ Code source jamais sorti du réseau local<span class="cursor"></span></div>
+  </div>
+
+  <div class="cta-group">
+    <a href="#capacites" class="btn-or">Voir les capacités →</a>
+    <a href="contact.html" class="btn-creme">Nous contacter</a>
+  </div>
+</section>
+
+<div class="sep reveal"><div class="sep-line"></div><span class="sep-sym">✦</span><div class="sep-line right"></div></div>
+
+<div class="wrap" id="capacites">
+  <p class="section-label reveal">Ce que KENTA analyse</p>
+  <h2 class="section-titre reveal">Six capacités d'audit.<br>Zéro dépendance cloud.</h2>
+
+  <div class="capacites reveal">
+    <div class="cap">
+      <span class="cap-sym">⬛</span>
+      <div class="cap-nom">COBOL</div>
+      <div class="cap-desc">STOP RUN abrupt, division par zéro, sections mortes, dépendances JCL non résolues.</div>
+      <span class="cap-type">Analyse statique</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">☕</span>
+      <div class="cap-nom">Java / Spring</div>
+      <div class="cap-desc">Thread.sleep, logique métier dans les contrôleurs, couplage fort, dette technique.</div>
+      <span class="cap-type">Analyse statique</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">🗄️</span>
+      <div class="cap-nom">Oracle / SQL</div>
+      <div class="cap-desc">Requêtes non optimisées, migrations risquées Oracle → PostgreSQL, nulls imprévus.</div>
+      <span class="cap-type">Analyse + correction</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">📋</span>
+      <div class="cap-nom">Compliance</div>
+      <div class="cap-desc">Chaque résultat signé SHA-256 par Minato. Résultats comparables run à run. Versionnables.</div>
+      <span class="cap-type">Signature</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">🧠</span>
+      <div class="cap-nom">Mémoire cumulative</div>
+      <div class="cap-desc">Iruka cristallise chaque problème résolu. Le run suivant part de ce que le précédent a appris.</div>
+      <span class="cap-type">Apprentissage</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">🔒</span>
+      <div class="cap-nom">Air-gapped</div>
+      <div class="cap-desc">KENTA tourne dans ta salle serveur. Aucune connexion sortante requise. Zéro SaaS.</div>
+      <span class="cap-type">Souveraineté</span>
+    </div>
+  </div>
+</div>
+
+<div class="sep reveal"><div class="sep-line"></div><span class="sep-sym">✦</span><div class="sep-line right"></div></div>
+
+<div class="wrap">
+  <div class="argument reveal">
+    <div>
+      <div class="argument-titre">Le code ne quitte<br>pas le datacenter.<br>Jamais.</div>
+      <p class="argument-texte">
+        SonarCloud traite ton code source sur leurs serveurs.<br>
+        Cast Highlight envoie des extraits en cloud.<br><br>
+        <strong>KENTA tourne dans ta salle serveur.</strong><br>
+        L'audit, les résultats, la mémoire — tout reste sur ton infrastructure.<br>
+        Chaque fait est signé. Chaque run est rejouable.
+      </p>
+    </div>
+    <ul class="argument-liste">
+      <li><span class="ic v">✓</span> <span>3 317 fichiers Java analysés — résultat reproductible</span></li>
+      <li><span class="ic v">✓</span> <span>COBOL : STOP RUN abrupt ligne 36 — pattern cristallisé</span></li>
+      <li><span class="ic v">✓</span> <span>Chaque audit signé SHA-256 — traçabilité légale</span></li>
+      <li><span class="ic v">✓</span> <span>Iruka mémorise — le run N+1 part de ce qu'a appris le run N</span></li>
+      <li><span class="ic v">✓</span> <span>Fonctionne offline — datacenter isolé, zone sécurisée, air-gapped</span></li>
+      <li><span class="ic" style="color:var(--bronze);">→</span> <span>SonarCloud, Cast : code traité sur serveurs américains</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="section-label reveal">Comparaison</p>
+  <h2 class="section-titre reveal">Ce que les autres font.<br>Ce que KENTA fait.</h2>
+
+  <table class="tableau reveal">
+    <thead>
+      <tr>
+        <th>Critère</th>
+        <th>SonarCloud / Cast Highlight</th>
+        <th class="nous">KENTA — Legacy & Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Localisation du code</td>
+        <td>Traité sur serveurs cloud</td>
+        <td class="nous">Reste dans ton infrastructure, jamais ailleurs</td>
+      </tr>
+      <tr>
+        <td>Analyse COBOL</td>
+        <td>Partielle ou absente</td>
+        <td class="nous">STOP RUN, sections mortes, JCL — natif</td>
+      </tr>
+      <tr>
+        <td>Mémoire cumulative</td>
+        <td>Rapport figé à chaque run</td>
+        <td class="nous">Iruka cristallise — chaque run enrichit la base</td>
+      </tr>
+      <tr>
+        <td>Traçabilité</td>
+        <td>Log cloud, opaque</td>
+        <td class="nous">YAML signé SHA-256, versionnable, rejouable</td>
+      </tr>
+      <tr>
+        <td>Offline / Air-gapped</td>
+        <td>Non — connexion obligatoire</td>
+        <td class="nous">100% offline, aucune dépendance réseau</td>
+      </tr>
+      <tr>
+        <td>Corrections proposées</td>
+        <td>Suggestions statiques</td>
+        <td class="nous">Sakura/Creig proposent depuis l'ADN — adaptées à ton stack</td>
+      </tr>
+      <tr>
+        <td>Modèle économique</td>
+        <td>Abonnement SaaS, prix par développeur</td>
+        <td class="nous">Déploiement one-shot, code = propriété du client</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="wrap">
+  <p class="section-label reveal">Déploiement</p>
+  <h2 class="section-titre reveal">Dans ta salle serveur.<br>Ce soir.</h2>
+
+  <div class="deploiement reveal">
+    <div>
+      <div class="deploiement-titre">Sur ton infrastructure.<br>Dans ton périmètre.</div>
+      <p class="deploiement-sub">
+        Pas de compte cloud à créer.<br>
+        Pas de clé API à transmettre.<br>
+        Un terminal dans ta salle serveur. Deux commandes.<br>
+        <strong>KENTA tourne, Kabuto audite, Minato signe.</strong>
+      </p>
+      <a href="contact.html" class="btn-or">Demander l'accès</a>
+    </div>
+    <div class="cmd-block">
+      <div class="comment"># Déploiement DSI — réseau isolé</div>
+      <div><span class="prompt">$ </span><span class="cmd">bash eveil.sh</span></div>
+      <div style="margin-top:0.6rem;" class="comment"># Lancer un audit Java</div>
+      <div><span class="prompt">$ </span><span class="cmd">cat &gt; influx/audit_java.yaml &lt;&lt; 'EOF'</span></div>
+      <div style="padding-left:1rem;"><span class="cmd">objet: kabuto_analyse_repo</span></div>
+      <div style="padding-left:1rem;"><span class="cmd">metadata:</span></div>
+      <div style="padding-left:2rem;"><span class="cmd">chemin: /srv/repos/appli_metier/</span></div>
+      <div style="padding-left:1rem;"><span class="cmd">EOF</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">bash install/run_chaine.sh</span></div>
+      <div style="margin-top:0.6rem;" class="bl">→ Kabuto analyse · Iruka cristallise</div>
+      <div class="ok">✓ Rapport signé · zéro donnée sortante<span class="cursor"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="phrase reveal">
+    <blockquote>
+      Le code tourne depuis 30 ans.<br>
+      Personne ne sait plus pourquoi.<br>
+      <em>KENTA le lit, le signe, et s'en souvient.</em>
+    </blockquote>
+    <cite>3 317 fichiers Java · COBOL STOP RUN ligne 36 · résultats signés · code jamais sorti du datacenter</cite>
+  </div>
+</div>
+
+<footer>
+  <span>KENTA — Legacy & Data</span>
+  <span>
+    <a href="index.html">← Accueil</a> ·
+    <a href="mailto:jgn@murena.io">jgn@murena.io</a> ·
+    Saint-Denis-d'Anjou, France
+  </span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KENTA — Contact</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir:    #050505;
+    --encre:   #0a0a0f;
+    --or:      #c9a84c;
+    --or-vif:  #e8c96d;
+    --or-pale: #f0dfa3;
+    --creme:   #E8DCC4;
+    --bronze:  #8B7355;
+    --texte:   #9a8f7a;
+    --vert:    #3a7d5a;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--creme);
+    font-family: Georgia, 'Times New Roman', serif;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 1.2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(5,5,5,0.85); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(139,115,85,0.15); z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.3em; color: var(--or-pale); text-decoration: none;
+  }
+  .nav-logo span { color: var(--bronze); font-weight: 400; font-size: 0.65rem; letter-spacing: 0.2em; display: block; }
+  nav a.retour {
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em;
+    color: var(--bronze); text-decoration: none; transition: color 0.3s;
+  }
+  nav a.retour:hover { color: var(--or); }
+
+  main {
+    flex: 1;
+    display: flex; align-items: center; justify-content: center;
+    padding: 8rem 2rem 4rem;
+  }
+
+  .contact-wrap {
+    max-width: 680px; width: 100%; text-align: center;
+  }
+
+  .eyebrow {
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.35em; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 700;
+    letter-spacing: 0.1em; color: var(--or-pale);
+    text-shadow: 0 0 40px rgba(201,168,76,0.2);
+    margin-bottom: 0.5rem; line-height: 1.15;
+  }
+
+  .hero-line {
+    width: 100px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--or), transparent);
+    margin: 1.8rem auto 2rem;
+  }
+
+  .intro {
+    font-size: 1rem; color: var(--texte); line-height: 1.95;
+    margin-bottom: 3rem; max-width: 520px; margin-left: auto; margin-right: auto;
+  }
+  .intro strong { color: var(--creme); font-weight: normal; }
+
+  /* Bloc email principal */
+  .email-bloc {
+    background: var(--encre);
+    border: 1px solid rgba(139,115,85,0.3);
+    border-left: 3px solid var(--or);
+    padding: 2.2rem 2.5rem;
+    margin-bottom: 2rem;
+    text-align: left;
+  }
+
+  .email-label {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 1.1rem; display: block;
+  }
+
+  .email-adresse {
+    font-family: 'Courier New', monospace;
+    font-size: clamp(1.1rem, 3vw, 1.5rem);
+    color: var(--or-pale);
+    letter-spacing: 0.04em;
+    display: block; margin-bottom: 1.5rem;
+    word-break: break-all;
+  }
+
+  .btn-group { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  .btn-or {
+    font-family: 'Cinzel', serif; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--noir);
+    background: linear-gradient(135deg, var(--or-vif), var(--or), var(--bronze));
+    padding: 0.85rem 2rem; border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.25s, transform 0.2s; display: inline-block;
+  }
+  .btn-or:hover { opacity: 0.85; transform: translateY(-1px); }
+
+  .btn-copier {
+    font-family: 'Cinzel', serif; font-size: 0.72rem;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--creme); background: transparent;
+    padding: 0.85rem 2rem;
+    border: 1px solid rgba(139,115,85,0.4);
+    cursor: pointer; transition: border-color 0.25s, color 0.25s;
+    display: inline-block;
+  }
+  .btn-copier:hover { border-color: var(--or); color: var(--or-pale); }
+  .btn-copier.copie { color: var(--vert); border-color: var(--vert); }
+
+  /* Sujets suggérés */
+  .sujets {
+    background: var(--encre);
+    border: 1px solid rgba(139,115,85,0.18);
+    padding: 1.8rem 2.5rem;
+    text-align: left; margin-bottom: 3rem;
+  }
+  .sujets-label {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.3em; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 1.1rem; display: block;
+  }
+  .sujet {
+    display: flex; align-items: baseline; gap: 0.9rem;
+    padding: 0.55rem 0;
+    border-bottom: 1px solid rgba(139,115,85,0.1);
+    font-size: 0.84rem; color: var(--texte); line-height: 1.6;
+    cursor: pointer; transition: color 0.2s;
+    text-decoration: none;
+  }
+  .sujet:last-child { border-bottom: none; }
+  .sujet:hover { color: var(--or-pale); }
+  .sujet:hover .sujet-arrow { color: var(--or); }
+  .sujet-arrow { color: var(--bronze); font-size: 0.75rem; flex-shrink: 0; transition: color 0.2s; }
+  .sujet-texte strong { color: var(--creme); font-weight: normal; }
+
+  .note {
+    font-size: 0.78rem; color: var(--texte); line-height: 1.9;
+    font-style: italic; text-align: center;
+    max-width: 480px; margin: 0 auto;
+  }
+
+  footer {
+    padding: 2rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(139,115,85,0.15);
+    font-size: 0.68rem; color: var(--bronze);
+    max-width: 900px; margin: 0 auto; width: 100%; gap: 1rem;
+  }
+  footer a { color: var(--or); text-decoration: none; }
+  footer a:hover { color: var(--or-pale); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(14px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .contact-wrap { animation: fadeIn 0.9s ease 0.2s both; }
+
+  @media (max-width: 480px) {
+    .btn-group { flex-direction: column; }
+    .btn-or, .btn-copier { text-align: center; }
+    footer { flex-direction: column; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">KENTA <span>Organisme numérique souverain</span></a>
+  <a href="index.html" class="retour">← Accueil</a>
+</nav>
+
+<main>
+  <div class="contact-wrap">
+
+    <p class="eyebrow">Accès & contact</p>
+    <h1>Écrivez-nous.</h1>
+    <div class="hero-line"></div>
+
+    <p class="intro">
+      KENTA n'est pas en accès libre.<br>
+      On répond à chaque message.<br>
+      <strong>On discute d'abord — on déploie ensuite.</strong>
+    </p>
+
+    <div class="email-bloc">
+      <span class="email-label">Adresse directe</span>
+      <span class="email-adresse" id="email-addr">jgn@murena.io</span>
+      <div class="btn-group">
+        <a href="mailto:jgn@murena.io?subject=Accès KENTA — demande" class="btn-or">Ouvrir dans mon client mail</a>
+        <button class="btn-copier" id="btn-copy" onclick="copierEmail()">Copier l'adresse</button>
+      </div>
+    </div>
+
+    <div class="sujets">
+      <span class="sujets-label">Vous pouvez mentionner</span>
+
+      <a href="mailto:jgn@murena.io?subject=Accès KENTA — Bien-être / Arcana" class="sujet">
+        <span class="sujet-arrow">→</span>
+        <span class="sujet-texte"><strong>Bien-être / Arcana</strong> — praticien, cabinet, app branded</span>
+      </a>
+      <a href="mailto:jgn@murena.io?subject=Accès KENTA — Audit Legacy / COBOL" class="sujet">
+        <span class="sujet-arrow">→</span>
+        <span class="sujet-texte"><strong>Legacy & Data</strong> — audit COBOL/Java, déploiement air-gapped</span>
+      </a>
+      <a href="mailto:jgn@murena.io?subject=Accès KENTA — Industrie / Hardware" class="sujet">
+        <span class="sujet-arrow">→</span>
+        <span class="sujet-texte"><strong>Industrie & Hardware</strong> — POC capteurs, ADN constructeur</span>
+      </a>
+      <a href="mailto:jgn@murena.io?subject=Accès KENTA — Formation / Souveraineté" class="sujet">
+        <span class="sujet-arrow">→</span>
+        <span class="sujet-texte"><strong>Formation & Souveraineté</strong> — atelier, cursus, institution</span>
+      </a>
+      <a href="mailto:jgn@murena.io?subject=Accès KENTA — autre" class="sujet">
+        <span class="sujet-arrow">→</span>
+        <span class="sujet-texte"><strong>Autre</strong> — curiosité, partenariat, contribution</span>
+      </a>
+    </div>
+
+    <p class="note">
+      Réponse sous 48h.<br>
+      Pas de newsletter. Pas de CRM. Juste une conversation.
+    </p>
+
+  </div>
+</main>
+
+<footer>
+  <span>KENTA — Organisme numérique souverain</span>
+  <span>
+    <a href="index.html">← Accueil</a> ·
+    Saint-Denis-d'Anjou, France
+  </span>
+</footer>
+
+<script>
+function copierEmail() {
+  navigator.clipboard.writeText('jgn@murena.io').then(() => {
+    const btn = document.getElementById('btn-copy');
+    btn.textContent = '✓ Copié';
+    btn.classList.add('copie');
+    setTimeout(() => {
+      btn.textContent = 'Copier l\'adresse';
+      btn.classList.remove('copie');
+    }, 2500);
+  });
+}
+</script>
+</body>
+</html>

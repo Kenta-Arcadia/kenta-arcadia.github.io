@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KENTA — Industrie & Hardware</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --noir:    #050505;
+    --encre:   #0a0a0f;
+    --or:      #c9a84c;
+    --or-vif:  #e8c96d;
+    --or-pale: #f0dfa3;
+    --creme:   #E8DCC4;
+    --bronze:  #8B7355;
+    --texte:   #9a8f7a;
+    --vert:    #3a7d5a;
+    --ambre:   #c9844c;
+    --acier:   #8a9aaa;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--noir);
+    color: var(--creme);
+    font-family: Georgia, 'Times New Roman', serif;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999;
+  }
+
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    padding: 1.2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(5,5,5,0.85); backdrop-filter: blur(8px);
+    border-bottom: 1px solid rgba(139,115,85,0.15); z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'Cinzel', serif; font-size: 1rem; font-weight: 700;
+    letter-spacing: 0.3em; color: var(--or-pale); text-decoration: none;
+  }
+  .nav-logo span { color: var(--bronze); font-weight: 400; font-size: 0.65rem; letter-spacing: 0.2em; display: block; }
+  nav a.retour {
+    font-family: 'Cinzel', serif; font-size: 0.65rem; letter-spacing: 0.2em;
+    color: var(--bronze); text-decoration: none; transition: color 0.3s;
+  }
+  nav a.retour:hover { color: var(--or); }
+
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center; padding: 8rem 2rem 5rem;
+  }
+
+  .orbe-wrap {
+    position: relative; width: 160px; height: 160px;
+    margin-bottom: 3rem; animation: fadeIn 1.4s ease 0.3s both;
+  }
+  .orbe {
+    width: 160px; height: 160px; border-radius: 50%;
+    background: radial-gradient(ellipse at 38% 35%,
+      #fff8e8 0%, #f0d080 18%, #c9844c 42%, #6a4a20 70%, #100800 100%);
+    box-shadow:
+      0 0 50px rgba(201,132,76,0.4),
+      0 0 100px rgba(201,168,76,0.15),
+      0 0 180px rgba(201,132,76,0.08),
+      inset 0 0 40px rgba(255,240,180,0.12);
+    animation: breathe-ind 4s ease-in-out infinite;
+  }
+  .orbe-ring {
+    position: absolute; inset: -14px; border-radius: 50%;
+    border: 1px solid rgba(201,132,76,0.25);
+    animation: rotate 18s linear infinite;
+  }
+  .orbe-ring-2 {
+    position: absolute; inset: -28px; border-radius: 50%;
+    border: 1px solid rgba(138,154,170,0.15);
+    animation: rotate 30s linear infinite reverse;
+  }
+  .orbe-ring::before, .orbe-ring-2::before {
+    content: ''; position: absolute; top: -2px; left: 50%;
+    width: 4px; height: 4px; border-radius: 50%; transform: translateX(-50%);
+  }
+  .orbe-ring::before { background: var(--ambre); box-shadow: 0 0 8px var(--ambre); }
+  .orbe-ring-2::before { background: var(--acier); box-shadow: 0 0 8px var(--acier); }
+
+  @keyframes breathe-ind {
+    0%,100% { box-shadow: 0 0 50px rgba(201,132,76,0.4), 0 0 100px rgba(201,168,76,0.15), 0 0 180px rgba(201,132,76,0.08), inset 0 0 40px rgba(255,240,180,0.12); }
+    50% { box-shadow: 0 0 70px rgba(201,132,76,0.55), 0 0 130px rgba(201,168,76,0.25), 0 0 220px rgba(201,132,76,0.12), inset 0 0 55px rgba(255,240,180,0.18); }
+  }
+  @keyframes rotate { to { transform: rotate(360deg); } }
+
+  .hero h1 {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(2.5rem, 6vw, 5rem); font-weight: 700;
+    letter-spacing: 0.12em; color: var(--or-pale); line-height: 1.1;
+    margin-bottom: 0.4rem; animation: fadeIn 1s ease 0.8s both;
+    text-shadow: 0 0 40px rgba(201,132,76,0.3);
+  }
+  .hero-sub {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(0.65rem, 1.4vw, 0.85rem);
+    letter-spacing: 0.45em; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 2.5rem; animation: fadeIn 1s ease 1s both;
+  }
+  .hero-ligne {
+    width: 120px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--or), transparent);
+    margin: 0 auto 2.5rem; animation: fadeIn 1s ease 1.2s both;
+  }
+  .hero-phrase {
+    font-size: clamp(1rem, 2vw, 1.2rem); color: var(--texte);
+    max-width: 560px; line-height: 2; margin-bottom: 2rem;
+    font-style: italic; animation: fadeIn 1s ease 1.4s both;
+  }
+  .hero-phrase strong { color: var(--creme); font-style: normal; }
+
+  .log-panel {
+    background: rgba(10,10,15,0.95);
+    border: 1px solid rgba(201,132,76,0.2);
+    border-left: 2px solid var(--ambre);
+    padding: 1.2rem 1.8rem; max-width: 540px;
+    text-align: left; margin: 0 auto 2.5rem;
+    font-family: 'Courier New', monospace; font-size: 0.75rem;
+    animation: fadeIn 1s ease 1.6s both;
+  }
+  .log-panel .ph {
+    color: var(--bronze); font-family: 'Cinzel', serif;
+    font-size: 0.58rem; letter-spacing: 0.2em;
+    text-transform: uppercase; margin-bottom: 0.8rem;
+  }
+  .ll { color: var(--texte); margin-bottom: 0.3rem; line-height: 1.6; }
+  .ll .src { color: var(--or-pale); }
+  .ll .val { color: var(--vert); }
+  .ll .am  { color: var(--ambre); }
+  .ll .warn { color: #e05030; }
+  .ll em { font-style: italic; color: #b8a888; }
+
+  .cta-group {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    animation: fadeIn 1s ease 1.8s both;
+  }
+  .btn-or {
+    font-family: 'Cinzel', serif; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--noir);
+    background: linear-gradient(135deg, var(--or-vif), var(--or), var(--bronze));
+    padding: 0.8rem 2.2rem; border: none; cursor: pointer; text-decoration: none;
+    transition: opacity 0.3s, transform 0.2s; display: inline-block;
+  }
+  .btn-or:hover { opacity: 0.85; transform: translateY(-1px); }
+  .btn-creme {
+    font-family: 'Cinzel', serif; font-size: 0.75rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    color: var(--creme); background: transparent;
+    padding: 0.8rem 2.2rem; border: 1px solid rgba(139,115,85,0.4);
+    cursor: pointer; text-decoration: none;
+    transition: border-color 0.3s, color 0.3s; display: inline-block;
+  }
+  .btn-creme:hover { border-color: var(--or); color: var(--or-pale); }
+
+  .sep {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin: 5rem auto; max-width: 700px; padding: 0 2rem;
+  }
+  .sep-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--bronze)); }
+  .sep-line.right { background: linear-gradient(to left, transparent, var(--bronze)); }
+  .sep-sym { color: var(--or); font-family: 'Cinzel', serif; font-size: 1.2rem; }
+
+  .wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  .section-label {
+    font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.35em;
+    text-transform: uppercase; color: var(--bronze); text-align: center; margin-bottom: 0.8rem;
+  }
+  .section-titre {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 600;
+    color: var(--or-pale); text-align: center;
+    margin-bottom: 3rem; letter-spacing: 0.04em; line-height: 1.3;
+  }
+
+  .capteurs {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(201,132,76,0.1);
+    border: 1px solid rgba(201,132,76,0.1);
+    margin-bottom: 5rem;
+  }
+  .cap {
+    background: var(--encre); padding: 1.8rem 1.5rem; transition: background 0.3s;
+  }
+  .cap:hover { background: #0d0d14; }
+  .cap-sym { font-size: 1.4rem; margin-bottom: 0.7rem; display: block; opacity: 0.8; }
+  .cap-nom {
+    font-family: 'Cinzel', serif; font-size: 0.8rem; font-weight: 600;
+    color: var(--or-pale); margin-bottom: 0.4rem; letter-spacing: 0.05em;
+  }
+  .cap-desc { font-size: 0.72rem; color: var(--texte); line-height: 1.7; }
+  .cap-type {
+    display: inline-block; margin-top: 0.6rem;
+    font-family: 'Cinzel', serif; font-size: 0.55rem;
+    letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--ambre); padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(201,132,76,0.25);
+  }
+
+  .argument {
+    background: var(--encre);
+    border: 1px solid rgba(139,115,85,0.2);
+    border-left: 3px solid var(--ambre);
+    padding: 2.5rem; margin-bottom: 5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: start;
+  }
+  .argument-titre {
+    font-family: 'Cinzel', serif; font-size: 1.5rem; font-weight: 600;
+    color: var(--or-pale); margin-bottom: 1rem; line-height: 1.3;
+  }
+  .argument-texte {
+    font-size: 0.88rem; color: var(--texte); line-height: 1.9; font-style: italic;
+  }
+  .argument-texte strong { color: var(--creme); font-style: normal; }
+  .argument-liste { list-style: none; }
+  .argument-liste li {
+    font-size: 0.82rem; color: var(--texte); line-height: 1.8; padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(139,115,85,0.12);
+    display: flex; gap: 0.8rem; align-items: flex-start;
+  }
+  .argument-liste li:last-child { border-bottom: none; }
+  .argument-liste .ic { color: var(--or); flex-shrink: 0; }
+  .argument-liste .ic.v { color: var(--vert); }
+
+  .tableau {
+    width: 100%; border-collapse: collapse;
+    margin-bottom: 5rem; border: 1px solid rgba(139,115,85,0.15);
+  }
+  .tableau th {
+    font-family: 'Cinzel', serif; font-size: 0.65rem;
+    letter-spacing: 0.2em; text-transform: uppercase;
+    padding: 1.2rem 1.5rem; text-align: left;
+    background: var(--encre); color: var(--bronze);
+    border-bottom: 1px solid rgba(139,115,85,0.2);
+  }
+  .tableau th.nous { color: var(--or); }
+  .tableau td {
+    padding: 1rem 1.5rem; font-size: 0.8rem;
+    border-bottom: 1px solid rgba(139,115,85,0.08);
+    color: var(--texte); vertical-align: top; line-height: 1.6;
+  }
+  .tableau td:first-child { color: var(--creme); font-weight: 500; }
+  .tableau td.nous { color: var(--or-pale); }
+  .tableau tr:last-child td { border-bottom: none; }
+  .tableau tr:hover td { background: rgba(10,10,15,0.5); }
+
+  .deploiement {
+    background: var(--encre); border: 1px solid rgba(139,115,85,0.2);
+    padding: 3rem 2.5rem; margin-bottom: 5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+  }
+  .deploiement-titre {
+    font-family: 'Cinzel', serif; font-size: 1.6rem; font-weight: 700;
+    color: var(--or-pale); margin-bottom: 0.8rem; line-height: 1.2;
+  }
+  .deploiement-sub {
+    font-size: 0.85rem; color: var(--texte); line-height: 1.9;
+    font-style: italic; margin-bottom: 1.5rem;
+  }
+
+  .cmd-block {
+    background: var(--noir); border: 1px solid rgba(201,132,76,0.18);
+    padding: 1.4rem 1.6rem; font-family: 'Courier New', monospace;
+    font-size: 0.78rem; line-height: 2; color: var(--texte);
+  }
+  .cmd-block .prompt { color: var(--or); user-select: none; }
+  .cmd-block .cmd { color: var(--creme); }
+  .cmd-block .ok { color: var(--vert); }
+  .cmd-block .comment { color: #4a3a28; font-style: italic; }
+  .cmd-block .am { color: var(--ambre); }
+
+  .cursor::after { content: '|'; animation: blink 1s step-end infinite; color: var(--or); }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+
+  .tarifs {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 1px; background: rgba(201,132,76,0.1);
+    border: 1px solid rgba(201,132,76,0.1);
+    margin-bottom: 5rem;
+  }
+  .tarif { background: var(--encre); padding: 2rem 1.5rem; text-align: center; }
+  .tarif-who {
+    font-family: 'Cinzel', serif; font-size: 0.6rem;
+    letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--bronze); margin-bottom: 1rem;
+  }
+  .tarif-prix {
+    font-family: 'Cinzel', serif; font-size: 1.8rem; font-weight: 700;
+    color: var(--or); margin-bottom: 0.4rem; display: block;
+  }
+  .tarif-unite { font-size: 0.7rem; color: var(--texte); margin-bottom: 1.2rem; display: block; }
+  .tarif-desc { font-size: 0.75rem; color: var(--texte); line-height: 1.7; font-style: italic; }
+
+  .phrase {
+    text-align: center; padding: 5rem 2rem;
+    border-top: 1px solid rgba(139,115,85,0.18);
+    border-bottom: 1px solid rgba(139,115,85,0.18);
+    margin-bottom: 4rem;
+  }
+  .phrase blockquote {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.9rem); font-weight: 600;
+    color: var(--creme); line-height: 1.6;
+    max-width: 640px; margin: 0 auto 1.5rem;
+  }
+  .phrase blockquote em { color: var(--or); font-style: normal; }
+  .phrase cite {
+    font-size: 0.62rem; color: var(--bronze);
+    letter-spacing: 0.2em; text-transform: uppercase; font-style: normal;
+  }
+
+  footer {
+    padding: 2.5rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(139,115,85,0.18);
+    font-size: 0.68rem; color: var(--bronze);
+    max-width: 900px; margin: 0 auto;
+  }
+  footer a { color: var(--or); text-decoration: none; }
+  footer a:hover { color: var(--or-pale); }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  @media (max-width: 640px) {
+    .capteurs { grid-template-columns: repeat(2, 1fr); }
+    .argument { grid-template-columns: 1fr; gap: 2rem; }
+    .deploiement { grid-template-columns: 1fr; }
+    .tarifs { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">KENTA <span>Organisme numérique souverain</span></a>
+  <a href="index.html" class="retour">← Accueil</a>
+</nav>
+
+<section class="hero">
+  <div class="orbe-wrap">
+    <div class="orbe"></div>
+    <div class="orbe-ring"></div>
+    <div class="orbe-ring-2"></div>
+  </div>
+
+  <h1>Industrie<br>& Hardware</h1>
+  <p class="hero-sub">Capteurs · Seuils · Diagnostic · Edge local</p>
+  <div class="hero-ligne"></div>
+
+  <p class="hero-phrase">
+    Le technicien surveille 12 écrans SCADA.<br>
+    La machine sait déjà.<br>
+    <strong>KENTA lit les capteurs, diagnostique et signe — en 3 secondes.</strong>
+  </p>
+
+  <div class="log-panel">
+    <div class="ph">● Hinata — ligne 3 · robot soudure · dérive détectée</div>
+    <div class="ll"><span class="src">Hinata →</span> <span class="am">anomalie_capteur</span> <span style="color:#4a3a28;">· courant_moteur_axe_x</span></div>
+    <div class="ll" style="padding-left:1rem;"><em>"La bobine chauffe. Réduire la charge."</em></div>
+    <div class="ll" style="padding-left:1rem;font-size:0.7rem;">courant <span class="warn">4.2A</span> · nominal <span class="val">3.1A</span> · dérive <span class="warn">+35%</span></div>
+    <div class="ll" style="margin-top:0.5rem;"><span class="src">Kabuto →</span> <span class="val">diagnostic</span> <span style="color:#4a3a28;">→ "usure roulement probable"</span></div>
+    <div class="ll"><span class="src">Minato →</span> <span class="val">hiraishin_signature · SHA-256 · signé</span></div>
+    <div class="ll" style="color:#4a3a28;font-size:0.68rem;margin-top:0.4rem;">✓ Traçabilité légale · aucune connexion cloud<span class="cursor"></span></div>
+  </div>
+
+  <div class="cta-group">
+    <a href="#capteurs" class="btn-or">Voir l'architecture →</a>
+    <a href="contact.html" class="btn-creme">Nous contacter</a>
+  </div>
+</section>
+
+<div class="sep reveal"><div class="sep-line"></div><span class="sep-sym">✦</span><div class="sep-line right"></div></div>
+
+<div class="wrap" id="capteurs">
+  <p class="section-label reveal">Le pattern industriel KENTA</p>
+  <h2 class="section-titre reveal">Capteur → Méridien → Seuil → Action.<br>Sans cloud. Sans latence.</h2>
+
+  <div class="capteurs reveal">
+    <div class="cap">
+      <span class="cap-sym">⚡</span>
+      <div class="cap-nom">Courant moteur</div>
+      <div class="cap-desc">Dérive de courant → méridien Métal → seuil ADN → vibration Hinata → diagnostic Kabuto.</div>
+      <span class="cap-type">Maintenant</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">🌡️</span>
+      <div class="cap-nom">Température bobinage</div>
+      <div class="cap-desc">Surchauffe → méridien Feu → alerte → réduction fréquence CPU ou charge moteur.</div>
+      <span class="cap-type">Maintenant</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">📳</span>
+      <div class="cap-nom">Vibration roulement</div>
+      <div class="cap-desc">Signature vibratoire anormale → méridien Bois → usure prédite → Kabuto cherche la référence pièce.</div>
+      <span class="cap-type">Maintenant</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">🖥️</span>
+      <div class="cap-nom">IPMI / Serveur</div>
+      <div class="cap-desc">Registres IPMI : température CPU, tension, état alimentation → même pattern que les capteurs industriels.</div>
+      <span class="cap-type">Maintenant</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">🔌</span>
+      <div class="cap-nom">Bus CAN / Modbus</div>
+      <div class="cap-desc">Hinata lit Modbus RTU ou CAN bus. Le même ADN pilote le comportement selon les seuils définis par le constructeur.</div>
+      <span class="cap-type">Proche terme</span>
+    </div>
+    <div class="cap">
+      <span class="cap-sym">📦</span>
+      <div class="cap-nom">ADN livré avec la machine</div>
+      <div class="cap-desc">Le constructeur livre l'ADN avec son équipement. Comme un manuel technique — mais exécutable. Mis à jour par fichier YAML.</div>
+      <span class="cap-type">Modèle commercial</span>
+    </div>
+  </div>
+</div>
+
+<div class="sep reveal"><div class="sep-line"></div><span class="sep-sym">✦</span><div class="sep-line right"></div></div>
+
+<div class="wrap">
+  <div class="argument reveal">
+    <div>
+      <div class="argument-titre">La machine se reconfigure<br>selon son ADN.<br>Sans opérateur.</div>
+      <p class="argument-texte">
+        Aujourd'hui : alarme SCADA → ticket Maximo → technicien → 20 minutes.<br><br>
+        <strong>Avec KENTA :</strong><br>
+        Capteur émet → Hinata détecte → Kabuto diagnostique depuis la base locale →
+        Creig propose la correction → Minato signe. <strong>3 secondes.</strong><br><br>
+        Traçabilité légale. Aucun cloud. Fonctionne en zone blanche.
+      </p>
+    </div>
+    <ul class="argument-liste">
+      <li><span class="ic v">✓</span> <span>Hinata lit CPU, RAM, I/O — en production sur i5 2012</span></li>
+      <li><span class="ic v">✓</span> <span>Même pattern extensible à tout capteur industriel</span></li>
+      <li><span class="ic v">✓</span> <span>Chaque diagnostic signé SHA-256 — traçabilité assurance / norme ISO</span></li>
+      <li><span class="ic v">✓</span> <span>Fonctionne en zone blanche, mine, offshore, sous-marin</span></li>
+      <li><span class="ic v">✓</span> <span>Raspberry Pi 4 (35€) suffit pour embarquer KENTA sur une ligne</span></li>
+      <li><span class="ic" style="color:var(--bronze);">→</span> <span>SCADA / CMMS : $50K-500K · cloud obligatoire · latence réseau</span></li>
+    </ul>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="section-label reveal">Comparaison</p>
+  <h2 class="section-titre reveal">Ce que les autres font.<br>Ce que KENTA fait.</h2>
+
+  <table class="tableau reveal">
+    <thead>
+      <tr>
+        <th>Critère</th>
+        <th>SCADA / CMMS (Maximo, SAP PM)</th>
+        <th class="nous">KENTA — Industrie</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Infrastructure requise</td>
+        <td>Serveurs dédiés, réseau industriel, intégrateur</td>
+        <td class="nous">Raspberry Pi 4 · Python · YAML</td>
+      </tr>
+      <tr>
+        <td>Cloud obligatoire</td>
+        <td>Oui — données capteurs transmises</td>
+        <td class="nous">Air-gapped natif · zéro dépendance réseau</td>
+      </tr>
+      <tr>
+        <td>Règles de comportement</td>
+        <td>Codées par l'intégrateur, figées</td>
+        <td class="nous">ADN YAML livré avec la machine · modifiable sans code</td>
+      </tr>
+      <tr>
+        <td>Temps de réaction</td>
+        <td>20 min (alarme → ticket → technicien)</td>
+        <td class="nous">3 secondes (capteur → diagnostic → signature)</td>
+      </tr>
+      <tr>
+        <td>Traçabilité</td>
+        <td>Log propriétaire, format opaque</td>
+        <td class="nous">YAML signé SHA-256 · légal · versionnable</td>
+      </tr>
+      <tr>
+        <td>Coût</td>
+        <td>$50K–$500K licence + intégration</td>
+        <td class="nous">POC · déploiement · ADN par machine</td>
+      </tr>
+      <tr>
+        <td>Maintenance</td>
+        <td>Centralisée, dépendante du fournisseur</td>
+        <td class="nous">Autonome par machine · mise à jour ADN = fichier YAML</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="wrap">
+  <p class="section-label reveal">Déploiement</p>
+  <h2 class="section-titre reveal">Sur la ligne.<br>En zone blanche.</h2>
+
+  <div class="deploiement reveal">
+    <div>
+      <div class="deploiement-titre">Un Raspberry Pi.<br>Un ADN. Une ligne.</div>
+      <p class="deploiement-sub">
+        Pas de serveur central.<br>
+        Pas de connexion cloud.<br>
+        Chaque machine a sa graine KENTA.<br>
+        <strong>L'ADN du constructeur pilote le comportement.</strong>
+      </p>
+      <a href="contact.html" class="btn-or">Demander un POC</a>
+    </div>
+    <div class="cmd-block">
+      <div class="comment"># Déploiement sur ligne industrielle</div>
+      <div><span class="prompt">$ </span><span class="cmd">bash eveil.sh</span></div>
+      <div style="margin-top:0.6rem;" class="comment"># Alerte capteur moteur</div>
+      <div><span class="prompt">$ </span><span class="cmd">cat &gt; influx/alerte_moteur.yaml &lt;&lt; 'EOF'</span></div>
+      <div style="padding-left:1rem;"><span class="cmd">objet: hinata_anomalie_capteur</span></div>
+      <div style="padding-left:1rem;"><span class="cmd">metadata:</span></div>
+      <div style="padding-left:2rem;"><span class="cmd">capteur: courant_moteur_axe_x</span></div>
+      <div style="padding-left:2rem;"><span class="cmd">valeur: 4.2</span></div>
+      <div style="padding-left:1rem;"><span class="cmd">EOF</span></div>
+      <div><span class="prompt">$ </span><span class="cmd">bash install/run_chaine.sh</span></div>
+      <div style="margin-top:0.6rem;" class="am">→ Kabuto diagnostique · Minato signe</div>
+      <div class="ok">✓ Traçabilité légale · 3 secondes<span class="cursor"></span></div>
+    </div>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="phrase reveal">
+    <blockquote>
+      La machine savait.<br>
+      Le technicien n'avait pas encore regardé.<br>
+      <em>KENTA avait déjà signé le diagnostic.</em>
+    </blockquote>
+    <cite>Hinata en production · corrélation capteur → état → parole · offline · traçabilité SHA-256</cite>
+  </div>
+</div>
+
+<footer>
+  <span>KENTA — Industrie & Hardware</span>
+  <span>
+    <a href="index.html">← Accueil</a> ·
+    <a href="mailto:jgn@murena.io">jgn@murena.io</a> ·
+    Saint-Denis-d'Anjou, France
+  </span>
+</footer>
+
+<script>
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
