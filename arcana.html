@@ -28,9 +28,16 @@
     --texte: #9a8f7a;
     --vert: #3a7d5a;
     /* Filets or / marron (même famille que le bloc titre) */
-    --trait-or-fin: rgba(201, 168, 76, 0.22);
-    --trait-or-moyen: rgba(201, 168, 76, 0.38);
-    --trait-marron-fin: rgba(139, 115, 85, 0.35);
+    --trait-or-fin: rgba(201, 168, 76, 0.16);
+    --trait-or-moyen: rgba(201, 168, 76, 0.28);
+    --trait-marron-fin: rgba(139, 115, 85, 0.28);
+    /* Bordure dégradée des vignettes — plus douce = trait visuellement plus fin */
+    --bordure-cadre: linear-gradient(
+      125deg,
+      rgba(100, 82, 62, 0.38),
+      rgba(201, 168, 76, 0.32),
+      rgba(139, 115, 85, 0.36)
+    );
     /* Barre droite des vignettes uniquement — indigo violet */
     --trait-indigo: linear-gradient(
       180deg,
@@ -90,9 +97,10 @@
     margin-bottom: 1.5rem;
     border: 1px solid transparent;
     border-radius: 3px;
+    /* Fond comme avant : léger voile or en haut, puis transparent (pas de « jaune » plein) */
     background:
-      linear-gradient(180deg, rgba(201,168,76,0.08) 0%, rgba(5,5,5,0.25) 100%) padding-box,
-      linear-gradient(125deg, rgba(100,82,62,0.95), rgba(201,168,76,0.82), rgba(150,125,88,0.9)) border-box;
+      linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, transparent 100%) padding-box,
+      var(--bordure-cadre) border-box;
     background-clip: padding-box, border-box;
   }
   .eyebrow {
@@ -137,18 +145,18 @@
     position: relative;
     background:
       linear-gradient(165deg, rgba(12,10,9,0.99) 0%, rgba(6,5,5,1) 100%) padding-box,
-      linear-gradient(125deg, rgba(100,82,62,0.92), rgba(201,168,76,0.78), rgba(139,115,85,0.88)) border-box;
+      var(--bordure-cadre) border-box;
     background-clip: padding-box, border-box;
     transition: box-shadow 0.25s ease;
   }
   .theme-card:hover {
-    box-shadow: 0 0 0 1px rgba(201,168,76,0.12), 0 12px 36px rgba(0,0,0,0.45);
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.08), 0 12px 36px rgba(0,0,0,0.45);
   }
   .theme-card::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
-    height: 3px;
+    height: 2px;
     border-radius: 4px 4px 0 0;
     background: linear-gradient(90deg, var(--bronze), var(--or), var(--or-vif));
     opacity: 0.95;
@@ -188,7 +196,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid rgba(201,168,76,0.35);
+    border: 1px solid rgba(201, 168, 76, 0.26);
     border-radius: 2px;
   }
   .theme-icon { font-size: 1.35rem; line-height: 1; filter: grayscale(0.15); }
@@ -212,7 +220,7 @@
   .theme-card p strong { color: var(--creme); font-weight: normal; }
 
   .citation {
-    border-left: 3px solid var(--or);
+    border-left: 2px solid var(--or);
     padding: 0.9rem 1rem;
     margin: 0.5rem 0 0.75rem;
     background: rgba(0,0,0,0.35);
@@ -267,8 +275,8 @@
     border: 1px solid transparent;
     border-radius: 3px;
     background:
-      linear-gradient(180deg, rgba(201,168,76,0.06) 0%, rgba(5,5,5,0.35) 100%) padding-box,
-      linear-gradient(125deg, rgba(100,82,62,0.92), rgba(201,168,76,0.78), rgba(139,115,85,0.88)) border-box;
+      linear-gradient(180deg, rgba(201, 168, 76, 0.05) 0%, transparent 100%) padding-box,
+      var(--bordure-cadre) border-box;
     background-clip: padding-box, border-box;
   }
   .bandeau::after {
