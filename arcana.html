@@ -19,7 +19,7 @@
 <style>
   :root {
     --noir: #050505;
-    --encre: #0c0c12;
+    --encre: #0a0908;
     --or: #c9a84c;
     --or-vif: #e8c96d;
     --or-pale: #f0dfa3;
@@ -27,22 +27,43 @@
     --bronze: #8B7355;
     --texte: #9a8f7a;
     --vert: #3a7d5a;
+    /* Filets or / marron (même famille que le bloc titre) */
+    --trait-or-fin: rgba(201, 168, 76, 0.22);
+    --trait-or-moyen: rgba(201, 168, 76, 0.38);
+    --trait-marron-fin: rgba(139, 115, 85, 0.35);
+    /* Barre droite des vignettes uniquement — indigo violet */
+    --trait-indigo: linear-gradient(
+      180deg,
+      rgba(58, 48, 95, 0) 0%,
+      rgba(88, 72, 145, 0.55) 22%,
+      rgba(72, 58, 128, 0.72) 50%,
+      rgba(95, 78, 155, 0.5) 78%,
+      rgba(58, 48, 95, 0) 100%
+    );
     --font-display: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
   }
   * { margin: 0; padding: 0; box-sizing: border-box; }
   html { scroll-behavior: smooth; }
   body {
-    background: var(--noir);
+    position: relative;
+    background-color: var(--noir);
     color: var(--creme);
     font-family: Georgia, 'Times New Roman', serif;
     line-height: 1.72;
     overflow-x: hidden;
   }
-  body::after {
+  /* Moiré léger sur tout le fond (deux grilles légèrement désaxées) */
+  body::before {
     content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 999;
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent 0, transparent 5px, rgba(201, 168, 76, 0.045) 5px, rgba(201, 168, 76, 0.045) 6px),
+      repeating-linear-gradient(90.6deg, transparent 0, transparent 6px, rgba(139, 115, 85, 0.04) 6px, rgba(139, 115, 85, 0.04) 7px);
+    mix-blend-mode: soft-light;
+    opacity: 0.55;
   }
   .wrap { max-width: 980px; margin: 0 auto; padding: 0 1.25rem 4rem; position: relative; z-index: 1; }
 
@@ -50,7 +71,7 @@
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 1rem;
     padding: 1.25rem 0 1.75rem;
-    border-bottom: 1px solid rgba(139,115,85,0.2);
+    border-bottom: 1px solid var(--trait-marron-fin);
     margin-bottom: 2rem;
   }
   .nav-top a {
@@ -67,9 +88,12 @@
     text-align: center;
     padding: 1.5rem 1rem 2.25rem;
     margin-bottom: 1.5rem;
-    background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%);
-    border: 1px solid rgba(139,115,85,0.2);
+    border: 1px solid transparent;
     border-radius: 3px;
+    background:
+      linear-gradient(180deg, rgba(201,168,76,0.08) 0%, rgba(5,5,5,0.25) 100%) padding-box,
+      linear-gradient(125deg, rgba(100,82,62,0.95), rgba(201,168,76,0.82), rgba(150,125,88,0.9)) border-box;
+    background-clip: padding-box, border-box;
   }
   .eyebrow {
     font-family: var(--font-display);
@@ -107,16 +131,18 @@
   }
 
   .theme-card {
-    background: linear-gradient(165deg, rgba(14,14,22,0.92) 0%, rgba(8,8,12,0.88) 100%);
-    border: 1px solid rgba(139,115,85,0.22);
+    border: 1px solid transparent;
     border-radius: 4px;
     padding: 1.35rem 1.4rem 1.45rem;
     position: relative;
-    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    background:
+      linear-gradient(165deg, rgba(12,10,9,0.99) 0%, rgba(6,5,5,1) 100%) padding-box,
+      linear-gradient(125deg, rgba(100,82,62,0.92), rgba(201,168,76,0.78), rgba(139,115,85,0.88)) border-box;
+    background-clip: padding-box, border-box;
+    transition: box-shadow 0.25s ease;
   }
   .theme-card:hover {
-    border-color: rgba(201,168,76,0.35);
-    box-shadow: 0 0 0 1px rgba(201,168,76,0.08), 0 12px 32px rgba(0,0,0,0.35);
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.12), 0 12px 36px rgba(0,0,0,0.45);
   }
   .theme-card::before {
     content: '';
@@ -125,7 +151,22 @@
     height: 3px;
     border-radius: 4px 4px 0 0;
     background: linear-gradient(90deg, var(--bronze), var(--or), var(--or-vif));
-    opacity: 0.9;
+    opacity: 0.95;
+    z-index: 2;
+    pointer-events: none;
+  }
+  /* Barre verticale fine indigo, uniquement à droite de la vignette */
+  .theme-card::after {
+    content: '';
+    position: absolute;
+    top: 0.85rem;
+    bottom: 0.85rem;
+    right: 0;
+    width: 1px;
+    background: var(--trait-indigo);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 0 3px 3px 0;
   }
   .theme-card.span-2 { grid-column: 1 / -1; }
 
@@ -135,7 +176,7 @@
     gap: 0.75rem;
     margin-bottom: 1rem;
     padding-bottom: 0.85rem;
-    border-bottom: 1px solid rgba(139,115,85,0.14);
+    border-bottom: 1px solid var(--trait-or-fin);
   }
   .theme-num {
     font-family: var(--font-display);
@@ -191,7 +232,7 @@
     padding: 0.4rem 0 0.4rem 1.15rem;
     color: var(--texte);
     font-size: 0.9rem;
-    border-bottom: 1px solid rgba(139,115,85,0.08);
+    border-bottom: 1px solid var(--trait-or-fin);
   }
   ul.arc-list li:last-child { border-bottom: none; }
   ul.arc-list li::before {
@@ -212,30 +253,38 @@
     margin-top: 0.75rem;
     padding: 0.75rem 1rem;
     background: rgba(201,168,76,0.06);
-    border: 1px dashed rgba(139,115,85,0.25);
+    border: 1px dashed var(--trait-or-moyen);
     font-size: 0.82rem;
     color: var(--bronze);
   }
   .flow-strip span { color: var(--or-pale); }
 
-  .note-pb {
-    font-size: 0.84rem;
-    color: var(--texte);
-    padding: 0.85rem 1rem;
-    margin-top: 0.65rem;
-    background: rgba(58,125,90,0.08);
-    border: 1px solid rgba(58,125,90,0.22);
-    border-radius: 2px;
-  }
-
   .bandeau {
     margin: 1.5rem 0;
     padding: 1.1rem 1.25rem;
     text-align: center;
-    border: 1px solid rgba(201,168,76,0.25);
-    background: rgba(201,168,76,0.05);
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background:
+      linear-gradient(180deg, rgba(201,168,76,0.06) 0%, rgba(5,5,5,0.35) 100%) padding-box,
+      linear-gradient(125deg, rgba(100,82,62,0.92), rgba(201,168,76,0.78), rgba(139,115,85,0.88)) border-box;
+    background-clip: padding-box, border-box;
+  }
+  .bandeau::after {
+    content: '';
+    position: absolute;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    right: 0;
+    width: 1px;
+    background: var(--trait-indigo);
+    pointer-events: none;
+    z-index: 1;
   }
   .bandeau p {
+    position: relative;
+    z-index: 2;
     font-family: var(--font-display);
     font-size: 0.75rem;
     letter-spacing: 0.12em;
@@ -269,8 +318,8 @@
   }
   .btn-creme {
     color: var(--creme);
-    background: rgba(10,10,15,0.5);
-    border: 1px solid rgba(139,115,85,0.45);
+    background: rgba(10,9,8,0.55);
+    border: 1px solid var(--trait-or-moyen);
     border-radius: 2px;
   }
   .btn-or:hover, .btn-creme:hover { opacity: 0.9; transform: translateY(-1px); }
@@ -281,7 +330,7 @@
   footer {
     margin-top: 2.5rem;
     padding-top: 1.75rem;
-    border-top: 1px solid rgba(139,115,85,0.2);
+    border-top: 1px solid var(--trait-marron-fin);
     font-size: 0.68rem;
     color: var(--bronze);
     display: flex;
@@ -363,9 +412,8 @@
         <span class="theme-icon" aria-hidden="true">〜</span>
         <h2>Expérience naturelle</h2>
       </div>
-      <p>Comme une application de méditation guidée accompagne la respiration avec des séances, <strong>Arcana accompagne la compréhension</strong> avec une lecture quotidienne.</p>
-      <p class="note-pb">Ce n'est pas le même geste : pas une suite d'exercices audio à enchaîner, mais <strong>une phrase et une lecture</strong> pour poser ce que vous traversez.</p>
-      <p>Sans effort. Sans surcharge. Sans jargon.</p>
+      <p><strong>Arcana accompagne la compréhension</strong> par une lecture du jour — sans effort imposé, sans surcharge, sans jargon.</p>
+      <p>Une phrase, puis ce qu'elle éclaire. Rien à enchaîner : vous posez ce que vous traversez.</p>
       <div class="flow-strip">vous ouvrez <span>→</span> vous lisez <span>→</span> vous comprenez</div>
     </article>
 
@@ -441,9 +489,6 @@
       <span class="theme-icon" aria-hidden="true">→</span>
       <h2>Appel</h2>
     </div>
-    <p style="text-align:center;max-width:32rem;margin-left:auto;margin-right:auto;">
-      Prochaine étape : intégration produit (phrase du jour, séance, praticien). Liens provisoires vers ancres — à brancher sur votre flux d'accès.
-    </p>
     <div class="cta-row">
       <a href="#appel" class="btn-or">Recevoir ma phrase du jour</a>
       <a href="#lecture" class="btn-creme">Découvrir ma lecture</a>
