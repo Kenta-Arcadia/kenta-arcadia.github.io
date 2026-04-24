@@ -19,7 +19,7 @@
 <style>
   :root {
     --noir: #050505;
-    --encre: #0a0a0f;
+    --encre: #0c0c12;
     --or: #c9a84c;
     --or-vif: #e8c96d;
     --or-pale: #f0dfa3;
@@ -35,7 +35,7 @@
     background: var(--noir);
     color: var(--creme);
     font-family: Georgia, 'Times New Roman', serif;
-    line-height: 1.75;
+    line-height: 1.72;
     overflow-x: hidden;
   }
   body::after {
@@ -44,13 +44,14 @@
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
     pointer-events: none; z-index: 999;
   }
-  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 4rem; position: relative; z-index: 1; }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 1.25rem 4rem; position: relative; z-index: 1; }
+
   .nav-top {
     display: flex; justify-content: space-between; align-items: center;
     flex-wrap: wrap; gap: 1rem;
-    padding: 1.25rem 0 2rem;
+    padding: 1.25rem 0 1.75rem;
     border-bottom: 1px solid rgba(139,115,85,0.2);
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
   }
   .nav-top a {
     font-family: var(--font-display);
@@ -61,135 +62,227 @@
     text-decoration: none;
   }
   .nav-top a:hover { color: var(--or-pale); }
+
+  .hero {
+    text-align: center;
+    padding: 1.5rem 1rem 2.25rem;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, rgba(201,168,76,0.06) 0%, transparent 100%);
+    border: 1px solid rgba(139,115,85,0.2);
+    border-radius: 3px;
+  }
   .eyebrow {
     font-family: var(--font-display);
-    font-size: 0.65rem;
-    letter-spacing: 0.35em;
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--bronze);
-    margin-bottom: 0.75rem;
+    margin-bottom: 0.65rem;
   }
   h1 {
     font-family: var(--font-display);
-    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-size: clamp(1.85rem, 4.5vw, 2.6rem);
     font-weight: 600;
     color: var(--or-pale);
-    letter-spacing: 0.06em;
-    line-height: 1.15;
-    margin-bottom: 1rem;
+    letter-spacing: 0.05em;
+    line-height: 1.18;
+    margin-bottom: 0.85rem;
   }
   .lead {
-    font-size: 1.15rem;
+    font-size: 1.05rem;
     color: var(--texte);
     font-style: italic;
-    margin-bottom: 2.5rem;
+    max-width: 36rem;
+    margin: 0 auto;
   }
   .lead strong { color: var(--creme); font-style: normal; font-weight: normal; }
-  .sep {
-    display: flex; align-items: center; gap: 1rem;
-    margin: 2.5rem 0;
-    color: var(--or);
-    font-family: var(--font-display);
+
+  .themes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
   }
-  .sep::before, .sep::after {
+  @media (min-width: 700px) {
+    .themes-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  }
+
+  .theme-card {
+    background: linear-gradient(165deg, rgba(14,14,22,0.92) 0%, rgba(8,8,12,0.88) 100%);
+    border: 1px solid rgba(139,115,85,0.22);
+    border-radius: 4px;
+    padding: 1.35rem 1.4rem 1.45rem;
+    position: relative;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+  .theme-card:hover {
+    border-color: rgba(201,168,76,0.35);
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.08), 0 12px 32px rgba(0,0,0,0.35);
+  }
+  .theme-card::before {
     content: '';
-    flex: 1;
-    height: 1px;
-    background: linear-gradient(to right, transparent, var(--bronze));
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(90deg, var(--bronze), var(--or), var(--or-vif));
+    opacity: 0.9;
   }
-  .sep::after {
-    background: linear-gradient(to left, transparent, var(--bronze));
-  }
-  h2 {
-    font-family: var(--font-display);
-    font-size: 0.7rem;
-    letter-spacing: 0.28em;
-    text-transform: uppercase;
-    color: var(--bronze);
-    margin: 2.5rem 0 1rem;
-  }
-  .block p {
-    color: var(--texte);
+  .theme-card.span-2 { grid-column: 1 / -1; }
+
+  .theme-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
     margin-bottom: 1rem;
-    font-size: 0.95rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(139,115,85,0.14);
   }
-  .block p strong { color: var(--creme); font-weight: normal; }
+  .theme-num {
+    font-family: var(--font-display);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--or);
+    min-width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 2px;
+  }
+  .theme-icon { font-size: 1.35rem; line-height: 1; filter: grayscale(0.15); }
+  .theme-card h2 {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--or-pale);
+    margin: 0;
+    flex: 1;
+    line-height: 1.35;
+  }
+
+  .theme-card p {
+    color: var(--texte);
+    margin-bottom: 0.85rem;
+    font-size: 0.92rem;
+  }
+  .theme-card p:last-child { margin-bottom: 0; }
+  .theme-card p strong { color: var(--creme); font-weight: normal; }
+
   .citation {
-    border-left: 2px solid var(--or);
-    padding: 1rem 1.25rem;
-    margin: 1.5rem 0;
-    background: rgba(10,10,15,0.6);
+    border-left: 3px solid var(--or);
+    padding: 0.9rem 1rem;
+    margin: 0.5rem 0 0.75rem;
+    background: rgba(0,0,0,0.35);
     font-style: italic;
-    color: #b8a888;
-    font-size: 1.05rem;
+    color: #c4b89a;
+    font-size: 1rem;
+    line-height: 1.55;
   }
+
   ul.arc-list {
     list-style: none;
-    margin: 1rem 0 1.5rem;
+    margin: 0.5rem 0 0;
     padding: 0;
   }
   ul.arc-list li {
     position: relative;
-    padding-left: 1.25rem;
-    margin-bottom: 0.5rem;
+    padding: 0.4rem 0 0.4rem 1.15rem;
     color: var(--texte);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    border-bottom: 1px solid rgba(139,115,85,0.08);
   }
+  ul.arc-list li:last-child { border-bottom: none; }
   ul.arc-list li::before {
     content: '◆';
     position: absolute;
     left: 0;
     color: var(--or);
-    font-size: 0.5rem;
-    top: 0.45em;
+    font-size: 0.45rem;
+    top: 0.65em;
   }
-  .flow {
-    margin: 1.25rem 0;
-    font-size: 0.9rem;
+
+  .flow-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(201,168,76,0.06);
+    border: 1px dashed rgba(139,115,85,0.25);
+    font-size: 0.82rem;
     color: var(--bronze);
   }
-  .flow span { color: var(--or-pale); margin: 0 0.35rem; }
+  .flow-strip span { color: var(--or-pale); }
+
   .note-pb {
-    font-size: 0.88rem;
+    font-size: 0.84rem;
     color: var(--texte);
-    padding: 1rem;
-    border: 1px solid rgba(139,115,85,0.25);
-    margin-top: 1rem;
+    padding: 0.85rem 1rem;
+    margin-top: 0.65rem;
+    background: rgba(58,125,90,0.08);
+    border: 1px solid rgba(58,125,90,0.22);
+    border-radius: 2px;
   }
+
+  .bandeau {
+    margin: 1.5rem 0;
+    padding: 1.1rem 1.25rem;
+    text-align: center;
+    border: 1px solid rgba(201,168,76,0.25);
+    background: rgba(201,168,76,0.05);
+  }
+  .bandeau p {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--or-pale);
+    margin: 0;
+    line-height: 1.55;
+  }
+
   .cta-row {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
-    margin: 2.5rem 0 1rem;
+    gap: 0.65rem;
+    margin-top: 1rem;
+    justify-content: center;
   }
   .btn-or, .btn-creme {
     font-family: var(--font-display);
-    font-size: 0.65rem;
-    letter-spacing: 0.16em;
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
     text-decoration: none;
     display: inline-block;
-    padding: 0.75rem 1.4rem;
+    padding: 0.7rem 1.25rem;
     transition: opacity 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
   }
   .btn-or {
     color: var(--noir);
     background: linear-gradient(135deg, var(--or-vif), var(--or), var(--bronze));
     border: none;
+    border-radius: 2px;
   }
   .btn-creme {
     color: var(--creme);
-    background: transparent;
-    border: 1px solid rgba(139,115,85,0.5);
+    background: rgba(10,10,15,0.5);
+    border: 1px solid rgba(139,115,85,0.45);
+    border-radius: 2px;
   }
-  .btn-or:hover, .btn-creme:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-or:hover, .btn-creme:hover { opacity: 0.9; transform: translateY(-1px); }
   .btn-creme:hover { border-color: var(--or); color: var(--or-pale); }
-  #appel { scroll-margin-top: 2rem; }
+
+  #appel { scroll-margin-top: 1.5rem; }
+
   footer {
-    margin-top: 4rem;
-    padding-top: 2rem;
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
     border-top: 1px solid rgba(139,115,85,0.2);
-    font-size: 0.7rem;
+    font-size: 0.68rem;
     color: var(--bronze);
     display: flex;
     flex-wrap: wrap;
@@ -198,7 +291,8 @@
   }
   footer a { color: var(--or); text-decoration: none; }
   footer a:hover { color: var(--or-pale); }
-  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.65s ease, transform 0.65s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 </style>
 </head>
@@ -209,7 +303,7 @@
     <span class="eyebrow" style="margin:0;">Module bien-être &amp; symbolique</span>
   </nav>
 
-  <header class="reveal">
+  <header class="hero reveal">
     <p class="eyebrow">KENTA Arcana</p>
     <h1>Une phrase qui vous comprend.</h1>
     <p class="lead">
@@ -218,103 +312,144 @@
     </p>
   </header>
 
-  <div class="sep reveal">✦</div>
+  <div class="themes-grid">
 
-  <section class="block reveal" id="ressentir">
-    <h2>Commencer par ressentir</h2>
-    <div class="citation">« Ce que tu cherches te cherche aussi. »</div>
-    <p>Vous ne commencez pas par des données. Vous commencez par <strong>une évidence</strong>.</p>
-    <p>Une phrase issue de bibliothèques de maîtres, sélectionnée pour vous, aujourd'hui.</p>
-  </section>
+    <article class="theme-card reveal" id="ressentir">
+      <div class="theme-head">
+        <span class="theme-num">I</span>
+        <span class="theme-icon" aria-hidden="true">◇</span>
+        <h2>Ressentir d'abord</h2>
+      </div>
+      <div class="citation">« Ce que tu cherches te cherche aussi. »</div>
+      <p>Vous ne commencez pas par des données. Vous commencez par <strong>une évidence</strong>.</p>
+      <p>Une phrase issue de bibliothèques de maîtres, sélectionnée pour vous, aujourd'hui.</p>
+    </article>
 
-  <section class="block reveal" id="comprendre">
-    <h2>Comprendre ensuite</h2>
-    <p>Sous cette phrase, Arcana révèle ce qui l'a fait émerger :</p>
-    <ul class="arc-list">
-      <li>un élément dominant</li>
-      <li>un centre actif</li>
-      <li>une dynamique intérieure</li>
-      <li>un équilibre en mouvement</li>
-    </ul>
-    <p>Une lecture claire, structurée, accessible.</p>
-  </section>
+    <article class="theme-card reveal" id="comprendre">
+      <div class="theme-head">
+        <span class="theme-num">II</span>
+        <span class="theme-icon" aria-hidden="true">◎</span>
+        <h2>Comprendre ensuite</h2>
+      </div>
+      <p>Sous cette phrase, Arcana révèle ce qui l'a fait émerger :</p>
+      <ul class="arc-list">
+        <li>un élément dominant</li>
+        <li>un centre actif</li>
+        <li>une dynamique intérieure</li>
+        <li>un équilibre en mouvement</li>
+      </ul>
+      <p>Une lecture claire, structurée, accessible.</p>
+    </article>
 
-  <section class="block reveal" id="lecture">
-    <h2>Une lecture du jour</h2>
-    <p>Arcana ne vous propose pas un programme. Il vous donne un <strong>point d'appui</strong>.</p>
-    <p>Une lecture construite à partir de votre état :</p>
-    <ul class="arc-list">
-      <li>ce qui est en tension</li>
-      <li>ce qui est disponible</li>
-      <li>ce qui demande de l'attention</li>
-    </ul>
-    <p>Simple. Juste. Utilisable immédiatement.</p>
-  </section>
+    <article class="theme-card reveal" id="lecture">
+      <div class="theme-head">
+        <span class="theme-num">III</span>
+        <span class="theme-icon" aria-hidden="true">☉</span>
+        <h2>Lecture du jour</h2>
+      </div>
+      <p>Arcana ne vous propose pas un programme. Il vous donne un <strong>point d'appui</strong>.</p>
+      <p>Une lecture construite à partir de votre état :</p>
+      <ul class="arc-list">
+        <li>ce qui est en tension</li>
+        <li>ce qui est disponible</li>
+        <li>ce qui demande de l'attention</li>
+      </ul>
+      <p>Simple. Juste. Utilisable immédiatement.</p>
+    </article>
 
-  <section class="block reveal" id="experience">
-    <h2>Une expérience naturelle</h2>
-    <p>Comme une application de méditation guidée accompagne la respiration avec des séances, <strong>Arcana accompagne la compréhension</strong> avec une lecture quotidienne.</p>
-    <p class="note-pb">Ce n'est pas le même geste : pas une suite d'exercices audio à enchaîner, mais <strong>une phrase et une lecture</strong> pour poser ce que vous traversez.</p>
-    <p>Sans effort. Sans surcharge. Sans jargon.</p>
-    <p class="flow">vous ouvrez <span>→</span> vous lisez <span>→</span> vous comprenez</p>
-  </section>
+    <article class="theme-card reveal" id="experience">
+      <div class="theme-head">
+        <span class="theme-num">IV</span>
+        <span class="theme-icon" aria-hidden="true">〜</span>
+        <h2>Expérience naturelle</h2>
+      </div>
+      <p>Comme une application de méditation guidée accompagne la respiration avec des séances, <strong>Arcana accompagne la compréhension</strong> avec une lecture quotidienne.</p>
+      <p class="note-pb">Ce n'est pas le même geste : pas une suite d'exercices audio à enchaîner, mais <strong>une phrase et une lecture</strong> pour poser ce que vous traversez.</p>
+      <p>Sans effort. Sans surcharge. Sans jargon.</p>
+      <div class="flow-strip">vous ouvrez <span>→</span> vous lisez <span>→</span> vous comprenez</div>
+    </article>
 
-  <section class="block reveal" id="intimite">
-    <h2>Une intimité respectée par conception</h2>
-    <p>Arcana ne collecte pas votre vie. Il existe là où vous êtes.</p>
-    <p>Vos données, vos ressentis, vos lectures : <strong>tout reste sur votre support</strong>. Naturellement. Sans réglage. Sans compromis.</p>
-  </section>
+    <article class="theme-card reveal" id="intimite">
+      <div class="theme-head">
+        <span class="theme-num">V</span>
+        <span class="theme-icon" aria-hidden="true">◈</span>
+        <h2>Intimité &amp; données</h2>
+      </div>
+      <p>Arcana ne collecte pas votre vie. Il existe là où vous êtes.</p>
+      <p>Vos données, vos ressentis, vos lectures : <strong>tout reste sur votre support</strong>. Naturellement. Sans réglage. Sans compromis.</p>
+    </article>
 
-  <section class="block reveal" id="pour-vous">
-    <h2>Pour vous</h2>
-    <p>Quand quelque chose est flou. Quand une sensation persiste. Quand une décision bloque.</p>
-    <p>Arcana apporte une lecture. <strong>Pas pour décider à votre place.</strong> Pour éclairer ce qui est déjà là.</p>
-  </section>
+    <article class="theme-card reveal" id="pour-vous">
+      <div class="theme-head">
+        <span class="theme-num">VI</span>
+        <span class="theme-icon" aria-hidden="true">✦</span>
+        <h2>Pour vous</h2>
+      </div>
+      <p>Quand quelque chose est flou. Quand une sensation persiste. Quand une décision bloque.</p>
+      <p>Arcana apporte une lecture. <strong>Pas pour décider à votre place.</strong> Pour éclairer ce qui est déjà là.</p>
+    </article>
 
-  <section class="block reveal" id="praticiens">
-    <h2>Pour les praticiens</h2>
-    <p>Arcana devient un point d'entrée puissant :</p>
-    <ul class="arc-list">
-      <li>une phrase qui ouvre</li>
-      <li>un profil qui structure</li>
-      <li>une lecture qui guide</li>
-    </ul>
-    <p>Un support discret, précis, respectueux.</p>
-  </section>
+    <article class="theme-card reveal" id="praticiens">
+      <div class="theme-head">
+        <span class="theme-num">VII</span>
+        <span class="theme-icon" aria-hidden="true">⚕</span>
+        <h2>Pour les praticiens</h2>
+      </div>
+      <p>Arcana devient un point d'entrée puissant :</p>
+      <ul class="arc-list">
+        <li>une phrase qui ouvre</li>
+        <li>un profil qui structure</li>
+        <li>une lecture qui guide</li>
+      </ul>
+      <p>Un support discret, précis, respectueux.</p>
+    </article>
 
-  <section class="block reveal" id="continuite">
-    <h2>Une continuité dans le temps</h2>
-    <p>Chaque lecture n'est pas isolée. Elle s'inscrit dans un fil :</p>
-    <ul class="arc-list">
-      <li>ce qui évolue</li>
-      <li>ce qui revient</li>
-      <li>ce qui se transforme</li>
-    </ul>
-    <p>Arcana ne vous enferme pas. Il vous accompagne.</p>
-  </section>
+    <article class="theme-card reveal" id="continuite">
+      <div class="theme-head">
+        <span class="theme-num">VIII</span>
+        <span class="theme-icon" aria-hidden="true">∞</span>
+        <h2>Continuité dans le temps</h2>
+      </div>
+      <p>Chaque lecture n'est pas isolée. Elle s'inscrit dans un fil :</p>
+      <ul class="arc-list">
+        <li>ce qui évolue</li>
+        <li>ce qui revient</li>
+        <li>ce qui se transforme</li>
+      </ul>
+      <p>Arcana ne vous enferme pas. Il vous accompagne.</p>
+    </article>
 
-  <section class="block reveal" id="relation">
-    <h2>Une autre façon d'accéder à soi</h2>
-    <p>Pas une accumulation de contenus. Pas une suite d'exercices.</p>
-    <p>Une relation simple : <strong>une phrase</strong>, <strong>une compréhension</strong>, <strong>un mouvement intérieur</strong>.</p>
-  </section>
+    <article class="theme-card reveal" id="relation">
+      <div class="theme-head">
+        <span class="theme-num">IX</span>
+        <span class="theme-icon" aria-hidden="true">⬡</span>
+        <h2>Autre façon d'accéder à soi</h2>
+      </div>
+      <p>Pas une accumulation de contenus. Pas une suite d'exercices.</p>
+      <p>Une relation simple : <strong>une phrase</strong>, <strong>une compréhension</strong>, <strong>un mouvement intérieur</strong>.</p>
+    </article>
 
-  <section class="block reveal" id="phrase-centrale">
-    <h2>Phrase centrale</h2>
-    <p>Arcana commence par vous reconnaître, puis vous aide à vous comprendre.</p>
-  </section>
+  </div>
 
-  <div class="sep reveal">✦</div>
+  <div class="bandeau reveal" id="phrase-centrale">
+    <p>Phrase centrale — Arcana commence par vous reconnaître, puis vous aide à vous comprendre.</p>
+  </div>
 
-  <section class="reveal" id="appel">
-    <h2>Appel</h2>
-    <p style="margin-bottom:1rem;color:var(--texte);font-size:0.9rem;">Prochaine étape : intégration produit (phrase du jour, séance, praticien). Liens provisoires vers ancres — à brancher sur votre flux d'accès.</p>
+  <article class="theme-card span-2 reveal" id="appel">
+    <div class="theme-head">
+      <span class="theme-num">X</span>
+      <span class="theme-icon" aria-hidden="true">→</span>
+      <h2>Appel</h2>
+    </div>
+    <p style="text-align:center;max-width:32rem;margin-left:auto;margin-right:auto;">
+      Prochaine étape : intégration produit (phrase du jour, séance, praticien). Liens provisoires vers ancres — à brancher sur votre flux d'accès.
+    </p>
     <div class="cta-row">
       <a href="#appel" class="btn-or">Recevoir ma phrase du jour</a>
       <a href="#lecture" class="btn-creme">Découvrir ma lecture</a>
       <a href="#praticiens" class="btn-creme">Utiliser Arcana en séance</a>
     </div>
-  </section>
+  </article>
 
   <footer>
     <span>KENTA Arcana — local par conception</span>
@@ -328,7 +463,7 @@
 <script>
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.08 });
+}, { threshold: 0.06 });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
