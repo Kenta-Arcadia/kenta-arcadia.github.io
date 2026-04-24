@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KENTA Arcana — Une phrase qui vous comprend</title>
+<meta name="description" content="KENTA Arcana : chaque jour une phrase issue de maîtres, une lecture structurée (élément, centre, dynamique), local sur votre machine — sans cloud, sans accumulation de contenus.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#050505">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://kenta-arcadia.github.io/arcana.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="KENTA Arcana">
+<meta property="og:title" content="KENTA Arcana — Une phrase qui vous comprend">
+<meta property="og:description" content="Lecture du jour : phrase, structure, mouvement intérieur. Données sur votre support. Pas un programme de méditation guidée — un point d'appui pour comprendre.">
+<meta property="og:url" content="https://kenta-arcadia.github.io/arcana.html">
+<meta name="twitter:card" content="summary">
+<style>
+  :root {
+    --noir: #050505;
+    --encre: #0a0a0f;
+    --or: #c9a84c;
+    --or-vif: #e8c96d;
+    --or-pale: #f0dfa3;
+    --creme: #E8DCC4;
+    --bronze: #8B7355;
+    --texte: #9a8f7a;
+    --vert: #3a7d5a;
+    --font-display: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--noir);
+    color: var(--creme);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.75;
+    overflow-x: hidden;
+  }
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none; z-index: 999;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 1.5rem 4rem; position: relative; z-index: 1; }
+  .nav-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    padding: 1.25rem 0 2rem;
+    border-bottom: 1px solid rgba(139,115,85,0.2);
+    margin-bottom: 3rem;
+  }
+  .nav-top a {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--or);
+    text-decoration: none;
+  }
+  .nav-top a:hover { color: var(--or-pale); }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 0.75rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(2rem, 5vw, 2.75rem);
+    font-weight: 600;
+    color: var(--or-pale);
+    letter-spacing: 0.06em;
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .lead {
+    font-size: 1.15rem;
+    color: var(--texte);
+    font-style: italic;
+    margin-bottom: 2.5rem;
+  }
+  .lead strong { color: var(--creme); font-style: normal; font-weight: normal; }
+  .sep {
+    display: flex; align-items: center; gap: 1rem;
+    margin: 2.5rem 0;
+    color: var(--or);
+    font-family: var(--font-display);
+  }
+  .sep::before, .sep::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--bronze));
+  }
+  .sep::after {
+    background: linear-gradient(to left, transparent, var(--bronze));
+  }
+  h2 {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin: 2.5rem 0 1rem;
+  }
+  .block p {
+    color: var(--texte);
+    margin-bottom: 1rem;
+    font-size: 0.95rem;
+  }
+  .block p strong { color: var(--creme); font-weight: normal; }
+  .citation {
+    border-left: 2px solid var(--or);
+    padding: 1rem 1.25rem;
+    margin: 1.5rem 0;
+    background: rgba(10,10,15,0.6);
+    font-style: italic;
+    color: #b8a888;
+    font-size: 1.05rem;
+  }
+  ul.arc-list {
+    list-style: none;
+    margin: 1rem 0 1.5rem;
+    padding: 0;
+  }
+  ul.arc-list li {
+    position: relative;
+    padding-left: 1.25rem;
+    margin-bottom: 0.5rem;
+    color: var(--texte);
+    font-size: 0.95rem;
+  }
+  ul.arc-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--or);
+    font-size: 0.5rem;
+    top: 0.45em;
+  }
+  .flow {
+    margin: 1.25rem 0;
+    font-size: 0.9rem;
+    color: var(--bronze);
+  }
+  .flow span { color: var(--or-pale); margin: 0 0.35rem; }
+  .note-pb {
+    font-size: 0.88rem;
+    color: var(--texte);
+    padding: 1rem;
+    border: 1px solid rgba(139,115,85,0.25);
+    margin-top: 1rem;
+  }
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin: 2.5rem 0 1rem;
+  }
+  .btn-or, .btn-creme {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.75rem 1.4rem;
+    transition: opacity 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .btn-or {
+    color: var(--noir);
+    background: linear-gradient(135deg, var(--or-vif), var(--or), var(--bronze));
+    border: none;
+  }
+  .btn-creme {
+    color: var(--creme);
+    background: transparent;
+    border: 1px solid rgba(139,115,85,0.5);
+  }
+  .btn-or:hover, .btn-creme:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-creme:hover { border-color: var(--or); color: var(--or-pale); }
+  #appel { scroll-margin-top: 2rem; }
+  footer {
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(139,115,85,0.2);
+    font-size: 0.7rem;
+    color: var(--bronze);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  footer a { color: var(--or); text-decoration: none; }
+  footer a:hover { color: var(--or-pale); }
+  .reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav-top">
+    <a href="https://kenta-arcadia.github.io/index.html">← KENTA</a>
+    <span class="eyebrow" style="margin:0;">Module bien-être &amp; symbolique</span>
+  </nav>
+
+  <header class="reveal">
+    <p class="eyebrow">KENTA Arcana</p>
+    <h1>Une phrase qui vous comprend.</h1>
+    <p class="lead">
+      Chaque jour, <strong>une phrase</strong>. Pas choisie au hasard.<br>
+      Une phrase qui résonne avec ce que vous vivez.
+    </p>
+  </header>
+
+  <div class="sep reveal">✦</div>
+
+  <section class="block reveal" id="ressentir">
+    <h2>Commencer par ressentir</h2>
+    <div class="citation">« Ce que tu cherches te cherche aussi. »</div>
+    <p>Vous ne commencez pas par des données. Vous commencez par <strong>une évidence</strong>.</p>
+    <p>Une phrase issue de bibliothèques de maîtres, sélectionnée pour vous, aujourd'hui.</p>
+  </section>
+
+  <section class="block reveal" id="comprendre">
+    <h2>Comprendre ensuite</h2>
+    <p>Sous cette phrase, Arcana révèle ce qui l'a fait émerger :</p>
+    <ul class="arc-list">
+      <li>un élément dominant</li>
+      <li>un centre actif</li>
+      <li>une dynamique intérieure</li>
+      <li>un équilibre en mouvement</li>
+    </ul>
+    <p>Une lecture claire, structurée, accessible.</p>
+  </section>
+
+  <section class="block reveal" id="lecture">
+    <h2>Une lecture du jour</h2>
+    <p>Arcana ne vous propose pas un programme. Il vous donne un <strong>point d'appui</strong>.</p>
+    <p>Une lecture construite à partir de votre état :</p>
+    <ul class="arc-list">
+      <li>ce qui est en tension</li>
+      <li>ce qui est disponible</li>
+      <li>ce qui demande de l'attention</li>
+    </ul>
+    <p>Simple. Juste. Utilisable immédiatement.</p>
+  </section>
+
+  <section class="block reveal" id="experience">
+    <h2>Une expérience naturelle</h2>
+    <p>Comme une application de méditation guidée accompagne la respiration avec des séances, <strong>Arcana accompagne la compréhension</strong> avec une lecture quotidienne.</p>
+    <p class="note-pb">Ce n'est pas le même geste : pas une suite d'exercices audio à enchaîner, mais <strong>une phrase et une lecture</strong> pour poser ce que vous traversez.</p>
+    <p>Sans effort. Sans surcharge. Sans jargon.</p>
+    <p class="flow">vous ouvrez <span>→</span> vous lisez <span>→</span> vous comprenez</p>
+  </section>
+
+  <section class="block reveal" id="intimite">
+    <h2>Une intimité respectée par conception</h2>
+    <p>Arcana ne collecte pas votre vie. Il existe là où vous êtes.</p>
+    <p>Vos données, vos ressentis, vos lectures : <strong>tout reste sur votre support</strong>. Naturellement. Sans réglage. Sans compromis.</p>
+  </section>
+
+  <section class="block reveal" id="pour-vous">
+    <h2>Pour vous</h2>
+    <p>Quand quelque chose est flou. Quand une sensation persiste. Quand une décision bloque.</p>
+    <p>Arcana apporte une lecture. <strong>Pas pour décider à votre place.</strong> Pour éclairer ce qui est déjà là.</p>
+  </section>
+
+  <section class="block reveal" id="praticiens">
+    <h2>Pour les praticiens</h2>
+    <p>Arcana devient un point d'entrée puissant :</p>
+    <ul class="arc-list">
+      <li>une phrase qui ouvre</li>
+      <li>un profil qui structure</li>
+      <li>une lecture qui guide</li>
+    </ul>
+    <p>Un support discret, précis, respectueux.</p>
+  </section>
+
+  <section class="block reveal" id="continuite">
+    <h2>Une continuité dans le temps</h2>
+    <p>Chaque lecture n'est pas isolée. Elle s'inscrit dans un fil :</p>
+    <ul class="arc-list">
+      <li>ce qui évolue</li>
+      <li>ce qui revient</li>
+      <li>ce qui se transforme</li>
+    </ul>
+    <p>Arcana ne vous enferme pas. Il vous accompagne.</p>
+  </section>
+
+  <section class="block reveal" id="relation">
+    <h2>Une autre façon d'accéder à soi</h2>
+    <p>Pas une accumulation de contenus. Pas une suite d'exercices.</p>
+    <p>Une relation simple : <strong>une phrase</strong>, <strong>une compréhension</strong>, <strong>un mouvement intérieur</strong>.</p>
+  </section>
+
+  <section class="block reveal" id="phrase-centrale">
+    <h2>Phrase centrale</h2>
+    <p>Arcana commence par vous reconnaître, puis vous aide à vous comprendre.</p>
+  </section>
+
+  <div class="sep reveal">✦</div>
+
+  <section class="reveal" id="appel">
+    <h2>Appel</h2>
+    <p style="margin-bottom:1rem;color:var(--texte);font-size:0.9rem;">Prochaine étape : intégration produit (phrase du jour, séance, praticien). Liens provisoires vers ancres — à brancher sur votre flux d'accès.</p>
+    <div class="cta-row">
+      <a href="#appel" class="btn-or">Recevoir ma phrase du jour</a>
+      <a href="#lecture" class="btn-creme">Découvrir ma lecture</a>
+      <a href="#praticiens" class="btn-creme">Utiliser Arcana en séance</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>KENTA Arcana — local par conception</span>
+    <span>
+      <a href="https://kenta-arcadia.github.io/index.html">Page principale KENTA</a>
+      ·
+      <a href="https://github.com/Kenta-Arcadia">Kenta-Arcadia</a>
+    </span>
+  </footer>
+</div>
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
