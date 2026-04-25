@@ -4,7 +4,42 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>KENTA — Organisme numérique souverain</title>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="KENTA : assistant local, mémoire interne, sans envoi cloud. Système déclaratif YAML, événements horodatés, agents spécialisés, actions signées et états vérifiables sur votre machine.">
+<meta name="keywords" content="KENTA, souveraineté numérique, offline, local first, YAML, audit, automatisation, confidentialité, air-gapped">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#050505">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://kenta-arcadia.github.io/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="KENTA">
+<meta property="og:title" content="KENTA — Organisme numérique souverain">
+<meta property="og:description" content="Assistant local hors cloud : patterns mémorisés, décisions lisibles, traçabilité et signatures — sur votre matériel.">
+<meta property="og:url" content="https://kenta-arcadia.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="KENTA — Organisme numérique souverain">
+<meta name="twitter:description" content="Mémoire interne, aucune donnée sortante, actions signées. Infrastructure personnelle, pas un service cloud.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "KENTA",
+  "applicationCategory": "DesktopApplication",
+  "operatingSystem": "Linux",
+  "description": "Organisme numérique souverain : déclaratif YAML, événements horodatés, agents spécialisés, traçabilité locale sans dépendance cloud obligatoire.",
+  "url": "https://kenta-arcadia.github.io/",
+  "isAccessibleForFree": true,
+  "author": {
+    "@type": "Organization",
+    "name": "Kenta-Arcadia",
+    "url": "https://github.com/Kenta-Arcadia"
+  },
+  "sameAs": [
+    "https://github.com/Kenta-Arcadia",
+    "https://github.com/Kenta-Arcadia/kenta-graine"
+  ]
+}
+</script>
 <style>
   :root {
     --noir:    #050505;
@@ -18,9 +53,6 @@
     --texte:   #9a8f7a;
     --blanc:   #f5f0e8;
     --vert:    #3a7d5a;
-    --bleu:    #7aaccf;
-    --ambre:   #8B5E3C;
-    --choco:   #6B3F1F;
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,63 +61,53 @@
   body {
     background: var(--noir);
     color: var(--creme);
-    font-family: Georgia, "Times New Roman", serif;
+    font-family: Georgia, 'Times New Roman', serif;
     overflow-x: hidden;
   }
 
+  /* GRAIN */
   body::after {
     content: '';
-    position: fixed;
-    inset: 0;
+    position: fixed; inset: 0;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none;
-    z-index: 999;
+    pointer-events: none; z-index: 999;
   }
 
-  a { color: inherit; }
-
-  .container { width: min(1080px, calc(100% - 3rem)); margin: 0 auto; }
-
+  /* ─── HERO ────────────────────────────────────────── */
   .hero {
     min-height: 100vh;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 5rem 0 4rem;
+    text-align: center;
+    padding: 6rem 2rem 4rem;
     position: relative;
   }
 
-  .hero-grid {
-    width: min(1080px, calc(100% - 3rem));
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 3rem;
-    align-items: center;
-  }
-
-  .hero-left, .hero-right {
+  /* ORBE */
+  .orbe-wrap {
+    position: relative;
+    width: 140px; height: 140px;
+    margin-bottom: 3rem;
     opacity: 0;
-    animation: fadeIn 1s ease forwards;
+    animation: fadeIn 1.4s ease 0.3s forwards;
   }
-  .hero-left { animation-delay: 0.35s; }
-  .hero-right { animation-delay: 0.65s; }
-
-  .eyebrow {
-    font-family: 'Cinzel', serif;
-    font-size: 0.68rem;
-    letter-spacing: 0.35em;
-    text-transform: uppercase;
-    color: var(--bronze);
-    margin-bottom: 1.2rem;
-  }
-
-  .orbe-wrap { position: relative; width: 132px; height: 132px; margin-bottom: 2rem; }
 
   .orbe {
-    width: 132px; height: 132px;
+    width: 140px; height: 140px;
     border-radius: 50%;
-    background: radial-gradient(ellipse at 38% 35%, #fff9e6 0%, #e8c96d 18%, #c9a84c 42%, #8B7355 70%, #3a2a10 100%);
-    box-shadow: 0 0 40px rgba(201,168,76,0.35), 0 0 80px rgba(201,168,76,0.15), 0 0 160px rgba(201,168,76,0.06), inset 0 0 30px rgba(255,249,200,0.12);
+    background: radial-gradient(ellipse at 38% 35%,
+      #fff9e6 0%,
+      #e8c96d 20%,
+      #c9a84c 45%,
+      #8B7355 70%,
+      #3a2a10 100%);
+    box-shadow:
+      0 0 40px rgba(201,168,76,0.35),
+      0 0 80px rgba(201,168,76,0.15),
+      0 0 160px rgba(201,168,76,0.06),
+      inset 0 0 30px rgba(255,249,200,0.12);
     animation: breathe 4s ease-in-out infinite;
   }
 
@@ -114,114 +136,173 @@
 
   @keyframes rotate { to { transform: rotate(360deg); } }
 
-  h1 {
+  .hero h1 {
     font-family: 'Cinzel', serif;
-    font-size: clamp(3rem, 8vw, 6.2rem);
+    font-size: clamp(3rem, 8vw, 6.5rem);
     font-weight: 700;
-    letter-spacing: 0.14em;
-    line-height: 0.95;
+    letter-spacing: 0.15em;
     color: var(--or-pale);
-    text-shadow: 0 0 40px rgba(201,168,76,0.28);
-    margin-bottom: 0.7rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 0.8s forwards;
+    text-shadow: 0 0 40px rgba(201,168,76,0.3);
   }
 
   .hero-sub {
     font-family: 'Cinzel', serif;
-    font-size: 0.82rem;
-    letter-spacing: 0.36em;
+    font-size: clamp(0.7rem, 1.5vw, 0.9rem);
+    letter-spacing: 0.4em;
     text-transform: uppercase;
     color: var(--bronze);
-    margin-bottom: 1.6rem;
+    margin-bottom: 2.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 1s forwards;
   }
 
-  .hero-line { width: 120px; height: 1px; background: linear-gradient(to right, transparent, var(--or), transparent); margin-bottom: 1.8rem; }
+  .hero-ligne {
+    width: 120px; height: 1px;
+    background: linear-gradient(to right, transparent, var(--or), transparent);
+    margin: 0 auto 2.5rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.2s forwards;
+  }
 
-  .hero-copy p { font-size: clamp(1rem, 2.2vw, 1.16rem); line-height: 1.9; color: var(--texte); margin-bottom: 1rem; }
-  .hero-copy strong { color: var(--creme); font-weight: normal; }
+  .hero-phrase {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    color: var(--texte);
+    max-width: 520px;
+    line-height: 1.9;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.4s forwards;
+  }
 
-  .hero-hook {
+  .hero-phrase strong { color: var(--creme); font-style: normal; font-weight: normal; }
+
+  /* LOG */
+  .log-arcana {
+    background: rgba(10,10,15,0.95);
+    border: 1px solid rgba(139,115,85,0.3);
+    border-left: 2px solid var(--or);
+    padding: 1.2rem 1.8rem;
+    max-width: 540px;
+    text-align: left;
+    margin: 2rem auto 2.5rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.75rem;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.6s forwards;
+  }
+
+  .log-arcana .lh {
+    color: var(--bronze);
     font-family: 'Cinzel', serif;
-    font-size: clamp(1rem, 2vw, 1.18rem);
-    line-height: 1.8;
-    color: var(--or-pale);
-    margin: 1.7rem 0 2rem;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
   }
-  .hero-hook em { color: var(--or); font-style: normal; }
 
-  .cta-group { display: flex; gap: 1rem; flex-wrap: wrap; margin-top: 0.8rem; }
+  .log-arcana .ll { color: var(--texte); margin-bottom: 0.25rem; line-height: 1.5; }
+  .log-arcana .ll .src { color: var(--or-pale); }
+  .log-arcana .ll .val { color: var(--vert); }
+  .log-arcana .ll .warn { color: #c9844c; }
+  .log-arcana .ll .blue { color: #7aaccf; }
+
+  /* CTA */
+  .cta-group {
+    display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;
+    opacity: 0;
+    animation: fadeIn 1s ease 1.8s forwards;
+  }
 
   .btn-or {
-    display: inline-block; text-decoration: none; cursor: pointer;
-    font-family: 'Cinzel', serif; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
     color: var(--noir);
     background: linear-gradient(135deg, var(--or-vif), var(--or), var(--bronze));
-    padding: 0.92rem 2.2rem; border: none;
-    transition: opacity 0.25s, transform 0.2s;
+    padding: 0.8rem 2.2rem;
+    border: none; cursor: pointer;
+    text-decoration: none;
+    transition: opacity 0.3s, transform 0.2s;
+    display: inline-block;
   }
-  .btn-or:hover { opacity: 0.88; transform: translateY(-1px); }
+  .btn-or:hover { opacity: 0.85; transform: translateY(-1px); }
 
   .btn-creme {
-    display: inline-block; text-decoration: none; cursor: pointer;
-    font-family: 'Cinzel', serif; font-size: 0.76rem; letter-spacing: 0.2em; text-transform: uppercase;
-    color: var(--creme); background: transparent;
-    padding: 0.92rem 2.2rem; border: 1px solid rgba(139,115,85,0.5);
-    transition: border-color 0.25s, color 0.25s;
+    font-family: 'Cinzel', serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--creme);
+    background: transparent;
+    padding: 0.8rem 2.2rem;
+    border: 1px solid rgba(139,115,85,0.5);
+    cursor: pointer;
+    text-decoration: none;
+    transition: border-color 0.3s, color 0.3s;
+    display: inline-block;
   }
   .btn-creme:hover { border-color: var(--or); color: var(--or-pale); }
 
-  .hero-right { align-self: stretch; }
-
-  .hero-panel {
-    height: 100%;
-    background: rgba(10,10,15,0.96);
-    border: 1px solid rgba(139,115,85,0.32);
-    border-left: 2px solid var(--or);
-    padding: 1.5rem 1.7rem;
-    display: flex; flex-direction: column; justify-content: center;
+  /* ─── SÉPARATEUR OR ─────────────────────────────── */
+  .sep {
+    display: flex; align-items: center; gap: 1.5rem;
+    margin: 5rem auto;
+    max-width: 700px;
+    padding: 0 2rem;
   }
-
-  .panel-head {
-    color: var(--bronze);
-    font-family: 'Cinzel', serif;
-    font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
-    margin-bottom: 1rem;
-  }
-
-  .log-line { color: var(--texte); font-family: 'Courier New', monospace; font-size: 0.76rem; line-height: 1.65; margin-bottom: 0.35rem; }
-  .src  { color: var(--or-pale); }
-  .val  { color: var(--vert); }
-  .blue { color: var(--bleu); }
-  .warn { color: var(--ambre); }
-  .dim  { color: #5a4a38; }
-  .quote-line { margin: 0.4rem 0 0.55rem 1rem; color: #b8a888; font-style: italic; }
-
-  .cursor::after { content: '|'; color: var(--or); animation: blink 1s step-end infinite; }
-  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-
-  .sep { display: flex; align-items: center; gap: 1.5rem; margin: 4.5rem auto; max-width: 760px; padding: 0 2rem; }
   .sep-line { flex: 1; height: 1px; background: linear-gradient(to right, transparent, var(--bronze)); }
   .sep-line.right { background: linear-gradient(to left, transparent, var(--bronze)); }
   .sep-sym { color: var(--or); font-family: 'Cinzel', serif; font-size: 1.2rem; }
 
-  .metrics-wrap { margin-bottom: 5rem; }
-  .metrics-intro { text-align: center; max-width: 760px; margin: 0 auto 2rem; }
-  .metrics-intro p { color: var(--texte); line-height: 1.85; font-size: 0.98rem; }
-
+  /* ─── MÉTRIQUES ─────────────────────────────────── */
   .metrics {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 1px; background: rgba(139,115,85,0.15);
     border: 1px solid rgba(139,115,85,0.15);
-    max-width: 860px; margin: 0 auto;
+    max-width: 800px; margin: 0 auto 5rem;
   }
-  .metric { background: var(--encre); padding: 2rem 1.2rem; text-align: center; }
-  .metric-val { display: block; font-family: 'Cinzel', serif; font-size: 2rem; font-weight: 700; color: var(--or); margin-bottom: 0.45rem; }
-  .metric-label { font-size: 0.65rem; color: var(--bronze); letter-spacing: 0.12em; text-transform: uppercase; }
+  .metric {
+    background: var(--encre);
+    padding: 2rem 1.2rem; text-align: center;
+  }
+  .metric-val {
+    font-family: 'Cinzel', serif;
+    font-size: 2rem; font-weight: 700;
+    color: var(--or); display: block; margin-bottom: 0.4rem;
+  }
+  .metric-label {
+    font-size: 0.65rem; color: var(--bronze);
+    letter-spacing: 0.12em; text-transform: uppercase;
+  }
 
-  .section-wrap { max-width: 1000px; margin: 0 auto; padding: 0 2rem; }
-  .section-titre { font-family: 'Cinzel', serif; font-size: 0.67rem; letter-spacing: 0.35em; text-transform: uppercase; color: var(--bronze); text-align: center; margin-bottom: 0.8rem; }
-  .section-grand-titre { font-family: 'Cinzel', serif; font-size: clamp(1.75rem, 3vw, 2.7rem); font-weight: 600; color: var(--or-pale); text-align: center; margin-bottom: 1.2rem; line-height: 1.3; letter-spacing: 0.04em; }
-  .section-intro { text-align: center; max-width: 760px; margin: 0 auto 3.2rem; font-size: 1rem; color: var(--texte); line-height: 1.9; }
-  .section-intro strong { color: var(--creme); font-weight: normal; }
+  /* ─── MARCHÉS ───────────────────────────────────── */
+  .section-wrap { max-width: 900px; margin: 0 auto; padding: 0 2rem; }
+
+  .section-titre {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    text-align: center;
+    margin-bottom: 0.8rem;
+  }
+
+  .section-grand-titre {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 600;
+    color: var(--or-pale);
+    text-align: center;
+    margin-bottom: 3rem;
+    letter-spacing: 0.05em;
+  }
 
   .markets {
     display: grid; grid-template-columns: repeat(2, 1fr);
@@ -229,498 +310,440 @@
     border: 1px solid rgba(139,115,85,0.15);
     margin-bottom: 5rem;
   }
-  .market { background: var(--encre); padding: 2.5rem 2rem; position: relative; overflow: hidden; transition: background 0.35s; }
+
+  .market {
+    background: var(--encre);
+    padding: 2.5rem 2rem;
+    position: relative; overflow: hidden;
+    transition: background 0.4s;
+  }
+
+  .market::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0;
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, var(--or), transparent);
+    transform: scaleX(0);
+    transition: transform 0.4s;
+  }
   .market:hover { background: #0d0d14; }
-  .market::after { content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 1px; background: linear-gradient(to right, transparent, var(--or), transparent); transform: scaleX(0); transition: transform 0.35s; }
   .market:hover::after { transform: scaleX(1); }
-  .market-num { font-family: 'Cinzel', serif; font-size: 0.62rem; letter-spacing: 0.3em; color: var(--bronze); margin-bottom: 1rem; }
-  .market-titre { font-family: 'Cinzel', serif; font-size: 1.3rem; font-weight: 600; color: var(--or-pale); margin-bottom: 0.85rem; line-height: 1.35; }
-  .market-phrase { font-size: 0.88rem; color: var(--texte); line-height: 1.85; margin-bottom: 1.1rem; font-style: italic; }
+
+  .market-num {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem; letter-spacing: 0.3em;
+    color: var(--bronze); margin-bottom: 1rem;
+  }
+
+  .market-titre {
+    font-family: 'Cinzel', serif;
+    font-size: 1.3rem; font-weight: 600;
+    color: var(--or-pale); margin-bottom: 0.8rem;
+    line-height: 1.3;
+  }
+
+  .market-phrase {
+    font-size: 0.85rem; color: var(--texte);
+    line-height: 1.8; margin-bottom: 1.2rem;
+    font-style: italic;
+  }
   .market-phrase strong { color: var(--creme); font-style: normal; font-weight: normal; }
-  .market-prix { font-family: 'Cinzel', serif; font-size: 0.66rem; color: var(--or); letter-spacing: 0.12em; text-transform: uppercase; }
-  .market-preuve { margin-top: 1.25rem; padding-top: 1.25rem; border-top: 1px solid rgba(139,115,85,0.2); font-size: 0.74rem; color: var(--bronze); line-height: 1.75; }
+
+  .market-prix {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem; color: var(--or);
+    letter-spacing: 0.1em;
+  }
+
+  .market-preuve {
+    margin-top: 1.2rem; padding-top: 1.2rem;
+    border-top: 1px solid rgba(139,115,85,0.2);
+    font-size: 0.72rem; color: var(--bronze);
+    line-height: 1.7;
+  }
+  .market-link {
+    margin-top: 1rem;
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--or-pale);
+    border: 1px solid rgba(139,115,85,0.45);
+    padding: 0.5rem 1rem;
+    transition: border-color 0.25s, color 0.25s, transform 0.2s;
+  }
+  .market-link:hover {
+    border-color: var(--or);
+    color: var(--or);
+    transform: translateY(-1px);
+  }
   .tick { color: var(--vert); }
   .arrow { color: var(--or); }
 
-  .graine {
-    background: var(--encre); border: 1px solid rgba(139,115,85,0.25);
-    padding: 3rem 2.5rem;
-    display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: center;
-    max-width: 940px; margin: 0 auto 5rem;
+  /* ─── CAS D'USAGE ─────────────────────────────────── */
+  .cas-usage {
+    background: var(--encre);
+    border: 1px solid rgba(139,115,85,0.25);
+    padding: 2.5rem 2rem;
+    margin: 0 auto 5rem;
+    max-width: 900px;
   }
-  .graine-titre { font-family: 'Cinzel', serif; font-size: 1.9rem; font-weight: 700; color: var(--or-pale); margin-bottom: 1rem; line-height: 1.2; }
-  .graine-sub { font-size: 0.92rem; color: var(--texte); line-height: 1.95; font-style: italic; margin-bottom: 1.5rem; }
-  .graine-sub strong { color: var(--creme); font-weight: normal; font-style: normal; }
-  .graine-cmd { background: var(--noir); border: 1px solid rgba(139,115,85,0.2); padding: 1.45rem 1.6rem; font-family: 'Courier New', monospace; font-size: 0.8rem; line-height: 1.9; color: var(--texte); }
-  .prompt { color: var(--or); user-select: none; }
-  .cmd { color: var(--creme); }
-  .ok { color: var(--vert); }
 
-  .phrase { text-align: center; padding: 5rem 2rem; border-top: 1px solid rgba(139,115,85,0.2); border-bottom: 1px solid rgba(139,115,85,0.2); margin-bottom: 4rem; }
-  .phrase blockquote { font-family: 'Cinzel', serif; font-size: clamp(1.25rem, 3vw, 2.25rem); font-weight: 600; color: var(--creme); line-height: 1.5; max-width: 720px; margin: 0 auto 1.5rem; letter-spacing: 0.02em; }
+  .cas-usage-head {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+  }
+
+  .cas-usage-titre {
+    font-family: 'Cinzel', serif;
+    color: var(--or-pale);
+    font-size: 1.2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .cas-usage-badge {
+    border: 1px solid rgba(139,115,85,0.4);
+    padding: 0.25rem 0.6rem;
+    color: var(--bronze);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .cas-usage p {
+    color: var(--texte);
+    font-size: 0.85rem;
+    line-height: 1.8;
+    margin-bottom: 1.2rem;
+  }
+
+  .cas-usage p strong { color: var(--creme); font-weight: normal; }
+
+  .cas-log {
+    background: var(--noir);
+    border: 1px solid rgba(139,115,85,0.2);
+    border-left: 2px solid var(--or);
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.74rem;
+    color: #b8a888;
+    line-height: 1.65;
+    white-space: pre-wrap;
+  }
+
+  .cas-log .k { color: var(--or-pale); }
+  .cas-log .ok { color: var(--vert); }
+
+  /* ─── GRAINE ─────────────────────────────────────── */
+  .graine {
+    background: var(--encre);
+    border: 1px solid rgba(139,115,85,0.25);
+    padding: 3rem 2.5rem;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 3rem; align-items: center;
+    max-width: 900px; margin: 0 auto 5rem;
+  }
+
+  .graine-titre {
+    font-family: 'Cinzel', serif;
+    font-size: 1.8rem; font-weight: 700;
+    color: var(--or-pale); margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+
+  .graine-sub {
+    font-size: 0.88rem; color: var(--texte);
+    line-height: 1.9; font-style: italic;
+    margin-bottom: 1.5rem;
+  }
+
+  .graine-cmd {
+    background: var(--noir);
+    border: 1px solid rgba(139,115,85,0.2);
+    padding: 1.4rem 1.6rem;
+    font-family: 'Courier New', monospace;
+    font-size: 0.8rem; line-height: 1.9;
+    color: var(--texte);
+  }
+  .graine-cmd .prompt { color: var(--or); user-select: none; }
+  .graine-cmd .cmd { color: var(--creme); }
+  .graine-cmd .ok { color: var(--vert); }
+
+  /* ─── PHRASE ─────────────────────────────────────── */
+  .phrase {
+    text-align: center;
+    padding: 5rem 2rem;
+    border-top: 1px solid rgba(139,115,85,0.2);
+    border-bottom: 1px solid rgba(139,115,85,0.2);
+    margin-bottom: 4rem;
+  }
+
+  .phrase blockquote {
+    font-family: 'Cinzel', serif;
+    font-size: clamp(1.2rem, 3vw, 2.2rem);
+    font-weight: 600;
+    color: var(--creme);
+    line-height: 1.5;
+    max-width: 680px; margin: 0 auto 1.5rem;
+    letter-spacing: 0.02em;
+  }
   .phrase blockquote em { color: var(--or); font-style: normal; }
-  .phrase cite { font-size: 0.67rem; color: var(--bronze); letter-spacing: 0.2em; text-transform: uppercase; font-style: normal; }
 
-  footer { padding: 2.6rem 2rem; display: flex; justify-content: space-between; align-items: center; border-top: 1px solid rgba(139,115,85,0.2); font-size: 0.7rem; color: var(--bronze); max-width: 940px; margin: 0 auto; gap: 1rem; }
+  .phrase cite {
+    font-size: 0.65rem; color: var(--bronze);
+    letter-spacing: 0.2em; text-transform: uppercase;
+    font-style: normal;
+  }
+
+  /* ─── FOOTER ─────────────────────────────────────── */
+  footer {
+    padding: 2.5rem 2rem;
+    display: flex; justify-content: space-between; align-items: center;
+    border-top: 1px solid rgba(139,115,85,0.2);
+    font-size: 0.7rem; color: var(--bronze);
+    max-width: 900px; margin: 0 auto;
+  }
   footer a { color: var(--or); text-decoration: none; }
   footer a:hover { color: var(--or-pale); }
 
+  /* ─── ANIM ───────────────────────────────────────── */
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
   .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.8s ease, transform 0.8s ease; }
   .reveal.visible { opacity: 1; transform: translateY(0); }
 
-  /* ─── CAS D'USAGE ─────────────────────────────────── */
-  .usage-section { max-width: 1000px; margin: 0 auto 5rem; padding: 0 2rem; }
-  .usage-grid {
-    display: grid; grid-template-columns: repeat(2, 1fr);
-    gap: 1px; background: rgba(139,115,85,0.12);
-    border: 1px solid rgba(139,115,85,0.12);
-    margin-top: 3.5rem;
+  .cursor::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: var(--or);
   }
-  .usage-card { background: var(--encre); padding: 2.5rem 2rem; }
-  .usage-icon { font-size: 1.1rem; opacity: 0.5; display: block; margin-bottom: 1rem; }
-  .usage-title {
-    font-family: 'Cinzel', serif; font-size: 1.05rem; font-weight: 600;
-    color: var(--or-pale); margin-bottom: 1.3rem; letter-spacing: 0.04em;
-  }
-  .usage-label {
-    font-family: 'Cinzel', serif; font-size: 0.57rem; letter-spacing: 0.3em;
-    text-transform: uppercase; color: var(--bronze); margin-bottom: 0.7rem; display: block;
-  }
-  .usage-text { font-size: 0.83rem; color: var(--texte); line-height: 1.95; margin-bottom: 1rem; }
-  .usage-break { height: 1px; background: rgba(139,115,85,0.18); margin: 1.1rem 0; }
-  .usage-shift {
-    font-family: 'Courier New', monospace; font-size: 0.73rem;
-    color: var(--texte); line-height: 1.75;
-  }
-  .usage-shift .us { color: var(--or-pale); }
-  .usage-shift .uv { color: var(--vert); }
-  .log-proof {
-    background: var(--noir); border-left: 2px solid var(--or);
-    padding: 0.85rem 1.1rem; margin-top: 1rem;
-    font-family: 'Courier New', monospace; font-size: 0.7rem;
-    line-height: 1.7; color: var(--texte);
-  }
-  .log-proof .lk { color: var(--bronze); }
-  .log-proof .lv { color: var(--vert); }
-  .log-proof .lw { color: #c9844c; }
-  .log-proof .ls { color: var(--or-pale); }
-  .usage-closing {
-    text-align: center; max-width: 680px; margin: 4rem auto 0;
-    font-size: 0.9rem; color: var(--texte); line-height: 2.1; font-style: italic;
-  }
-  .usage-closing strong { color: var(--creme); font-weight: normal; font-style: normal; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(18px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
-  @media (max-width: 920px) {
-    .hero-grid, .graine { grid-template-columns: 1fr; }
-    .hero { min-height: auto; padding-top: 4.5rem; }
-    .hero-right { align-self: auto; }
-    .hero-panel { min-height: auto; }
-  }
+  @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
 
   @media (max-width: 640px) {
-    .usage-grid { grid-template-columns: 1fr; }
     .metrics { grid-template-columns: repeat(2, 1fr); }
     .markets { grid-template-columns: 1fr; }
-    .cta-group { flex-direction: column; align-items: stretch; }
-    .btn-or, .btn-creme { text-align: center; width: 100%; }
-    footer { flex-direction: column; text-align: center; }
+    .graine { grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 1rem; text-align: center; }
   }
 </style>
 </head>
 <body>
 
+<!-- ─── HERO ──────────────────────────────────────────── -->
 <section class="hero">
-  <div class="hero-grid">
-    <div class="hero-left">
-      <div class="orbe-wrap">
-        <div class="orbe"></div>
-        <div class="orbe-ring"></div>
-      </div>
-      <p class="eyebrow">Organisme numérique souverain</p>
-      <h1>KENTA</h1>
-      <p class="hero-sub">Signal → Fait → ADN → Action → Signature</p>
-      <div class="hero-line"></div>
-      <div class="hero-copy">
-        <p><strong>Pas un chatbot. Pas un SaaS. Pas un copilote.</strong></p>
-        <p>KENTA est un organisme local qui observe, agit et signe. Il tourne sur ton matériel, hors-ligne, et transforme des signaux en faits traçables.</p>
-      </div>
-      <p class="hero-hook">
-        Le problème n'est pas la complexité.<br>
-        <em>Le problème, c'est l'accès.</em>
-      </p>
-      <div class="cta-group">
-        <a href="contact.html" class="btn-or">Demander l'accès</a>
-        <a href="#marches" class="btn-creme">Voir les marchés</a>
-      </div>
-    </div>
+  <div class="orbe-wrap" style="opacity:0;animation:fadeIn 1.4s ease 0.3s forwards">
+    <div class="orbe"></div>
+    <div class="orbe-ring"></div>
+  </div>
 
-    <div class="hero-right">
-      <div class="hero-panel">
-        <div class="panel-head">Toile Collective — HAL / i5 2012 — en production</div>
-        <div class="log-line"><span class="src">Hinata →</span> <span class="blue">parole_interne_kenta</span></div>
-        <div class="log-line quote-line">"Le centre est congestionné. Je dois souffler."</div>
-        <div class="log-line" style="padding-left:1rem;">coeur <span class="warn">90%</span> · rein <span class="warn">90.6%</span> · poumon <span class="warn">4.1</span></div>
-        <div class="log-line" style="margin-top:0.55rem;"><span class="src">Kabuto →</span> <span class="blue">preuve_vulnerabilite</span> <span class="dim">· decathlon.fr</span></div>
-        <div class="log-line"><span class="src">Minato →</span> <span class="val">hiraishin_signature · SHA-256 · signé</span></div>
-        <div class="log-line"><span class="src">Concerto →</span> <span class="val">equilibre</span> <span class="dim">→ [293, 329, 369] Hz</span></div>
-        <div class="log-line"><span class="src">Jiraiya →</span> <span class="val">0 violation NO-DEF</span></div>
-        <div class="log-line" style="margin-top:0.7rem;"><span class="dim">✓ Chaîne terminée · 18 gardiens · 0 def logique métier</span><span class="cursor"></span></div>
-      </div>
+  <h1>KENTA</h1>
+  <p class="hero-sub">Organisme numérique souverain</p>
+  <div class="hero-ligne"></div>
+
+  <p class="hero-phrase">
+    Pas une promesse. Pas un modèle de langage.<br>
+    <strong>Un organisme qui tourne sur ton matériel,<br>hors-ligne, et signe chaque action.</strong>
+  </p>
+
+  <div class="log-arcana">
+    <div class="lh">● Toile Collective — HAL / i5 2012 — en production</div>
+    <div class="ll"><span class="src">Hinata →</span> <span class="blue">parole_interne_kenta</span></div>
+    <div class="ll" style="padding-left:1rem;font-style:italic;color:#b8a888;">
+      "Le centre est congestionné. Je dois souffler."
     </div>
+    <div class="ll" style="padding-left:1rem;font-size:0.7rem;">
+      coeur <span class="warn">90%</span> · rein <span class="warn">90.6%</span> · poumon <span class="warn">4.1</span>
+    </div>
+    <div class="ll" style="margin-top:0.4rem;"><span class="src">Kabuto →</span> <span class="blue">preuve_vulnerabilite</span> <span style="color:#5a4a38;">· decathlon.fr</span></div>
+    <div class="ll"><span class="src">Minato →</span> <span class="val">hiraishin_signature · SHA-256 · signé</span></div>
+    <div class="ll"><span class="src">Concerto →</span> <span class="val">equilibre</span> <span style="color:#5a4a38;">→ [293, 329, 369] Hz</span></div>
+    <div class="ll" style="color:#5a4a38;font-size:0.68rem;margin-top:0.5rem;">✓ Chaîne terminée · 18 gardiens · 0 def logique métier<span class="cursor"></span></div>
+  </div>
+
+  <div class="cta-group">
+    <a href="https://github.com/Kenta-Arcadia/kenta-graine" class="btn-or" target="_blank">↓ Cloner la graine</a>
+    <a href="https://kenta-arcadia.github.io/arcana.html" class="btn-creme">KENTA Arcana — lecture du jour →</a>
+    <a href="#marches" class="btn-creme">Quatre marchés →</a>
   </div>
 </section>
 
+<!-- ─── SÉPARATEUR ─────────────────────────────────────── -->
 <div class="sep reveal">
   <div class="sep-line"></div>
   <span class="sep-sym">✦</span>
   <div class="sep-line right"></div>
 </div>
 
-<section class="metrics-wrap container reveal">
-  <div class="metrics-intro">
-    <p>KENTA n'est pas une promesse architecturale. C'est une physique observable : une graine légère, une mémoire locale, une séparation stricte entre intention et exécution, et des faits signés à chaque run.</p>
-  </div>
-  <div class="metrics">
+<!-- ─── MÉTRIQUES ────────────────────────────────────────── -->
+<div class="section-wrap">
+  <div class="metrics reveal">
     <div class="metric"><span class="metric-val">2.4</span><span class="metric-label">Mo · graine</span></div>
     <div class="metric"><span class="metric-val">1</span><span class="metric-label">Dépendance pip</span></div>
     <div class="metric"><span class="metric-val">0</span><span class="metric-label">def logique métier</span></div>
     <div class="metric"><span class="metric-val">i5</span><span class="metric-label">2012 · offline</span></div>
   </div>
-</section>
+</div>
 
-<div class="section-wrap" id="marches" style="margin-top:5rem;">
+<!-- ─── MARCHÉS ──────────────────────────────────────────── -->
+<div class="section-wrap" id="marches" style="margin-top:4rem;">
   <p class="section-titre reveal">Le même organisme</p>
-  <h2 class="section-grand-titre reveal">Quatre marchés.<br>Zéro cloud.</h2>
-  <p class="section-intro reveal">Le même noyau fonctionne dans quatre contextes. Ce qui change n'est pas l'architecture. Ce qui change, c'est la langue du signal entrant : <strong>patient, code legacy, capteur industriel, ou étudiant.</strong></p>
+  <h2 class="section-grand-titre reveal">Quatre langues. Quatre douleurs.<br>Trois fois le prix.</h2>
 
   <div class="markets reveal">
-    <article class="market" style="cursor:pointer;" onclick="window.location='bien-etre.html'">
+
+    <div class="market">
       <div class="market-num">I — BIEN-ÊTRE & ARCANA</div>
-      <h3 class="market-titre">Les données restent<br>dans la pièce.</h3>
-      <p class="market-phrase">Arcana calcule un profil symbolique complet — astrologie, chakras, méridiens, Pa Kua, doshas — et le corrèle à l'état observé par Hinata. <strong>Les données du patient ne quittent jamais la machine du praticien.</strong></p>
+      <div class="market-titre">Tes données restent<br>dans ta pièce.</div>
+      <p class="market-phrase">Arcana calcule un profil symbolique complet — astrologie, chakras, méridiens, Pa Kua, doshas. <strong>Les données du patient ne quittent jamais la machine du praticien.</strong> Co-Star stocke tout sur des serveurs américains.</p>
+      <div class="market-prix">500 € / an · App 30 € / mois · White-label</div>
       <div class="market-preuve">
-        <span class="tick">✓</span> Arcana en production · FR / EN / JA<br>
-        <span class="tick">✓</span> Profil symbolique + corrélation physiologique<br>
-        <span class="tick">✓</span> Aucune dépendance à un serveur tiers
+        <span class="tick">✓</span> Arcana en production · API live · FR / EN / JA<br>
+        <span class="tick">✓</span> Hinata corrèle le profil avec l'état physiologique<br>
+        <span class="tick">✓</span> RGPD natif — aucun serveur tiers<br>
+        <a href="https://kenta-arcadia.github.io/arcana.html#praticiens" class="btn-or" style="margin-top:1rem;display:inline-block;font-size:0.62rem;padding:0.55rem 1.1rem;">Arcana — onglet praticiens →</a>
+        <a href="https://kenta-arcadia.github.io/arcana.html" class="market-link">Voir toute la page Arcana →</a>
       </div>
-    </article>
+    </div>
 
-    <article class="market" style="cursor:pointer;" onclick="window.location='legacy.html'">
+    <div class="market">
       <div class="market-num">II — LEGACY & DATA</div>
-      <h3 class="market-titre">Le code ne quitte<br>pas le datacenter.</h3>
-      <p class="market-phrase">KENTA audite un repo COBOL ou Java, signe chaque résultat en SHA-256, cristallise les apprentissages, et repropose ses corrections au run suivant. <strong>Le code source reste dans l'infrastructure du client.</strong></p>
+      <div class="market-titre">Ton code ne quitte<br>pas ton datacenter.</div>
+      <p class="market-phrase">KENTA audite un repo COBOL en une nuit, signe chaque résultat en SHA-256, propose des corrections depuis sa mémoire locale. <strong>Sonar Cloud traite le code sur leurs serveurs. KENTA tourne dans ta salle serveur.</strong></p>
+      <div class="market-prix">Mission 15–50 K€ · Maintenance récurrente · Air-gapped</div>
       <div class="market-preuve">
-        <span class="tick">✓</span> 3 317 fichiers Java analysés<br>
-        <span class="tick">✓</span> COBOL : STOP RUN abrupt ligne 36, reproductible<br>
-        <span class="tick">✓</span> Résultats signés, comparables, rejouables
+        <span class="tick">✓</span> 3 317 fichiers Java · 99 % taux de détection<br>
+        <span class="tick">✓</span> COBOL main.cob · STOP RUN ligne 36 · reproductible<br>
+        <span class="tick">✓</span> Signé SHA-256 · corrections proposées par Sakura<br>
+        <a href="https://kenta-arcadia.github.io/legacy.html" class="market-link">Voir la page Legacy & Data →</a>
       </div>
-    </article>
+    </div>
 
-    <article class="market" style="cursor:pointer;" onclick="window.location='industrie.html'">
+    <div class="market">
       <div class="market-num">III — INDUSTRIE & HARDWARE</div>
-      <h3 class="market-titre">Les seuils industriels<br>deviennent exécutables.</h3>
-      <p class="market-phrase">Hinata lit CPU, RAM et I/O comme des méridiens. Le même pattern s'étend à un capteur moteur, un registre IPMI, un bus CAN. <strong>Le constructeur peut livrer l'ADN avec la machine.</strong></p>
+      <div class="market-titre">Ta machine se reconfigure<br>selon l'ADN.</div>
+      <p class="market-phrase">Hinata lit les capteurs comme des méridiens. Un seuil déclaré dans l'ADN — pas une ligne de code. <strong>Le constructeur livre l'ADN avec la machine.</strong> Comme un manuel technique — mais exécutable.</p>
+      <div class="market-prix">POC 5–50 K€ · ADN constructeur · Raspberry Pi 35 €</div>
       <div class="market-preuve">
-        <span class="tick">✓</span> Corrélation capteur → seuil → état → parole<br>
-        <span class="tick">✓</span> Fonctionne en zone blanche, sans cloud<br>
-        <span class="arrow">↗</span> Reconfiguration hardware : extensible à l'industriel
+        <span class="tick">✓</span> CPU / RAM / I·O → méridiens → seuils ADN<br>
+        <span class="tick">✓</span> Fonctionne en zone blanche · mine · offshore<br>
+        <span class="arrow">↗</span> CAN bus · IPMI · Modbus — proche terme<br>
+        <a href="https://kenta-arcadia.github.io/industrie.html" class="market-link">Voir la page Industrie & Hardware →</a>
       </div>
-    </article>
+    </div>
 
-    <article class="market" style="cursor:pointer;" onclick="window.location='formation.html'">
+    <div class="market">
       <div class="market-num">IV — FORMATION & SOUVERAINETÉ</div>
-      <h3 class="market-titre">Former sans cloud.<br>Penser sans orchestrateur.</h3>
-      <p class="market-phrase">La graine devient le premier projet. L'ADN devient le modèle. Jiraiya valide l'architecture. <strong>On apprend à construire des systèmes observables, locaux, et sans centre invisible.</strong></p>
+      <div class="market-titre">Tes étudiants comprennent<br>en quatre semaines.</div>
+      <p class="market-phrase">NO-DEF comme discipline. La graine comme premier projet. Jiraiya valide l'architecture — pas le professeur. <strong>500 étudiants qui pensent sans orchestrateur, sur leur propre machine.</strong></p>
+      <div class="market-prix">Atelier 2–5 K€ / jour · Cursus · Certification</div>
       <div class="market-preuve">
-        <span class="tick">✓</span> NO-DEF comme discipline réelle<br>
-        <span class="tick">✓</span> MBSE incarné dans l'exécution<br>
-        <span class="tick">✓</span> Souveraineté numérique directement pratiquée
+        <span class="tick">✓</span> MBSE en production — ADN = modèle, gardiens = composants<br>
+        <span class="tick">✓</span> AFIS (Nicolas Figay) · Laval (Flavien Chervet)<br>
+        <span class="tick">✓</span> Souveraineté numérique — zéro Big Tech<br>
+        <a href="https://kenta-arcadia.github.io/formation.html" class="market-link">Voir la page Formation & Souveraineté →</a>
       </div>
-    </article>
+    </div>
+
   </div>
 </div>
 
+<!-- ─── CAS D'USAGE ───────────────────────────────────── -->
+<div class="section-wrap">
+  <div class="cas-usage reveal">
+    <div class="cas-usage-head">
+      <div class="cas-usage-titre">Cas d'usage réel — Suivi d'activité personnel</div>
+      <span class="cas-usage-badge">Local · vérifiable · rejouable</span>
+    </div>
+    <p>
+      Un utilisateur dépose une demande de mission locale, sans cloud. KENTA lit l'influx, exécute les gardiens concernés,
+      puis produit un rapport signé. <strong>Chaque étape est traçable et reproductible sur la machine.</strong>
+    </p>
+
+    <div class="cas-log">[2026-03-26T16:28:31] <span class="k">influx</span> mission_id: mission_kenta_gaming_demo_001
+[2026-03-26T16:28:31] <span class="k">objectif</span> "Assembler un paquet local autonome kenta-gaming-demo"
+[2026-03-26T16:28:32] <span class="k">regles</span> aucun secret · aucune dependance cloud · aucun fallback silencieux
+[2026-03-26T16:28:33] <span class="k">pipeline</span> influx/ -> Procyon -> communication/ -> gardiens</div>
+
+    <div class="cas-log">[2026-03-26T16:28:36] <span class="k">rapport_hinata</span> type: rapport_byakugan
+[2026-03-26T16:28:36] gardiens_actifs: 2/28 · urgence: basse · sante_globale: normale
+[2026-03-26T16:28:36] meridien influx_vers_procyon: fluide · volume: 0
+[2026-03-26T16:28:36] meridien toile_collective: fluide · volume: 871
+[2026-03-26T16:28:36] metriques cpu_global_percent: 60.2 · memoire_utilisee: 85.3%
+[2026-03-26T16:28:36] <span class="ok">signature Minato: SHA-256 valide</span></div>
+
+    <p style="margin-bottom:0;">
+      Resultat: l'utilisateur sait ce qui a ete traite, dans quel ordre, avec quel etat systeme, et peut relancer la mission
+      avec les memes regles pour comparer.
+    </p>
+  </div>
+</div>
+
+<!-- ─── SÉPARATEUR ─────────────────────────────────────── -->
 <div class="sep reveal">
   <div class="sep-line"></div>
   <span class="sep-sym">✦</span>
   <div class="sep-line right"></div>
 </div>
 
-<!-- CAS D'USAGE -->
-<section class="usage-section reveal">
-  <p class="section-titre">Cas d'usage</p>
-  <h2 class="section-grand-titre">Pas des promesses.<br>Des situations réelles.</h2>
-  <p class="section-intro">Pas du marketing startup. Des moments où quelqu'un perd de l'énergie sur des tâches subalternes, puis KENTA enlève ce qui empêche de faire le vrai travail.</p>
-
-  <div class="usage-grid">
-
-    <!-- 1. MUTUELLE / COBOL -->
-    <div class="usage-card">
-      <span class="usage-icon">◈</span>
-      <div class="usage-title">Mutuelle / COBOL</div>
-
-      <span class="usage-label">La situation</span>
-      <p class="usage-text">
-        Ils ont quarante ans de code. Personne ne veut y toucher vraiment. Pas parce que les gens ne veulent pas bosser. Parce qu'ils savent ce que ça coûte quand ça casse. Dans cette base, une mauvaise manip et c'est le calcul des cotisations qui part de travers. Chaque migration devient un événement. L'audit externe revient tous les trois ans. Vingt-cinq mille euros. Six semaines. Et entre deux, ça vit avec cette question en fond. Est-ce que ça va tenir. Les soirs avant mise en prod, ça ressemble souvent à la même scène. Des validations croisées. Des cafés. Des gens qui relisent des zones qu'ils connaissent déjà. Et cette peur bête, mais bien réelle, du STOP RUN qui casse tout ligne 36.
-      </p>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">La bascule</span>
-      <div class="usage-shift">
-        <span class="us">influx déposé →</span> Kabuto lit le fichier<br>
-        <span class="us">Jiraiya →</span> validation architecture<br>
-        <span class="us">Minato →</span> signature SHA-256<br>
-        <span class="uv">code source : jamais sorti du datacenter</span>
-      </div>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">Le résultat</span>
-      <p class="usage-text">
-        3 317 fichiers analysés en une nuit. L'anomalie COBOL est détectée, reproductible, localisée. Chaque résultat est signé. Ils ne passent plus leur temps à se demander. Ils travaillent sur un fait. Et juste ça, avant une mise en prod, ça change les nuits.
-      </p>
-      <div class="log-proof">
-        <div><span class="lk">objet:</span> itachi_audit_cobol</div>
-        <div><span class="lk">fichier:</span> main.cob</div>
-        <div><span class="lk">anomalie:</span> <span class="lw">STOP RUN abrupt — ligne 36</span></div>
-        <div><span class="lk">paragraphe:</span> CALCUL-PRIME</div>
-        <div><span class="lk">risque:</span> division par zéro si TAUX-BASE = 0</div>
-        <div><span class="lk">signé:</span> <span class="lv">Minato SHA-256 — 2026-04-18T01:04:00</span></div>
-        <div><span class="lk">reproductible:</span> <span class="lv">oui</span></div>
-      </div>
-    </div>
-
-    <!-- 2. PRATICIEN HYPNOSE / YOGA -->
-    <div class="usage-card">
-      <span class="usage-icon">✺</span>
-      <div class="usage-title">Praticien hypnose / yoga</div>
-
-      <span class="usage-label">La situation</span>
-      <p class="usage-text">
-        Elle a une vingtaine de clients. Chacun arrive avec son histoire, son rythme, sa façon d'ouvrir ou de se fermer. Elle prend des notes après les séances. Sur un carnet. Sur son téléphone. Sur des bouts de choses qu'elle recopie plus tard. Elle essaie de se souvenir de ce qu'Isabelle avait dit en mars. De ce que Thomas traverse en ce moment. Ce n'est pas spectaculaire. C'est juste plein. Plein de petites choses importantes. Et ça déborde. À la fin de la journée, la fatigue n'est pas physique. C'est cette fatigue de tête quand on sent qu'on a peut-être oublié quelque chose de juste. Alors que son métier, au fond, c'est d'être là. Entièrement là.
-      </p>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">La bascule</span>
-      <div class="usage-shift">
-        <span class="us">influx →</span> une séance<br>
-        <span class="us">Arcana →</span> calcul profil<br>
-        <span class="us">Hinata →</span> observation état<br>
-        <span class="uv">le suivi se forme — rien ne quitte la machine</span>
-      </div>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">Le résultat</span>
-      <p class="usage-text">
-        Un compte-rendu personnalisé. Dans le bon registre. Au bon moment. Les données ne quittent pas sa machine. Elle ne pousse rien sur un service tiers. Et peu à peu elle revient à l'endroit juste. La présence. C'est son vrai travail.
-      </p>
-      <div class="log-proof">
-        <div><span class="lk">profil_symbolique:</span></div>
-        <div style="padding-left:1rem;"><span class="lk">astrologie:</span> <span class="ls">Poissons — eau, intuition</span></div>
-        <div style="padding-left:1rem;"><span class="lk">chakra_dominant:</span> <span class="ls">Ajna — vision intérieure</span></div>
-        <div style="padding-left:1rem;"><span class="lk">meridien_actif:</span> <span class="ls">Rein — ancrage</span></div>
-        <div><span class="lk">revelation:</span> <span class="lv">"Tu navigues entre deux eaux."</span></div>
-        <div><span class="lk">données:</span> <span class="lv">locales — aucun serveur tiers</span></div>
-      </div>
-    </div>
-
-    <!-- 3. INGÉNIEUR MAINTENANCE -->
-    <div class="usage-card">
-      <span class="usage-icon">⚙</span>
-      <div class="usage-title">Ingénieur maintenance</div>
-
-      <span class="usage-label">La situation</span>
-      <p class="usage-text">
-        Il a douze écrans ouverts. Pas parce qu'il aime ça. Parce que depuis des années on a empilé les couches. Une alarme arrive. Il ouvre un ticket. Une autre arrive. Il compare des courbes. Il essaie de comprendre si c'est un vrai signal ou juste encore une agitation de plus. La plupart du temps il réagit. Il ne prévoit pas. Quelque part dans tout ce bruit, il y a peut-être un moteur qui commence à dériver pour de vrai. Un signal qui pourrait être vu quinze jours avant. Mais il se noie dans les quarante autres alertes de la journée. Alors il traite. Il empile. Il tient la ligne. Et il finit par passer plus de temps à absorber du système qu'à comprendre la machine.
-      </p>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">La bascule</span>
-      <div class="usage-shift">
-        <span class="us">Hinata →</span> lit les capteurs comme des méridiens<br>
-        <span class="us">état →</span> parole interne<br>
-        <span class="uv">le signal devient une information · pas une interruption</span>
-      </div>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">Le résultat</span>
-      <p class="usage-text">
-        Un diagnostic clair. Local. Sans cloud. Minato signe chaque événement. Les alertes cessent d'être juste des interruptions. Elles redeviennent des informations. Et l'ingénieur peut enfin relever les yeux de ses écrans.
-      </p>
-      <div class="log-proof">
-        <div><span class="lk">Hinata:</span> <span class="lw">Le centre est congestionné. Je dois souffler.</span></div>
-        <div style="padding-left:1rem;"><span class="lk">coeur</span>  val=<span class="lw">90%</span>   état=blocage</div>
-        <div style="padding-left:1rem;"><span class="lk">rein</span>   val=<span class="lw">90.6%</span> état=blocage</div>
-        <div style="padding-left:1rem;"><span class="lk">poumon</span> val=<span class="lw">4.1</span>   état=blocage</div>
-        <div><span class="lk">signé:</span> <span class="lv">Minato — 2026-04-18T02:36:52</span></div>
-      </div>
-    </div>
-
-    <!-- 4. DEV SOUS PRESSION -->
-    <div class="usage-card">
-      <span class="usage-icon">⌬</span>
-      <div class="usage-title">Dev sous pression</div>
-
-      <span class="usage-label">La situation</span>
-      <p class="usage-text">
-        La codebase grossit. En soi ce n'est pas grave. Le vrai problème, c'est que les règles implicites, elles, ne grossissent pas avec elle. Quelqu'un met un bout de logique métier dans un gardien. Quelqu'un d'autre passe dessus sans le voir. Trois semaines plus tard c'est déjà une petite dette. Six mois plus tard c'est une zone qu'on évite. Un an plus tard personne n'a envie de toucher le fichier. Le refacto est repoussé à chaque sprint. Pas parce qu'il n'est pas important. Parce qu'il y a toujours plus urgent. Jusqu'au moment où un nouveau demande pourquoi ce module est comme ça. Et la réponse honnête, c'est qu'on ne sait plus trop. C'est là que le système commence à être subi.
-      </p>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">La bascule</span>
-      <div class="usage-shift">
-        <span class="us">à chaque save →</span> Jiraiya passe<br>
-        <span class="us">violation →</span> vue · correction proposée<br>
-        <span class="uv">silencieux · strict · permanent</span>
-      </div>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">Le résultat</span>
-      <p class="usage-text">
-        La dette n'a plus le temps de s'installer en silence. La logique métier reste à sa place. Le système ne dérive plus sans témoin. Et le dev retrouve quelque chose qui compte vraiment. Il ne subit plus la base. Il la tient.
-      </p>
-      <div class="log-proof">
-        <div><span class="lk">Jiraiya →</span> <span class="ls">jiraiya_veille_vscodium</span></div>
-        <div><span class="lk">fichier:</span> gardiens/kabuto/kabuto.py</div>
-        <div><span class="lk">violations:</span> <span class="lv">0</span></div>
-        <div><span class="lk">def avec logique métier:</span> <span class="lv">0</span></div>
-        <div><span class="lv">✅ Architecture conforme — 60s sur i5 2012</span></div>
-      </div>
-    </div>
-
-    <!-- 5. STUDIO GAMING -->
-    <div class="usage-card">
-      <span class="usage-icon">✧</span>
-      <div class="usage-title">Studio gaming</div>
-
-      <span class="usage-label">La situation</span>
-      <p class="usage-text">
-        Au début il y avait quelques reliques. On testait à la main. Deux personnes, un Google Sheet, quelques runs. Ça tenait. Puis le jeu a grossi. Cinquante reliques. Des effets qui se croisent, se renforcent, se contredisent. Des triggers partout. Des cas tordus. Maintenant ce n'est plus testable proprement à la main. Alors les bugs remontent des joueurs. Quelqu'un a trouvé un build qui explose le boss final au niveau 2. C'est noté quelque part depuis trois semaines. Le designer voulait corriger ça vendredi. Vendredi, il a passé quatre heures à comparer des colonnes dans un tableur. Pas à créer. Pas à équilibrer pour de vrai. À comparer des colonnes. Et ça, à force, ça use plus vite que le reste.
-      </p>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">La bascule</span>
-      <div class="usage-shift">
-        <span class="us">KENTA →</span> simule · pas dix parties<br>
-        <span class="us">Kabuto →</span> 1 000+ combinaisons<br>
-        <span class="uv">les patterns sortent sans qu'on les force</span>
-      </div>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">Le résultat</span>
-      <p class="usage-text">
-        Les reliques trop fortes remontent avant la release. Les interactions cassées deviennent visibles plus tôt. Le tableur cesse d'être le centre du travail. Le designer revient à son rôle. Imaginer. Ajuster. Créer le jeu au lieu de courir derrière lui.
-      </p>
-      <div class="log-proof">
-        <div><span class="ls">KENTA Gaming — simulation équilibrage</span></div>
-        <div><span class="lk">reliques testées:</span> 50</div>
-        <div><span class="lk">combinaisons simulées:</span> <span class="lv">1 000+</span></div>
-        <div><span class="lk">reliques broken détectées:</span> <span class="lw">3</span></div>
-        <div><span class="lk">patterns identifiés:</span> croisement feu+poison → one-shot boss niveau 2</div>
-        <div><span class="lk">source:</span> kabuto_gaming_simulation — <span class="lv">signé Minato</span></div>
-      </div>
-    </div>
-
-    <!-- 6. WHITE HAT / BUG BOUNTY -->
-    <div class="usage-card">
-      <span class="usage-icon">◇</span>
-      <div class="usage-title">White hat / bug bounty</div>
-
-      <span class="usage-label">La situation</span>
-      <p class="usage-text">
-        Une grosse partie du temps part dans la mécanique. Capturer la session. Retrouver les endpoints. Rejouer. Changer un header. Rejouer. Noter la réponse. Passer au suivant. Ce n'est pas encore de l'analyse. C'est la montée avant l'analyse. Et à force de refaire ces gestes, ça fatigue. Parce que le vrai travail, ce n'est pas de cliquer. Le vrai travail, c'est de comprendre ce que la réponse raconte. Ce que le serveur laisse passer. Ce qu'il révèle malgré lui. Mais pour arriver jusque-là, il faut d'abord avoir tout rejoué. Tout testé. Tout posé quelque part. Alors la journée part vite. Et l'énergie part avec.
-      </p>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">La bascule</span>
-      <div class="usage-shift">
-        <span class="us">capture HAR →</span> Kabuto rejoue 338 flows<br>
-        <span class="us">variations →</span> 4 par flow<br>
-        <span class="uv">les preuves tombent · signées · structurées</span>
-      </div>
-
-      <div class="usage-break"></div>
-      <span class="usage-label">Le résultat</span>
-      <p class="usage-text">
-        Des preuves structurées. Signées. Un User-Agent transparent. Le chasseur ne passe plus ses heures dans la mécanique. Il revient à l'endroit où sa valeur existe vraiment. Voir. Comprendre. Penser.
-      </p>
-      <div class="log-proof">
-        <div><span class="lk">flows rejoués:</span> <span class="lv">338</span></div>
-        <div><span class="lk">variations testées:</span> 4 par flow</div>
-        <div><span class="lk">preuves émises:</span> <span class="lv">44</span></div>
-        <div><span class="lk">criticité:</span> basse — method_override analytics</div>
-        <div><span class="lk">User-Agent:</span> <span class="ls">KENTA-Replay/1.0 (audit ethique declare)</span></div>
-        <div><span class="lk">signé:</span> <span class="lv">Minato SHA-256 — 2026-04-18T10:59:24</span></div>
-      </div>
-    </div>
-
-  </div>
-
-  <div class="usage-closing">
-    Dans chaque cas, c'est la même chose.<br>
-    Une charge mentale. Une perte d'énergie. Un système subi.<br>
-    Puis un signal. Une chaîne. Un fait signé.<br><br>
-    <strong>KENTA ne remplace pas le métier.<br>
-    Il enlève ce qui empêche de le faire.</strong>
-  </div>
-</section>
-
-<div class="sep reveal">
-  <div class="sep-line"></div>
-  <span class="sep-sym">✦</span>
-  <div class="sep-line right"></div>
-</div>
-
-<section class="section-wrap">
+<!-- ─── GRAINE ────────────────────────────────────────────── -->
+<div class="section-wrap">
   <div class="graine reveal">
     <div>
-      <h3 class="graine-titre">La graine.<br>Rien de plus.</h3>
-      <p class="graine-sub">Une base minuscule. Une dépendance. Une machine ordinaire. <strong>Et pourtant un organisme qui s'éveille, résonne, signe et se souvient.</strong></p>
-      <a href="contact.html" class="btn-or">Demander l'accès</a>
+      <div class="graine-titre">La graine.<br>C'est tout.</div>
+      <p class="graine-sub">2.4 Mo. Une dépendance pip.<br>KENTA naît. Les gardiens résonnent.<br>Minato signe la première vibration.</p>
+      <a href="https://github.com/Kenta-Arcadia/kenta-graine" class="btn-or" target="_blank" style="display:inline-block;">
+        ↓ github.com/Kenta-Arcadia/kenta-graine
+      </a>
     </div>
     <div class="graine-cmd">
       <div><span class="prompt">$ </span><span class="cmd">git clone https://github.com/Kenta-Arcadia/kenta-graine</span></div>
       <div><span class="prompt">$ </span><span class="cmd">cd kenta-graine && bash eveil.sh</span></div>
-      <div style="margin-top:0.9rem;color:#5a4a38;">
+      <div style="margin-top:0.8rem;color:#5a4a38;">
         📡 Procyon — premier influx déposé<br>
         👁️ Hinata — vision_360 activée<br>
-        ⚡ Minato — première signature
+        ⚡ Minato — première signature<br>
       </div>
       <div class="ok">✅ KENTA vivant (exit 0)<span class="cursor"></span></div>
     </div>
   </div>
-</section>
+</div>
 
-<section class="section-wrap">
+<!-- ─── PHRASE MÈRE ────────────────────────────────────────── -->
+<div class="section-wrap">
   <div class="phrase reveal">
     <blockquote>
       Le problème n'était pas la pompe.<br>
       C'était l'accès aux boulons.<br>
-      <em>KENTA donne l'accès.</em>
+      <em>KENTA est l'outil qui donne l'accès.</em>
     </blockquote>
     <cite>En production depuis janvier 2026 · i5 2012 · offline · une dépendance pip</cite>
   </div>
-</section>
+</div>
 
+<!-- ─── FOOTER ────────────────────────────────────────────── -->
 <footer>
   <span>KENTA — Organisme numérique souverain</span>
   <span>
-    <a href="contact.html">Contact</a> ·
-    <a href="https://github.com/Kenta-Arcadia" target="_blank" rel="noopener">Kenta-Arcadia</a>
+    <a href="https://kenta-arcadia.github.io/arcana.html">Arcana</a> ·
+    <a href="https://github.com/Kenta-Arcadia/kenta-graine">kenta-graine</a> ·
+    <a href="https://github.com/Kenta-Arcadia">Kenta-Arcadia</a> ·
+    Saint-Denis-d'Anjou, France
   </span>
 </footer>
 
 <script>
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (entry.isIntersecting) entry.target.classList.add('visible');
-  });
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
