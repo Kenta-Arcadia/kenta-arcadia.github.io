@@ -1,48 +1,175 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Valdoie — Parcours Arcana complet</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KENTA Arcana — Valdoie</title>
+  <meta name="description" content="Parcours Arcana Valdoie — données réelles depuis l’API KENTA.">
+  <meta name="color-scheme" content="dark">
   <style>
-    :root { --bg:#0b1020; --card:#111935; --text:#eaf0ff; --muted:#9cb0df; --accent:#5dc2ff; --line:#27325f; }
-    body { margin:0; font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--text); }
-    .wrap { max-width:920px; margin:0 auto; padding:24px 16px 60px; }
-    .lang a { color:var(--accent); margin-right:10px; text-decoration:none; }
-    .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-top:16px; }
-    .grid { display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
-    label { display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:14px; }
-    input, textarea, button { border-radius:8px; border:1px solid var(--line); background:#0f1731; color:var(--text); padding:10px; }
-    button { cursor:pointer; background:#154c7d; border-color:#1d6aa8; }
-    .step { border-top:1px solid var(--line); padding-top:12px; margin-top:12px; }
-    .meta { color:var(--muted); font-size:12px; }
+    :root {
+      --bg: #090807;
+      --panel: #12100e;
+      --panel-soft: #171411;
+      --gold: #c9a84c;
+      --gold-soft: #e7cf8f;
+      --text: #e8dcc4;
+      --muted: #b8aa91;
+      --border: rgba(201, 168, 76, 0.26);
+      --err: #c08070;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      background: radial-gradient(circle at top, #1b1713, var(--bg) 45%);
+      color: var(--text);
+      line-height: 1.55;
+      min-height: 100vh;
+    }
+    .wrap {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 1rem 1rem 2.5rem;
+    }
+    .nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      border-bottom: 1px solid rgba(122, 95, 66, 0.5);
+      padding-bottom: 0.8rem;
+      margin-bottom: 1rem;
+    }
+    .nav a {
+      color: var(--gold);
+      text-decoration: none;
+      font-size: 0.88rem;
+    }
+    .nav a:hover { color: var(--gold-soft); }
+    h1 {
+      margin: 0 0 0.5rem;
+      color: var(--gold-soft);
+      font-size: clamp(1.35rem, 4vw, 2rem);
+    }
+    .lead { color: var(--muted); margin: 0 0 1rem; font-size: 0.95rem; }
+    .privacy { color: var(--muted); font-size: 0.82rem; margin: 0 0 1rem; }
+    .card {
+      border: 1px solid var(--border);
+      background: linear-gradient(170deg, var(--panel), var(--panel-soft));
+      border-radius: 6px;
+      padding: 1rem;
+      margin-bottom: 1rem;
+    }
+    label {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      color: var(--muted);
+      font-size: 0.88rem;
+      margin-bottom: 0.65rem;
+    }
+    input, textarea, button {
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: rgba(8, 7, 6, 0.85);
+      color: var(--text);
+      padding: 0.55rem 0.65rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    button {
+      cursor: pointer;
+      background: rgba(201, 168, 76, 0.18);
+      border-color: rgba(201, 168, 76, 0.45);
+      color: var(--gold-soft);
+      margin-top: 0.35rem;
+    }
+    button:disabled { opacity: 0.6; cursor: wait; }
+    .grid {
+      display: grid;
+      gap: 0.5rem 1rem;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+    #valdoie-error {
+      color: var(--err);
+      font-size: 0.92rem;
+      margin: 0 0 0.75rem;
+    }
+    #valdoie-output .valdoie-label {
+      color: var(--gold);
+      font-size: 0.82rem;
+      margin: 0 0 0.35rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    #valdoie-output .valdoie-lead {
+      font-size: 1.08rem;
+      margin: 0 0 0.75rem;
+      color: var(--gold-soft);
+    }
+    #valdoie-output .valdoie-main {
+      margin: 0 0 0.75rem;
+    }
+    #valdoie-output .valdoie-salut {
+      font-size: 1.15rem;
+      color: var(--gold-soft);
+      margin: 0 0 1rem;
+    }
+    #valdoie-output blockquote {
+      margin: 0 0 0.35rem;
+      padding: 0;
+      border: none;
+      font-style: italic;
+      color: var(--text);
+    }
+    #valdoie-output .valdoie-meta {
+      display: block;
+      font-size: 0.82rem;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+    #valdoie-output ul.valdoie-list,
+    #valdoie-output ul.valdoie-citations {
+      margin: 0;
+      padding-left: 1.15rem;
+    }
+    #valdoie-output li { margin-bottom: 0.35rem; }
+    #valdoie-output .valdoie-muted { color: var(--muted); }
+    #valdoie-output .valdoie-atypique {
+      border-left: 3px solid rgba(201, 168, 76, 0.45);
+      padding-left: 0.75rem;
+    }
   </style>
 </head>
-<body>
+<body data-config-base="">
   <main class="wrap">
-    <nav class="lang"><a href="/arcana-valdoie.html">FR</a><a href="/en/arcana-valdoie.html">EN</a><a href="/ja/arcana-valdoie.html">JA</a><a href="/arcana.html">Arcana</a></nav>
-    <h1 id="page-title">Valdoie — Parcours Arcana complet</h1>
-    <p id="page-subtitle">Numérologie, ennéagramme et lecture symbolique intégrée.</p>
-    <p id="privacy-note" class="meta">Cette expérience fonctionne localement dans votre navigateur. Aucune donnée n'est envoyée.</p>
+    <nav class="nav">
+      <a href="arcana.html">Arcana</a>
+      <a href="config.json">config.json</a>
+    </nav>
+
+    <h1 id="page-title">Valdoie — Arcana</h1>
+    <p id="page-subtitle" class="lead">Révélation depuis l’API KENTA : uniquement les champs renvoyés par le serveur.</p>
+    <p id="privacy-note" class="privacy">
+      L’URL du service est lue dans <code>config.json</code> (<code>arcana_url</code>) : le script essaie d’abord le fichier à côté de cette page, puis la racine du site (<code>/config.json</code>), puis <code>/pages/config.json</code>. Garde une copie de <code>config.json</code> au même niveau que <code>arcana-valdoie.html</code> après déploiement.
+    </p>
+
+    <p id="valdoie-error" hidden></p>
 
     <section class="card">
       <form id="valdoie-form">
         <div class="grid">
-          <label>Prénom<input id="firstName" required></label>
-          <label>Nom<input id="lastName"></label>
-          <label>Date de naissance<input id="birthDate" type="date" required></label>
+          <label>Prénom<input id="firstName" name="firstName" required autocomplete="given-name"></label>
+          <label>Nom<input id="lastName" name="lastName" autocomplete="family-name"></label>
+          <label>Date de naissance<input id="birthDate" name="birthDate" type="date" required></label>
         </div>
-        <label style="margin-top:10px;">Intention du moment<textarea id="intention" rows="3"></textarea></label>
-        <button id="submit-btn" type="submit" style="margin-top:10px;">Générer mon parcours</button>
+        <label>Intention du moment<textarea id="intention" name="intention" rows="3"></textarea></label>
+        <button id="submit-btn" type="submit">Générer mon parcours</button>
       </form>
     </section>
 
-    <section id="valdoie-output" class="card" hidden>
-      <p id="valdoie-summary"></p>
-      <div id="valdoie-steps"></div>
-      <p id="valdoie-meta" class="meta"></p>
-    </section>
+    <section id="valdoie-output" class="card" hidden aria-live="polite"></section>
   </main>
-  <script src="/assets/js/arcana-valdoie.js"></script>
+  <script src="assets/js/arcana-valdoie.js"></script>
 </body>
 </html>
