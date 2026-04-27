@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valdoie — Full Arcana journey</title>
+  <style>
+    :root { --bg:#0b1020; --card:#111935; --text:#eaf0ff; --muted:#9cb0df; --accent:#5dc2ff; --line:#27325f; }
+    body { margin:0; font-family:Inter,system-ui,sans-serif; background:var(--bg); color:var(--text); }
+    .wrap { max-width:920px; margin:0 auto; padding:24px 16px 60px; }
+    .lang a { color:var(--accent); margin-right:10px; text-decoration:none; }
+    .card { background:var(--card); border:1px solid var(--line); border-radius:12px; padding:16px; margin-top:16px; }
+    .grid { display:grid; gap:10px; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); }
+    label { display:flex; flex-direction:column; gap:6px; color:var(--muted); font-size:14px; }
+    input, textarea, button { border-radius:8px; border:1px solid var(--line); background:#0f1731; color:var(--text); padding:10px; }
+    button { cursor:pointer; background:#154c7d; border-color:#1d6aa8; }
+    .step { border-top:1px solid var(--line); padding-top:12px; margin-top:12px; }
+    .meta { color:var(--muted); font-size:12px; }
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <nav class="lang"><a href="/arcana-valdoie.html">FR</a><a href="/en/arcana-valdoie.html">EN</a><a href="/ja/arcana-valdoie.html">JA</a><a href="/en/arcana.html">Arcana</a></nav>
+    <h1 id="page-title">Valdoie — Full Arcana journey</h1>
+    <p id="page-subtitle">Numerology, Enneagram and integrated symbolic reading.</p>
+    <p id="privacy-note" class="meta">This experience runs locally in your browser. No data is sent.</p>
+
+    <section class="card">
+      <form id="valdoie-form">
+        <div class="grid">
+          <label>First name<input id="firstName" required></label>
+          <label>Last name<input id="lastName"></label>
+          <label>Birth date<input id="birthDate" type="date" required></label>
+        </div>
+        <label style="margin-top:10px;">Current intention<textarea id="intention" rows="3"></textarea></label>
+        <button id="submit-btn" type="submit" style="margin-top:10px;">Generate my journey</button>
+      </form>
+    </section>
+
+    <section id="valdoie-output" class="card" hidden>
+      <p id="valdoie-summary"></p>
+      <div id="valdoie-steps"></div>
+      <p id="valdoie-meta" class="meta"></p>
+    </section>
+  </main>
+  <script src="/assets/js/arcana-valdoie.js"></script>
+</body>
+</html>

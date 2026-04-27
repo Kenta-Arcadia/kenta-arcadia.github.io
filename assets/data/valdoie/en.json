@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Valdoie — Full Arcana journey",
+    "subtitle": "Numerology, Enneagram and integrated symbolic reading.",
+    "privacy": "This experience runs locally in your browser. No data is sent.",
+    "submit": "Generate my journey",
+    "stepLabels": [
+      "Imprint",
+      "Numerology",
+      "Enneagram",
+      "Symbolic axes",
+      "Tensions",
+      "Recommendations",
+      "Synthesis"
+    ]
+  },
+  "elements": [
+    { "id": "earth", "label": "Earth", "axe": "Grounding", "meridien": "Spleen / Stomach", "direction": "Consolidate and structure." },
+    { "id": "water", "label": "Water", "axe": "Depth", "meridien": "Kidney / Bladder", "direction": "Slow down and clarify." },
+    { "id": "wood", "label": "Wood", "axe": "Impulse", "meridien": "Liver / Gallbladder", "direction": "Orient action." },
+    { "id": "fire", "label": "Fire", "axe": "Expression", "meridien": "Heart / Small Intestine", "direction": "Express essentials." },
+    { "id": "metal", "label": "Metal", "axe": "Discernment", "meridien": "Lung / Large Intestine", "direction": "Sort and simplify." }
+  ],
+  "enneagram": {
+    "types": [
+      { "id": 1, "nom": "Reformer", "focus": "drive for correctness", "vigilance": "rigidity", "cle": "flexible standards" },
+      { "id": 2, "nom": "Helper", "focus": "bond and support", "vigilance": "self-neglect", "cle": "clear boundaries" },
+      { "id": 3, "nom": "Performer", "focus": "results and image", "vigilance": "over-adaptation", "cle": "align truth and performance" },
+      { "id": 4, "nom": "Individualist", "focus": "authenticity", "vigilance": "emotional dramatization", "cle": "stabilize emotions" },
+      { "id": 5, "nom": "Observer", "focus": "understanding", "vigilance": "withdrawal", "cle": "share without depletion" },
+      { "id": 6, "nom": "Loyalist", "focus": "security", "vigilance": "anxious anticipation", "cle": "separate real and imagined risk" },
+      { "id": 7, "nom": "Enthusiast", "focus": "openness", "vigilance": "dispersion", "cle": "finish one clear track" },
+      { "id": 8, "nom": "Challenger", "focus": "power", "vigilance": "over-control", "cle": "power with nuance" },
+      { "id": 9, "nom": "Mediator", "focus": "harmony", "vigilance": "inertia", "cle": "prioritize then act" }
+    ]
+  },
+  "narration": {
+    "opening": [
+      "Your current signature favors stable coherence.",
+      "The present context asks for a clear and measured decision.",
+      "Simple consolidation beats diffuse expansion."
+    ],
+    "closing": [
+      "Today's heading: useful minimalism, verifiable action.",
+      "Your best progress comes from one clear choice executed fully.",
+      "Right movement: less noise, more direction."
+    ]
+  }
+}

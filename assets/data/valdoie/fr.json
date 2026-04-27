@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Valdoie — Parcours Arcana complet",
+    "subtitle": "Numérologie, ennéagramme et lecture symbolique intégrée.",
+    "privacy": "Cette expérience fonctionne localement dans votre navigateur. Aucune donnée n'est envoyée.",
+    "submit": "Générer mon parcours",
+    "stepLabels": [
+      "Empreinte",
+      "Numérologie",
+      "Ennéagramme",
+      "Axes symboliques",
+      "Tensions",
+      "Recommandations",
+      "Synthèse"
+    ]
+  },
+  "elements": [
+    { "id": "terre", "label": "Terre", "axe": "Ancrage", "meridien": "Rate / Estomac", "direction": "Consolider et structurer." },
+    { "id": "eau", "label": "Eau", "axe": "Profondeur", "meridien": "Rein / Vessie", "direction": "Ralentir et clarifier." },
+    { "id": "bois", "label": "Bois", "axe": "Élan", "meridien": "Foie / Vésicule", "direction": "Orienter l'action." },
+    { "id": "feu", "label": "Feu", "axe": "Expression", "meridien": "Coeur / Intestin grêle", "direction": "Exprimer l'essentiel." },
+    { "id": "metal", "label": "Métal", "axe": "Discernement", "meridien": "Poumon / Gros intestin", "direction": "Trier et simplifier." }
+  ],
+  "enneagram": {
+    "types": [
+      { "id": 1, "nom": "Réformateur", "focus": "exigence de justesse", "vigilance": "rigidité", "cle": "souplesse dans l'exigence" },
+      { "id": 2, "nom": "Aidant", "focus": "lien et soutien", "vigilance": "oubli de soi", "cle": "poser des limites claires" },
+      { "id": 3, "nom": "Performer", "focus": "résultat et image", "vigilance": "sur-adaptation", "cle": "aligner performance et vérité" },
+      { "id": 4, "nom": "Individualiste", "focus": "authenticité", "vigilance": "drame intérieur", "cle": "stabiliser l'émotion" },
+      { "id": 5, "nom": "Observateur", "focus": "compréhension", "vigilance": "retrait", "cle": "partager sans se vider" },
+      { "id": 6, "nom": "Loyaliste", "focus": "sécurité", "vigilance": "anticipation anxieuse", "cle": "séparer risque réel et imaginaire" },
+      { "id": 7, "nom": "Épicurien", "focus": "ouverture", "vigilance": "dispersion", "cle": "tenir un cap fini" },
+      { "id": 8, "nom": "Protecteur", "focus": "puissance", "vigilance": "contrôle", "cle": "puissance + nuance" },
+      { "id": 9, "nom": "Médiateur", "focus": "harmonie", "vigilance": "inertie", "cle": "prioriser puis agir" }
+    ]
+  },
+  "narration": {
+    "opening": [
+      "Votre signature du jour privilégie une cohérence stable.",
+      "Le terrain actuel demande une décision nette et mesurée.",
+      "Une consolidation simple vaut mieux qu'une expansion diffuse."
+    ],
+    "closing": [
+      "Le cap du jour : minimalisme utile, action vérifiable.",
+      "Votre meilleure progression vient d'un choix clair suivi jusqu'au bout.",
+      "Le mouvement juste : moins de bruit, plus de direction."
+    ]
+  }
+}

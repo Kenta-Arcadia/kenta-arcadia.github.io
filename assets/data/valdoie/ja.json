@@ -1,0 +1,49 @@
+{
+  "ui": {
+    "title": "Valdoie — Arcana 完全ジャーニー",
+    "subtitle": "数秘術・エニアグラム・象徴読解の統合版。",
+    "privacy": "この体験はブラウザ内でローカル実行され、データ送信は行いません。",
+    "submit": "ジャーニーを生成",
+    "stepLabels": [
+      "基礎署名",
+      "数秘術",
+      "エニアグラム",
+      "象徴軸",
+      "緊張点",
+      "推奨行動",
+      "統合要約"
+    ]
+  },
+  "elements": [
+    { "id": "earth", "label": "土", "axe": "基盤", "meridien": "脾 / 胃", "direction": "固めて構造化する。" },
+    { "id": "water", "label": "水", "axe": "深度", "meridien": "腎 / 膀胱", "direction": "減速して明確化する。" },
+    { "id": "wood", "label": "木", "axe": "推進", "meridien": "肝 / 胆", "direction": "行動を方向づける。" },
+    { "id": "fire", "label": "火", "axe": "表現", "meridien": "心 / 小腸", "direction": "本質を表現する。" },
+    { "id": "metal", "label": "金", "axe": "識別", "meridien": "肺 / 大腸", "direction": "選別して単純化する。" }
+  ],
+  "enneagram": {
+    "types": [
+      { "id": 1, "nom": "改革者", "focus": "正しさ", "vigilance": "硬直", "cle": "柔軟な厳密さ" },
+      { "id": 2, "nom": "援助者", "focus": "支援", "vigilance": "自己忘却", "cle": "境界設定" },
+      { "id": 3, "nom": "達成者", "focus": "成果", "vigilance": "過剰適応", "cle": "真実と成果の一致" },
+      { "id": 4, "nom": "個性派", "focus": "真正性", "vigilance": "感情過多", "cle": "感情の安定化" },
+      { "id": 5, "nom": "観察者", "focus": "理解", "vigilance": "引きこもり", "cle": "枯渇せず共有" },
+      { "id": 6, "nom": "忠実家", "focus": "安全", "vigilance": "不安先取り", "cle": "実リスクの分離" },
+      { "id": 7, "nom": "楽天家", "focus": "拡張", "vigilance": "分散", "cle": "一筋を完走" },
+      { "id": 8, "nom": "統率者", "focus": "力", "vigilance": "過剰統制", "cle": "力と繊細さ" },
+      { "id": 9, "nom": "調停者", "focus": "調和", "vigilance": "惰性", "cle": "優先後に実行" }
+    ]
+  },
+  "narration": {
+    "opening": [
+      "本日の署名は安定した整合性を重視します。",
+      "現在の局面は、明確で測定可能な決断を求めます。",
+      "拡散よりも、単純な基盤固めが有効です。"
+    ],
+    "closing": [
+      "今日の指針: 有用なミニマル、検証可能な行動。",
+      "進展は、明確な一手を最後まで実行することで最大化します。",
+      "適切な動き: ノイズを減らし、方向を増やす。"
+    ]
+  }
+}
