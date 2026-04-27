@@ -1,0 +1,15 @@
+{
+  "elements": [
+    { "id": "terre", "label": "Terre", "meridian": "Rate / Estomac", "energie": "Ancrage et assimilation", "direction": "Structurer ce qui est prioritaire, une action utile à la fois.", "lectureTemplate": "Jour de consolidation: revenir au concret, organiser, puis agir avec regularité." },
+    { "id": "eau", "label": "Eau", "meridian": "Rein / Vessie", "energie": "Réserve et profondeur", "direction": "Ralentir pour clarifier l'essentiel et protéger votre énergie.", "lectureTemplate": "Jour d'intériorité: écouter le signal faible, choisir la direction la plus juste." },
+    { "id": "bois", "label": "Bois", "meridian": "Foie / Vésicule biliaire", "energie": "Élan et orientation", "direction": "Transformer la tension en cap concret et décision nette.", "lectureTemplate": "Jour d'ouverture: convertir l'impulsion en trajectoire claire." },
+    { "id": "feu", "label": "Feu", "meridian": "Coeur / Intestin grêle", "energie": "Expression et cohérence", "direction": "Nommer ce qui compte vraiment et partager avec sobriété.", "lectureTemplate": "Jour de rayonnement: laisser parler le coeur sans dispersion." },
+    { "id": "metal", "label": "Métal", "meridian": "Poumon / Gros intestin", "energie": "Tri et précision", "direction": "Faire le tri, couper le superflu, garder la ligne directrice.", "lectureTemplate": "Jour de discernement: simplifier pour gagner en puissance calme." }
+  ],
+  "intentions": [
+    { "id": "clarte", "keywords": ["clarifier", "clarte", "comprendre", "ordonner", "trier"], "biasElement": "metal", "tag": "clarte" },
+    { "id": "apaisement", "keywords": ["apaiser", "calme", "respirer", "repos", "ralentir"], "biasElement": "eau", "tag": "apaisement" },
+    { "id": "action", "keywords": ["agir", "lancer", "decider", "avancer", "objectif"], "biasElement": "bois", "tag": "action" },
+    { "id": "ancrage", "keywords": ["ancrer", "stable", "routine", "discipline"], "biasElement": "terre", "tag": "ancrage" }
+  ]
+}

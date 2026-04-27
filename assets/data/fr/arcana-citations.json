@@ -1,0 +1,10 @@
+{
+  "citations": [
+    { "id": "rumi_presence", "text": "Ce que tu cherches te cherche aussi.", "auteur": "Rumi", "themes": ["presence", "alignement", "relation"] },
+    { "id": "epictete_maitrise", "text": "Ce qui trouble les hommes, ce ne sont pas les choses, mais le jugement qu'ils portent sur les choses.", "auteur": "Epictete", "themes": ["discernement", "clarte", "discipline"] },
+    { "id": "lao_tse_retour", "text": "La nature ne se presse pas, pourtant tout est accompli.", "auteur": "Lao Tseu", "themes": ["rythme", "patience", "stabilite"] },
+    { "id": "seneca_direction", "text": "Il n'y a pas de vent favorable pour celui qui ne sait ou il va.", "auteur": "Seneque", "themes": ["direction", "intention", "action"] },
+    { "id": "pascal_ecoute", "text": "Le coeur a ses raisons que la raison ne connait point.", "auteur": "Pascal", "themes": ["coeur", "ecoute", "interiorite"] },
+    { "id": "aur_moment", "text": "La perfection du caractere est de vivre chaque jour comme si c'etait le dernier.", "auteur": "Marc Aurele", "themes": ["vigilance", "presence", "ethique"] }
+  ]
+}

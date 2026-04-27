@@ -1,0 +1,9 @@
+{
+  "citations": [
+    { "id": "rumi_presence", "text": "あなたが探しているものも、あなたを探している。", "auteur": "Rumi", "themes": ["presence", "alignment", "relation"] },
+    { "id": "epictetus_judgement", "text": "人を乱すのは出来事そのものではなく、それに対する判断である。", "auteur": "Epictetus", "themes": ["discernment", "clarity", "discipline"] },
+    { "id": "laotzu_nature", "text": "自然は急がない。それでもすべては成る。", "auteur": "Lao Tzu", "themes": ["rhythm", "patience", "stability"] },
+    { "id": "seneca_wind", "text": "向かう港を知らなければ、追い風はない。", "auteur": "Seneca", "themes": ["direction", "intention", "action"] },
+    { "id": "pascal_heart", "text": "心には、理性の知らない理由がある。", "auteur": "Pascal", "themes": ["heart", "listening", "inner-life"] }
+  ]
+}

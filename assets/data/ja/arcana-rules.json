@@ -1,0 +1,15 @@
+{
+  "elements": [
+    { "id": "earth", "label": "土", "meridian": "脾 / 胃", "energie": "安定と統合", "direction": "優先順位を整理し、一つずつ実行する。", "lectureTemplate": "基盤の日: 現実に戻り、整えてから着実に進む。" },
+    { "id": "water", "label": "水", "meridian": "腎 / 膀胱", "energie": "深さと備え", "direction": "速度を落として本質を明確にし、エネルギーを守る。", "lectureTemplate": "内省の日: 微細な兆候を聞き、最も正確な方向を選ぶ。" },
+    { "id": "wood", "label": "木", "meridian": "肝 / 胆", "energie": "推進と方向", "direction": "緊張を具体的な方針と意思決定に変換する。", "lectureTemplate": "展開の日: 衝動を明確な軌道に変える。" },
+    { "id": "fire", "label": "火", "meridian": "心 / 小腸", "energie": "表現と一貫性", "direction": "本当に重要なことを言語化し、簡潔に共有する。", "lectureTemplate": "発光の日: 分散せずに心の声を通す。" },
+    { "id": "metal", "label": "金", "meridian": "肺 / 大腸", "energie": "選別と精度", "direction": "不要を切り、主軸を守る。", "lectureTemplate": "識別の日: 単純化して静かな強さを得る。" }
+  ],
+  "intentions": [
+    { "id": "clarity", "keywords": ["明確", "整理", "理解", "判断"], "biasElement": "metal", "tag": "明確化" },
+    { "id": "calm", "keywords": ["落ち着", "休", "呼吸", "ゆっくり"], "biasElement": "water", "tag": "静けさ" },
+    { "id": "action", "keywords": ["行動", "開始", "決断", "前進"], "biasElement": "wood", "tag": "行動" },
+    { "id": "grounding", "keywords": ["安定", "土台", "習慣"], "biasElement": "earth", "tag": "安定" }
+  ]
+}

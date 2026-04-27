@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KENTA Arcana - Demo statique (FR)</title>
+  <meta name="description" content="Demo Arcana statique sur GitHub Pages, version française.">
+  <meta name="color-scheme" content="dark">
+  <style>
+    :root { --bg:#090807; --panel:#12100e; --panel-soft:#171411; --gold:#c9a84c; --gold-soft:#e7cf8f; --text:#e8dcc4; --muted:#b8aa91; --border:rgba(201,168,76,.26); }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Georgia, "Times New Roman", serif; background: radial-gradient(circle at top, #1b1713, var(--bg) 45%); color:var(--text); line-height:1.55; min-height:100vh; }
+    .wrap { max-width:980px; margin:0 auto; padding:1rem 1rem 2.5rem; }
+    .nav { display:flex; justify-content:space-between; align-items:center; gap:.75rem; flex-wrap:wrap; border-bottom:1px solid rgba(122,95,66,.5); padding-bottom:.8rem; margin-bottom:1rem; }
+    a { color:var(--gold); text-decoration:none; font-size:.88rem; letter-spacing:.03em; }
+    a:hover { color:var(--gold-soft); }
+    .hero { border:1px solid var(--border); background:linear-gradient(165deg, rgba(17,14,11,.95), rgba(8,7,6,.98)); padding:1rem; border-radius:6px; margin-bottom:1rem; }
+    h1 { margin:0 0 .6rem; color:var(--gold-soft); font-size:clamp(1.4rem,4vw,2.1rem); }
+    .lead { color:var(--muted); margin:0; }
+    .layout { display:grid; grid-template-columns:1fr; gap:1rem; }
+    @media (min-width:850px){ .layout { grid-template-columns:1fr 1fr; } }
+    .card { border:1px solid var(--border); background:linear-gradient(170deg,var(--panel),var(--panel-soft)); border-radius:6px; padding:1rem; }
+    .card h2 { margin:0 0 .8rem; font-size:1rem; color:var(--gold); letter-spacing:.04em; text-transform:uppercase; }
+    label { display:block; color:var(--muted); margin:0 0 .35rem; font-size:.9rem; }
+    input,textarea { width:100%; background:#0d0b09; color:var(--text); border:1px solid rgba(201,168,76,.2); border-radius:5px; padding:.62rem .7rem; margin-bottom:.8rem; font:inherit; font-size:.95rem; }
+    textarea { resize:vertical; min-height:84px; }
+    button { border:0; border-radius:5px; padding:.68rem 1rem; background:linear-gradient(130deg,#e8c96d,#c9a84c,#8b7355); color:#120f0b; font-weight:600; cursor:pointer; font:inherit; }
+    .privacy { margin-top:.7rem; padding:.65rem .75rem; border:1px dashed rgba(95,156,118,.55); color:#cfe9d7; background:rgba(35,54,43,.2); border-radius:5px; font-size:.9rem; }
+    .result-line { margin-bottom:.75rem; padding:.58rem .65rem; border-left:2px solid rgba(201,168,76,.7); background:rgba(10,9,7,.42); }
+    .result-line h3 { margin:0 0 .3rem; font-size:.78rem; letter-spacing:.08em; text-transform:uppercase; color:var(--gold); }
+    .muted { color:var(--muted); }
+    .tag { display:inline-block; border:1px solid rgba(201,168,76,.32); border-radius:999px; padding:.18rem .56rem; margin-right:.34rem; margin-bottom:.3rem; font-size:.8rem; color:var(--gold-soft); background:rgba(201,168,76,.08); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="./arcana.html">← Retour Arcana</a>
+      <div>
+        <a href="/arcana-demo.html">FR</a> · <a href="/en/arcana-demo.html">EN</a> · <a href="/ja/arcana-demo.html">日本語</a>
+      </div>
+    </nav>
+    <header class="hero">
+      <h1>Arcana - Tester ma lecture du jour</h1>
+      <p class="lead">Démo publique statique, locale navigateur, sans serveur.</p>
+    </header>
+    <section class="layout">
+      <article class="card">
+        <h2>Entrer vos repères</h2>
+        <form id="arcana-demo-form" novalidate>
+          <label for="firstName">Prénom</label>
+          <input id="firstName" name="firstName" type="text" required maxlength="60" placeholder="Ex: Jeanne">
+          <label for="birthDate">Date de naissance</label>
+          <input id="birthDate" name="birthDate" type="date" required>
+          <label for="intention">Humeur / intention du jour</label>
+          <textarea id="intention" name="intention" maxlength="280" placeholder="Ex: clarifier une décision"></textarea>
+          <button type="submit">Générer ma lecture</button>
+        </form>
+        <p class="privacy">Cette démo fonctionne localement dans votre navigateur. Aucune donnée n'est envoyée.</p>
+      </article>
+      <article class="card">
+        <h2>Lecture du jour</h2>
+        <p id="result-placeholder" class="muted">Remplissez le formulaire pour afficher une lecture déterministe.</p>
+        <div id="result-view" hidden>
+          <div class="result-line"><h3>Phrase symbolique principale</h3><p id="result-main-phrase"></p></div>
+          <div class="result-line"><h3>Lecture courte du jour</h3><p id="result-short-reading"></p></div>
+          <div class="result-line"><h3>Élément dominant</h3><p id="result-element"></p></div>
+          <div class="result-line"><h3>Méridien / énergie associée</h3><p id="result-meridian"></p></div>
+          <div class="result-line"><h3>Direction conseillée</h3><p id="result-direction"></p></div>
+          <div class="result-line"><h3>Trace locale</h3><p id="result-seed"></p><div id="result-tags"></div></div>
+        </div>
+      </article>
+    </section>
+  </div>
+  <script src="/assets/js/arcana-demo.js" defer></script>
+</body>
+</html>

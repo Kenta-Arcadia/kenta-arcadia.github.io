@@ -1,0 +1,9 @@
+{
+  "citations": [
+    { "id": "rumi_presence", "text": "What you seek is seeking you.", "auteur": "Rumi", "themes": ["presence", "alignment", "relation"] },
+    { "id": "epictetus_judgement", "text": "People are disturbed not by things, but by the views they take of them.", "auteur": "Epictetus", "themes": ["discernment", "clarity", "discipline"] },
+    { "id": "laotzu_nature", "text": "Nature does not hurry, yet everything is accomplished.", "auteur": "Lao Tzu", "themes": ["rhythm", "patience", "stability"] },
+    { "id": "seneca_wind", "text": "If one does not know to which port one is sailing, no wind is favorable.", "auteur": "Seneca", "themes": ["direction", "intention", "action"] },
+    { "id": "pascal_heart", "text": "The heart has reasons that reason does not know.", "auteur": "Pascal", "themes": ["heart", "listening", "inner-life"] }
+  ]
+}

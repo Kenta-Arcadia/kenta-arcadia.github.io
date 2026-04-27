@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KENTA Arcana - 静的デモ (JA)</title>
+  <meta name="description" content="Arcana 静的デモ 日本語版。ブラウザ内で完結。">
+  <meta name="color-scheme" content="dark">
+  <style>body{margin:0;font-family:Georgia,serif;background:radial-gradient(circle at top,#1b1713,#090807 45%);color:#e8dcc4}.wrap{max-width:980px;margin:0 auto;padding:1rem}.nav{display:flex;justify-content:space-between;flex-wrap:wrap;border-bottom:1px solid rgba(122,95,66,.5);padding-bottom:.8rem;margin-bottom:1rem}a{color:#c9a84c;text-decoration:none}.hero,.card{border:1px solid rgba(201,168,76,.26);background:#12100e;border-radius:6px;padding:1rem;margin-bottom:1rem}.layout{display:grid;grid-template-columns:1fr;gap:1rem}@media(min-width:850px){.layout{grid-template-columns:1fr 1fr}}label{display:block;margin:0 0 .35rem;color:#b8aa91}input,textarea{width:100%;background:#0d0b09;color:#e8dcc4;border:1px solid rgba(201,168,76,.2);border-radius:5px;padding:.62rem .7rem;margin-bottom:.8rem}button{border:0;border-radius:5px;padding:.68rem 1rem;background:linear-gradient(130deg,#e8c96d,#c9a84c,#8b7355)}.result-line{margin-bottom:.7rem;padding:.58rem .65rem;border-left:2px solid rgba(201,168,76,.7);background:rgba(10,9,7,.42)}.result-line h3{margin:0 0 .3rem;color:#c9a84c;font-size:.78rem;text-transform:uppercase}.muted{color:#b8aa91}.tag{display:inline-block;border:1px solid rgba(201,168,76,.32);border-radius:999px;padding:.18rem .56rem;margin-right:.34rem;margin-bottom:.3rem;font-size:.8rem;color:#e7cf8f;background:rgba(201,168,76,.08)}</style>
+</head>
+<body>
+  <div class="wrap">
+    <nav class="nav">
+      <a href="/ja/arcana.html">← Arcana へ戻る</a>
+      <div><a href="/arcana-demo.html">FR</a> · <a href="/en/arcana-demo.html">EN</a> · <a href="/ja/arcana-demo.html">日本語</a></div>
+    </nav>
+    <header class="hero"><h1>Arcana - 今日のリーディングを試す</h1><p class="muted">静的公開デモ。サーバー不要、ブラウザ内で完結。</p></header>
+    <section class="layout">
+      <article class="card">
+        <h2>入力</h2>
+        <form id="arcana-demo-form" novalidate>
+          <label for="firstName">名</label><input id="firstName" name="firstName" type="text" required maxlength="60">
+          <label for="birthDate">生年月日</label><input id="birthDate" name="birthDate" type="date" required>
+          <label for="intention">今日の気分 / 意図</label><textarea id="intention" name="intention" maxlength="280"></textarea>
+          <button type="submit">リーディング生成</button>
+        </form>
+        <p class="muted">このデモはブラウザ内で動作し、データ送信は行いません。</p>
+      </article>
+      <article class="card">
+        <h2>本日のリーディング</h2>
+        <p id="result-placeholder" class="muted">フォーム入力後、決定論的な結果を表示します。</p>
+        <div id="result-view" hidden>
+          <div class="result-line"><h3>主要な象徴フレーズ</h3><p id="result-main-phrase"></p></div>
+          <div class="result-line"><h3>短い解釈</h3><p id="result-short-reading"></p></div>
+          <div class="result-line"><h3>優勢要素</h3><p id="result-element"></p></div>
+          <div class="result-line"><h3>経絡 / エネルギー</h3><p id="result-meridian"></p></div>
+          <div class="result-line"><h3>推奨方向</h3><p id="result-direction"></p></div>
+          <div class="result-line"><h3>ローカルトレース</h3><p id="result-seed"></p><div id="result-tags"></div></div>
+        </div>
+      </article>
+    </section>
+  </div>
+  <script src="/assets/js/arcana-demo.js" defer></script>
+</body>
+</html>

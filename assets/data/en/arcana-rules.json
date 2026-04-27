@@ -1,0 +1,15 @@
+{
+  "elements": [
+    { "id": "earth", "label": "Earth", "meridian": "Spleen / Stomach", "energie": "Grounding and integration", "direction": "Structure priorities and act on one useful step at a time.", "lectureTemplate": "Consolidation day: return to concrete tasks, organize, then move steadily." },
+    { "id": "water", "label": "Water", "meridian": "Kidney / Bladder", "energie": "Reserve and depth", "direction": "Slow down to clarify essentials and protect your energy.", "lectureTemplate": "Inner-focus day: listen to weak signals, choose the most accurate direction." },
+    { "id": "wood", "label": "Wood", "meridian": "Liver / Gallbladder", "energie": "Impulse and direction", "direction": "Turn tension into concrete direction and clear decisions.", "lectureTemplate": "Opening day: convert impulse into a clear trajectory." },
+    { "id": "fire", "label": "Fire", "meridian": "Heart / Small Intestine", "energie": "Expression and coherence", "direction": "Name what really matters and share it with sobriety.", "lectureTemplate": "Radiance day: let the heart speak without dispersion." },
+    { "id": "metal", "label": "Metal", "meridian": "Lung / Large Intestine", "energie": "Selection and precision", "direction": "Cut noise, keep only what supports the main direction.", "lectureTemplate": "Discernment day: simplify to gain calm power." }
+  ],
+  "intentions": [
+    { "id": "clarity", "keywords": ["clarify", "clarity", "understand", "organize", "sort"], "biasElement": "metal", "tag": "clarity" },
+    { "id": "calm", "keywords": ["calm", "breathe", "rest", "slow"], "biasElement": "water", "tag": "calm" },
+    { "id": "action", "keywords": ["act", "launch", "decide", "advance", "goal"], "biasElement": "wood", "tag": "action" },
+    { "id": "grounding", "keywords": ["ground", "stable", "routine", "discipline"], "biasElement": "earth", "tag": "grounding" }
+  ]
+}
