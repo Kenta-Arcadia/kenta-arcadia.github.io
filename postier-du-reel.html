@@ -138,6 +138,115 @@
   }
   .lead strong { color: var(--creme); font-style: normal; font-weight: normal; }
 
+  .intro-tension {
+    text-align: left;
+    max-width: 32rem;
+    margin: 1.35rem auto 0;
+    font-size: 0.95rem;
+    color: var(--texte);
+    line-height: 1.9;
+  }
+  .intro-tension .intro-lead {
+    display: block;
+    margin-bottom: 0.9rem;
+    font-style: italic;
+    color: #b8a990;
+  }
+  .intro-tension strong { color: var(--creme); font-weight: normal; }
+  .intro-list {
+    list-style: none;
+    margin: 0.5rem 0 0.85rem;
+    padding: 0;
+    border-left: 2px solid rgba(201,168,76,0.35);
+    padding-left: 1rem;
+  }
+  .intro-list li {
+    font-size: 0.88rem;
+    color: var(--texte);
+    padding: 0.2rem 0;
+    letter-spacing: 0.02em;
+  }
+  .intro-tension .intro-coup {
+    margin-top: 1rem;
+    color: var(--creme);
+    font-size: 0.92rem;
+  }
+
+  .scene-crash {
+    margin: 1.35rem auto 0;
+    max-width: 26rem;
+    padding: 1.1rem 1.25rem 1.15rem;
+    background: rgba(28, 14, 12, 0.72);
+    border: 1px solid rgba(165, 72, 58, 0.4);
+    border-left: 3px solid #c45c48;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 0.8rem;
+    color: #e8d8cc;
+    line-height: 1.75;
+    text-align: left;
+    box-shadow: 0 0 28px rgba(0,0,0,0.35);
+  }
+  .scene-crash p { margin: 0 0 0.45rem; color: inherit; }
+  .scene-crash p:last-child { margin-bottom: 0; font-style: italic; color: #c9a89a; }
+
+  .hero-deck {
+    margin: 1.35rem auto 0;
+    max-width: 34rem;
+    font-size: 0.95rem;
+    color: var(--texte);
+    font-style: italic;
+    line-height: 1.75;
+  }
+  .hero-deck strong { color: var(--creme); font-style: normal; font-weight: normal; }
+
+  .punchline-block {
+    margin: 0 auto 2.25rem;
+    max-width: 38rem;
+    padding: 1.55rem 1.5rem 1.65rem;
+    text-align: center;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    background:
+      linear-gradient(165deg, rgba(201,168,76,0.14) 0%, rgba(8,6,5,0.97) 55%) padding-box,
+      var(--bordure-cadre) border-box;
+    background-clip: padding-box, border-box;
+    position: relative;
+  }
+  .punchline-block::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(90deg, transparent, var(--or), transparent);
+    opacity: 0.9;
+  }
+  .punchline-block p {
+    font-family: var(--font-display);
+    margin: 0 0 0.75rem;
+    font-size: clamp(0.88rem, 2vw, 1rem);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    line-height: 1.5;
+  }
+  .punchline-block p.punch-mid {
+    text-transform: none;
+    letter-spacing: 0.04em;
+    font-size: clamp(1rem, 2.4vw, 1.2rem);
+    color: var(--or-pale);
+    font-style: italic;
+  }
+  .punchline-block p.punch-fin {
+    margin-bottom: 0;
+    text-transform: none;
+    letter-spacing: 0.06em;
+    font-size: clamp(1.05rem, 2.6vw, 1.35rem);
+    color: var(--creme);
+    font-weight: 600;
+    font-style: normal;
+  }
+
   .themes-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -185,7 +294,7 @@
     border-radius: 0 3px 3px 0;
   }
   .theme-card.span-2 { grid-column: 1 / -1; }
-  .theme-card[id], .bandeau[id] { scroll-margin-top: 1.35rem; }
+  .theme-card[id], .bandeau[id], .punchline-block[id], .scene-crash[id], .intro-tension[id] { scroll-margin-top: 1.35rem; }
 
   .theme-head {
     display: flex;
@@ -371,6 +480,8 @@
 
   <p class="anchor-strip">
     <a href="#friction">Friction</a><span> · </span>
+    <a href="#crash">Crash</a><span> · </span>
+    <a href="#bascule">Bascule</a><span> · </span>
     <a href="#flux">Flux</a><span> · </span>
     <a href="#memoire">Mémoire</a><span> · </span>
     <a href="#praticiens">Photographes &amp; marques</a><span> · </span>
@@ -380,11 +491,39 @@
   <header class="hero reveal">
     <p class="eyebrow">KENTA Postier du Réel</p>
     <h1>Une image qui part quand tu es prêt·e.</h1>
-    <p class="lead">
-      Pas une pile d’onglets ni cinq abonnements qui se parlent mal.<br>
-      <strong>Une proposition, une validation humaine, une trace lisible</strong> — sur ta machine.
+
+    <div class="intro-tension" id="tension">
+      <span class="intro-lead">Poster régulièrement, c’est simple en théorie.</span>
+      <span>En pratique, tu passes ton temps à&nbsp;:</span>
+      <ul class="intro-list">
+        <li>choisir une image</li>
+        <li>écrire un texte</li>
+        <li>vérifier que rien n’est bancal</li>
+        <li>poster au bon moment</li>
+        <li>répondre aux messages</li>
+      </ul>
+      <p>Et dès que tu relies plusieurs outils&nbsp;: <strong>ça devient fragile</strong> — <strong>ça casse sans prévenir</strong>.</p>
+      <p class="intro-coup">Le jour où ça plante, <strong>tout s’arrête</strong>. Client en attente. Deadline qui tombe. Toi devant l’écran.</p>
+    </div>
+
+    <div class="scene-crash" id="crash">
+      <p>Un crash.</p>
+      <p>Plus rien ne tourne.</p>
+      <p>Plus de contenu.</p>
+      <p>Plus de suivi client.</p>
+      <p>Et tu te retrouves à tout refaire à la main.</p>
+    </div>
+
+    <p class="hero-deck">
+      Le Postier ne te promet pas un outil «&nbsp;bien fait&nbsp;». Il te rend <strong>une charge mentale en moins</strong> — avec une proposition, une validation humaine, une trace lisible, sur ta machine.
     </p>
   </header>
+
+  <div class="punchline-block reveal" id="bascule">
+    <p>Aujourd’hui, j’ai gardé les IA.</p>
+    <p class="punch-mid">Mais j’ai changé le centre du système.</p>
+    <p class="punch-fin">Ce n’est plus elles qui décident.</p>
+  </div>
 
   <div class="themes-grid">
 
@@ -395,7 +534,7 @@
         <h2>Ressentir la friction</h2>
       </div>
       <div class="citation">« Ce n’est pas la créativité qui fatigue — c’est le câble entre les apps. »</div>
-      <p>Choisir la photo, retrouver le bon dossier, vérifier les doublons, corriger après coup… <strong>La friction n’est pas “poster”, c’est tout ce qu’on ajoute autour.</strong></p>
+      <p>Tu connais la séquence&nbsp;: <strong>client</strong>, <strong>deadline</strong>, chaîne d’outils qui craque, panique sourde. Le Postier ne magie pas le stress — il remplace le chaos par <strong>une file, des règles visibles, un seul endroit où trancher</strong>.</p>
     </article>
 
     <article class="theme-card reveal" id="controle">
