@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KENTA Postier du Réel — Photo & présence</title>
+<meta name="description" content="Postier du Réel : préparer, valider et publier des images depuis ta machine — validation humaine, historique sans déplacer les sources, anti-doublon. Même organisme KENTA.">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#050505">
+<meta name="color-scheme" content="dark">
+<link rel="canonical" href="https://kenta-arcadia.github.io/postier-du-reel.html">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:site_name" content="KENTA">
+<meta property="og:title" content="KENTA Postier du Réel — Photo & présence">
+<meta property="og:description" content="Une proposition, une validation, une trace claire. Flux photo local — sans enchaîner cinq outils qui se parlent mal.">
+<meta property="og:url" content="https://kenta-arcadia.github.io/postier-du-reel.html">
+<meta name="twitter:card" content="summary">
+<style>
+  :root {
+    --noir: #050505;
+    --encre: #0a0908;
+    --or: #c9a84c;
+    --or-vif: #e8c96d;
+    --or-pale: #f0dfa3;
+    --creme: #E8DCC4;
+    --bronze: #8B7355;
+    --texte: #9a8f7a;
+    --vert: #3a7d5a;
+    --trait-or-fin: rgba(201, 168, 76, 0.16);
+    --trait-or-moyen: rgba(201, 168, 76, 0.28);
+    --trait-marron-fin: rgba(139, 115, 85, 0.28);
+    --bordure-cadre: linear-gradient(
+      125deg,
+      rgba(100, 82, 62, 0.38),
+      rgba(201, 168, 76, 0.32),
+      rgba(139, 115, 85, 0.36)
+    );
+    --trait-indigo: linear-gradient(
+      180deg,
+      rgba(58, 48, 95, 0) 0%,
+      rgba(88, 72, 145, 0.55) 22%,
+      rgba(72, 58, 128, 0.72) 50%,
+      rgba(95, 78, 155, 0.5) 78%,
+      rgba(58, 48, 95, 0) 100%
+    );
+    --font-display: Palatino, 'Palatino Linotype', 'Book Antiqua', Georgia, serif;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    position: relative;
+    background-color: var(--noir);
+    color: var(--creme);
+    font-family: Georgia, 'Times New Roman', serif;
+    line-height: 1.72;
+    overflow-x: hidden;
+  }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background:
+      repeating-linear-gradient(0deg, transparent 0, transparent 5px, rgba(201, 168, 76, 0.045) 5px, rgba(201, 168, 76, 0.045) 6px),
+      repeating-linear-gradient(90.6deg, transparent 0, transparent 6px, rgba(139, 115, 85, 0.04) 6px, rgba(139, 115, 85, 0.04) 7px);
+    mix-blend-mode: soft-light;
+    opacity: 0.55;
+  }
+  .wrap { max-width: 980px; margin: 0 auto; padding: 0 1.25rem 4rem; position: relative; z-index: 1; }
+
+  .nav-top {
+    display: flex; justify-content: space-between; align-items: center;
+    flex-wrap: wrap; gap: 1rem;
+    padding: 1.25rem 0 1.75rem;
+    border-bottom: 1px solid var(--trait-marron-fin);
+    margin-bottom: 0.5rem;
+  }
+  .nav-top a {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--or);
+    text-decoration: none;
+  }
+  .nav-top a:hover { color: var(--or-pale); }
+
+  .anchor-strip {
+    text-align: center;
+    font-family: var(--font-display);
+    font-size: 0.58rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 1.75rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--trait-marron-fin);
+  }
+  .anchor-strip a { color: var(--or); text-decoration: none; margin: 0 0.4rem; }
+  .anchor-strip a:hover { color: var(--or-pale); }
+  .anchor-strip span { color: var(--bronze); }
+
+  .hero {
+    text-align: center;
+    padding: 1.5rem 1rem 2.25rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background:
+      linear-gradient(180deg, rgba(201, 168, 76, 0.06) 0%, transparent 100%) padding-box,
+      var(--bordure-cadre) border-box;
+    background-clip: padding-box, border-box;
+  }
+  .eyebrow {
+    font-family: var(--font-display);
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--bronze);
+    margin-bottom: 0.65rem;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.85rem, 4.5vw, 2.6rem);
+    font-weight: 600;
+    color: var(--or-pale);
+    letter-spacing: 0.05em;
+    line-height: 1.18;
+    margin-bottom: 0.85rem;
+  }
+  .lead {
+    font-size: 1.05rem;
+    color: var(--texte);
+    font-style: italic;
+    max-width: 36rem;
+    margin: 0 auto;
+  }
+  .lead strong { color: var(--creme); font-style: normal; font-weight: normal; }
+
+  .themes-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.15rem;
+  }
+  @media (min-width: 700px) {
+    .themes-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+  }
+
+  .theme-card {
+    border: 1px solid transparent;
+    border-radius: 4px;
+    padding: 1.35rem 1.4rem 1.45rem;
+    position: relative;
+    background:
+      linear-gradient(165deg, rgba(12,10,9,0.99) 0%, rgba(6,5,5,1) 100%) padding-box,
+      var(--bordure-cadre) border-box;
+    background-clip: padding-box, border-box;
+    transition: box-shadow 0.25s ease;
+  }
+  .theme-card:hover {
+    box-shadow: 0 0 0 1px rgba(201,168,76,0.08), 0 12px 36px rgba(0,0,0,0.45);
+  }
+  .theme-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 4px 4px 0 0;
+    background: linear-gradient(90deg, var(--bronze), var(--or), var(--or-vif));
+    opacity: 0.95;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .theme-card::after {
+    content: '';
+    position: absolute;
+    top: 0.85rem;
+    bottom: 0.85rem;
+    right: 0;
+    width: 1px;
+    background: var(--trait-indigo);
+    pointer-events: none;
+    z-index: 1;
+    border-radius: 0 3px 3px 0;
+  }
+  .theme-card.span-2 { grid-column: 1 / -1; }
+  .theme-card[id], .bandeau[id] { scroll-margin-top: 1.35rem; }
+
+  .theme-head {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid var(--trait-or-fin);
+  }
+  .theme-num {
+    font-family: var(--font-display);
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--or);
+    min-width: 1.6rem;
+    height: 1.6rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid rgba(201, 168, 76, 0.26);
+    border-radius: 2px;
+  }
+  .theme-icon { font-size: 1.35rem; line-height: 1; filter: grayscale(0.15); }
+  .theme-card h2 {
+    font-family: var(--font-display);
+    font-size: 0.68rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--or-pale);
+    margin: 0;
+    flex: 1;
+    line-height: 1.35;
+  }
+
+  .theme-card p {
+    color: var(--texte);
+    margin-bottom: 0.85rem;
+    font-size: 0.92rem;
+  }
+  .theme-card p:last-child { margin-bottom: 0; }
+  .theme-card p strong { color: var(--creme); font-weight: normal; }
+
+  .citation {
+    border-left: 2px solid var(--or);
+    padding: 0.9rem 1rem;
+    margin: 0.5rem 0 0.75rem;
+    background: rgba(0,0,0,0.35);
+    font-style: italic;
+    color: #c4b89a;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  ul.arc-list {
+    list-style: none;
+    margin: 0.5rem 0 0;
+    padding: 0;
+  }
+  ul.arc-list li {
+    position: relative;
+    padding: 0.4rem 0 0.4rem 1.15rem;
+    color: var(--texte);
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--trait-or-fin);
+  }
+  ul.arc-list li:last-child { border-bottom: none; }
+  ul.arc-list li::before {
+    content: '◆';
+    position: absolute;
+    left: 0;
+    color: var(--or);
+    font-size: 0.45rem;
+    top: 0.65em;
+  }
+
+  .flow-strip {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem 0.75rem;
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: rgba(201,168,76,0.06);
+    border: 1px dashed var(--trait-or-moyen);
+    font-size: 0.82rem;
+    color: var(--bronze);
+  }
+  .flow-strip span { color: var(--or-pale); }
+
+  .bandeau {
+    margin: 1.5rem 0;
+    padding: 1.1rem 1.25rem;
+    text-align: center;
+    position: relative;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background:
+      linear-gradient(180deg, rgba(201, 168, 76, 0.05) 0%, transparent 100%) padding-box,
+      var(--bordure-cadre) border-box;
+    background-clip: padding-box, border-box;
+  }
+  .bandeau::after {
+    content: '';
+    position: absolute;
+    top: 0.65rem;
+    bottom: 0.65rem;
+    right: 0;
+    width: 1px;
+    background: var(--trait-indigo);
+    pointer-events: none;
+    z-index: 1;
+  }
+  .bandeau p {
+    position: relative;
+    z-index: 2;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    color: var(--or-pale);
+    margin: 0;
+    line-height: 1.55;
+  }
+
+  .cta-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.65rem;
+    margin-top: 1rem;
+    justify-content: center;
+  }
+  .btn-or, .btn-creme {
+    font-family: var(--font-display);
+    font-size: 0.6rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: inline-block;
+    padding: 0.7rem 1.25rem;
+    transition: opacity 0.2s, transform 0.2s, border-color 0.2s, color 0.2s;
+  }
+  .btn-or {
+    color: var(--noir);
+    background: linear-gradient(135deg, var(--or-vif), var(--or), var(--bronze));
+    border: none;
+    border-radius: 2px;
+  }
+  .btn-creme {
+    color: var(--creme);
+    background: rgba(10,9,8,0.55);
+    border: 1px solid var(--trait-or-moyen);
+    border-radius: 2px;
+  }
+  .btn-or:hover, .btn-creme:hover { opacity: 0.9; transform: translateY(-1px); }
+  .btn-creme:hover { border-color: var(--or); color: var(--or-pale); }
+
+  #appel { scroll-margin-top: 1.5rem; }
+
+  footer {
+    margin-top: 2.5rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--trait-marron-fin);
+    font-size: 0.68rem;
+    color: var(--bronze);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+  footer a { color: var(--or); text-decoration: none; }
+  footer a:hover { color: var(--or-pale); }
+
+  .reveal { opacity: 0; transform: translateY(14px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="nav-top">
+    <a href="https://kenta-arcadia.github.io/index.html">← KENTA</a>
+    <span class="eyebrow" style="margin:0;">Module photo &amp; présence</span>
+  </nav>
+
+  <p class="anchor-strip">
+    <a href="#friction">Friction</a><span> · </span>
+    <a href="#flux">Flux</a><span> · </span>
+    <a href="#memoire">Mémoire</a><span> · </span>
+    <a href="#praticiens">Photographes &amp; marques</a><span> · </span>
+    <a href="https://github.com/Kenta-Arcadia/kenta-postier-du-reel">Code →</a>
+  </p>
+
+  <header class="hero reveal">
+    <p class="eyebrow">KENTA Postier du Réel</p>
+    <h1>Une image qui part quand tu es prêt·e.</h1>
+    <p class="lead">
+      Pas une pile d’onglets ni cinq abonnements qui se parlent mal.<br>
+      <strong>Une proposition, une validation humaine, une trace lisible</strong> — sur ta machine.
+    </p>
+  </header>
+
+  <div class="themes-grid">
+
+    <article class="theme-card reveal" id="friction">
+      <div class="theme-head">
+        <span class="theme-num">I</span>
+        <span class="theme-icon" aria-hidden="true">◇</span>
+        <h2>Ressentir la friction</h2>
+      </div>
+      <div class="citation">« Ce n’est pas la créativité qui fatigue — c’est le câble entre les apps. »</div>
+      <p>Choisir la photo, retrouver le bon dossier, vérifier les doublons, corriger après coup… <strong>La friction n’est pas “poster”, c’est tout ce qu’on ajoute autour.</strong></p>
+    </article>
+
+    <article class="theme-card reveal" id="controle">
+      <div class="theme-head">
+        <span class="theme-num">II</span>
+        <span class="theme-icon" aria-hidden="true">◎</span>
+        <h2>Ta validation d’abord</h2>
+      </div>
+      <p>Rien ne part sans ton accord explicite. Le système prépare ; <strong>tu tranches</strong>. Les images restent chez toi jusqu’à la décision.</p>
+      <p>Même philosophie qu’Arcana : <strong>pas pour publier à ta place</strong> — pour rendre la chaîne lisible et calme.</p>
+    </article>
+
+    <article class="theme-card reveal" id="flux">
+      <div class="theme-head">
+        <span class="theme-num">III</span>
+        <span class="theme-icon" aria-hidden="true">☉</span>
+        <h2>Le flux, simplement</h2>
+      </div>
+      <p>Un parcours clair, sans jargon :</p>
+      <ul class="arc-list">
+        <li>dépôt dans un dossier d’entrée</li>
+        <li>proposition (légende, hashtags, cible)</li>
+        <li>validation ou retouche</li>
+        <li>publication selon tes règles</li>
+        <li>archivage propre</li>
+      </ul>
+      <div class="flow-strip">tu déposes <span>→</span> tu relis <span>→</span> tu valides <span>→</span> ça part</div>
+    </article>
+
+    <article class="theme-card reveal" id="memoire">
+      <div class="theme-head">
+        <span class="theme-num">IV</span>
+        <span class="theme-icon" aria-hidden="true">〜</span>
+        <h2>Mémoire &amp; intégrité</h2>
+      </div>
+      <p><strong>Historique non destructif</strong> : tes fichiers sources ne sont pas déplacés pour “archiver”.</p>
+      <p><strong>Anti-doublon</strong> cohérent file + historique — moins de mauvaises surprises quand tu postes souvent.</p>
+    </article>
+
+    <article class="theme-card reveal" id="pour-vous">
+      <div class="theme-head">
+        <span class="theme-num">V</span>
+        <span class="theme-icon" aria-hidden="true">◈</span>
+        <h2>Pour vous</h2>
+      </div>
+      <p>Quand la présence en ligne est nécessaire mais <strong>pas au prix de ta dimanche</strong>. Quand tu veux une chaîne que tu peux expliquer à quelqu’un d’autre — ou à toi dans six mois.</p>
+    </article>
+
+    <article class="theme-card reveal" id="praticiens">
+      <div class="theme-head">
+        <span class="theme-num">VI</span>
+        <span class="theme-icon" aria-hidden="true">⚕</span>
+        <h2>Pour photographes &amp; marques</h2>
+      </div>
+      <p>Le Postier devient un point d’appui pour la régularité :</p>
+      <ul class="arc-list">
+        <li>un flux unique pour plusieurs canaux</li>
+        <li>des règles lisibles (ADN) plutôt qu’une suite d’astuces</li>
+        <li>une trace pour ajuster le ton ou le rythme</li>
+      </ul>
+      <p>Un support discret, <strong>respectueux du regard métier</strong> — comme Arcana pour la séance, ici pour la publication.</p>
+    </article>
+
+  </div>
+
+  <div class="bandeau reveal" id="fil-rouge">
+    <p>Structure d’abord — les outils (y compris l’IA) redeviennent des outils, pas des chefs d’orchestre fragiles.</p>
+  </div>
+
+  <article class="theme-card span-2 reveal" id="appel">
+    <div class="theme-head">
+      <span class="theme-num">VII</span>
+      <span class="theme-icon" aria-hidden="true">→</span>
+      <h2>Appel</h2>
+    </div>
+    <div class="cta-row">
+      <a href="https://github.com/Kenta-Arcadia/kenta-postier-du-reel" class="btn-or">README &amp; structure technique</a>
+      <a href="#flux" class="btn-creme">Relire le flux</a>
+      <a href="#praticiens" class="btn-creme">Section photographes &amp; marques</a>
+      <a href="https://kenta-arcadia.github.io/index.html#marches" class="btn-creme">Retour aux marchés KENTA</a>
+    </div>
+  </article>
+
+  <footer>
+    <span>KENTA Postier du Réel — local par conception</span>
+    <span>
+      <a href="https://kenta-arcadia.github.io/index.html">Page principale KENTA</a>
+      ·
+      <a href="https://kenta-arcadia.github.io/arcana.html">Arcana</a>
+      ·
+      <a href="https://github.com/Kenta-Arcadia">Kenta-Arcadia</a>
+    </span>
+  </footer>
+</div>
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.06 });
+document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
