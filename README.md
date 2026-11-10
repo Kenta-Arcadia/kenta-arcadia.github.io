@@ -1,6 +1,6 @@
-# KENTA — Site public multipage · Proposition autonome
+# KENTA — Vitrine du produit commercial
 
-Sept pages réelles : `index.html`, `histoire.html`, `architecture.html`, `applications.html`, `experiences.html`, `atlas.html`, `collaborer.html`.
+Sept pages réelles : `index.html`, `histoire.html`, `architecture.html`, `applications.html`, `experiences.html`, `atlas.html`, `contact.html`.
 
 Le laboratoire est accessible sous `laboratoire.html` avec ses scripts et sa scène Canvas (`assets/data.js`, `assets/app.js`, `assets/terminal.js`) ; il n'a **aucun accès** à la machine privée de KENTA. Le catalogue des 48 applications est directement alimenté par le registre V3 fourni, aux maturités éditoriales non certifiées.
 

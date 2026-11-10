@@ -912,7 +912,7 @@
   function doctrine() {
     ++seqTok;
     lines(['KENTA ne comprend pas.', 'Il réduit vers une action interne ou demande clarification.'], 'title');
-    lines(['La Toile est le flux. Procyon est la bouche. Cyrano est la réduction.', 'Le code est libre ; c’est la mission qui porte le sens.', 'Un organe, un geste. Le collège vote sur les organes candidats. Des yeux, jamais de mains.', 'Ce n’est pas que KENTA ne comprend pas : il refuse de faire semblant de comprendre.'], 'sys');
+    lines(['La Toile est le flux. Procyon est la bouche. Cyrano est la réduction.', 'Les bibliothèques portent les fonctions. La mission décrit l’action.', 'Un organe, un geste. Le collège vote sur les organes candidats. Des yeux, jamais de mains.', 'Ce n’est pas que KENTA ne comprend pas : il refuse de faire semblant de comprendre.'], 'sys');
   }
   function voirToile() {
     ++seqTok;
