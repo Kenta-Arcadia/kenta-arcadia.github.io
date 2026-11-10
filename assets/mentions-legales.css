@@ -1,0 +1,17 @@
+/* Mentions légales */
+.footer-legal { margin-block-start: .65rem; }
+.footer .legal-link,
+.foot .legal-link {
+  color: #39444d;
+  font-size: .75rem;
+  opacity: .82;
+  text-decoration: underline;
+  text-underline-offset: .18em;
+}
+.foot-links { display: flex; flex-wrap: wrap; gap: .6rem 1rem; }
+.foot .legal-link { color: #e1e4e3; }
+.footer .legal-link:hover, .footer .legal-link:focus-visible,
+.foot .legal-link:hover, .foot .legal-link:focus-visible { opacity: 1; }
+.legal-page h2 { font-size: 1.25rem; margin-block: 1.8rem .5rem; }
+.legal-page p { max-width: 62ch; overflow-wrap: anywhere; }
+.legal-page p a { text-decoration: underline; text-underline-offset: .18em; }

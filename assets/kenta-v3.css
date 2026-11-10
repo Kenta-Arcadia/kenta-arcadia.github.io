@@ -121,9 +121,9 @@
 .fiche-body .lead-line{font-size:17px;font-weight:600;margin-bottom:10px}
 .fiche-actions{display:flex;gap:8px;margin-top:20px;flex-wrap:wrap}
 
-/* Clippy */
-.clippy-btn{position:fixed;right:18px;bottom:18px;z-index:15;border:1px solid var(--ink);background:var(--white);color:var(--ink);padding:10px 14px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px #0002}
-.clippy-btn:hover{background:var(--soft)}
+/* Guide des commandes */
+.guide-btn{position:fixed;right:18px;bottom:18px;z-index:15;border:1px solid var(--ink);background:var(--white);color:var(--ink);padding:10px 14px;font-weight:700;cursor:pointer;box-shadow:0 8px 24px #0002}
+.guide-btn:hover{background:var(--soft)}
 .guide-cmds{display:grid;gap:8px;margin:16px 0}
 .guide-cmd{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;border:1px solid var(--line);padding:10px 12px}
 .guide-cmd code{font:13px ui-monospace,'Ubuntu Mono',monospace;font-weight:700}
@@ -132,7 +132,7 @@
 
 @media(max-width:1100px){.app-grid.v3,.guardian-grid{grid-template-columns:repeat(3,1fr)}.pipe{grid-template-columns:repeat(4,1fr)}.pipe li::after{display:none}}
 @media(max-width:900px){.figures-row{grid-template-columns:repeat(3,1fr)}.figure:nth-child(3){border-right:0}.principles.six{grid-template-columns:repeat(2,1fr)}.principles.six article{border-right:0}.app-grid.v3,.guardian-grid,.combo-grid{grid-template-columns:repeat(2,1fr)}.voices{grid-template-columns:repeat(2,1fr)}.term-grid{grid-template-columns:1fr}.legend{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){.figures-row{grid-template-columns:repeat(2,1fr)}.figure{border-right:0}.principles.six,.app-grid.v3,.guardian-grid,.combo-grid,.voices,.legend{grid-template-columns:1fr}.pipe{grid-template-columns:1fr 1fr}.term-out{max-height:380px;min-height:300px}.terminal-frame.v3{min-height:0}.term-form .prompt{display:none}.clippy-btn{right:10px;bottom:10px;padding:8px 11px;font-size:13px}.hero .actions{padding-bottom:44px}}
+@media(max-width:650px){.figures-row{grid-template-columns:repeat(2,1fr)}.figure{border-right:0}.principles.six,.app-grid.v3,.guardian-grid,.combo-grid,.voices,.legend{grid-template-columns:1fr}.pipe{grid-template-columns:1fr 1fr}.term-out{max-height:380px;min-height:300px}.terminal-frame.v3{min-height:0}.term-form .prompt{display:none}.guide-btn{right:10px;bottom:10px;padding:8px 11px;font-size:13px}.hero .actions{padding-bottom:44px}}
 @media(prefers-reduced-motion:reduce){.mini:hover{transform:none}}
 
 /* Identité KENTA : emblème original, sans redessin ni tracé approximatif. */

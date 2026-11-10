@@ -3,7 +3,7 @@
 
 /* KENTA V2 — essai typographique Ubuntu, 2026-11-06.
    Aucun chargement de police : priorité aux fontes présentes sur la machine. */
-:root { --font-kenta: 'Ubuntu Sans', 'Ubuntu', 'Noto Sans', 'DejaVu Sans', system-ui, sans-serif; }
+:root { --font-kenta: "DejaVu Math TeX Gyre", serif; }
 body, button, input, dialog { font-family: var(--font-kenta); }
 .brand { font-family: var(--font-kenta); font-weight: 700; letter-spacing: .075em; }
 .hero h1 { font-family: var(--font-kenta); font-weight: 700; letter-spacing: -.038em; line-height: 1.105; }

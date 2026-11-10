@@ -2,9 +2,9 @@
 
 Sept pages réelles : `index.html`, `histoire.html`, `architecture.html`, `applications.html`, `experiences.html`, `atlas.html`, `collaborer.html`.
 
-Le laboratoire original V3 est conservé sous `laboratoire.html` avec ses scripts et sa scène Canvas (`assets/data.js`, `assets/app.js`, `assets/terminal.js`) ; il n'a **aucun accès** à la machine privée de KENTA. Le catalogue des 48 applications est directement alimenté par le registre V3 fourni, aux maturités éditoriales non certifiées.
+Le laboratoire est accessible sous `laboratoire.html` avec ses scripts et sa scène Canvas (`assets/data.js`, `assets/app.js`, `assets/terminal.js`) ; il n'a **aucun accès** à la machine privée de KENTA. Le catalogue des 48 applications est directement alimenté par le registre V3 fourni, aux maturités éditoriales non certifiées.
 
-La charte utilise HTML/CSS/SVG natifs, aucune bibliothèque distante et aucune police embarquée. La typographie du site est une sans-serif système moderne ; il faudra confirmer la référence typographique voulue avant publication.
+La charte utilise HTML/CSS/SVG natifs. DejaVu Math TeX Gyre est fournie localement avec sa licence dans `assets/fonts/`. Le terminal conserve ses caractères à chasse fixe.
 
 Le logo PNG nettoyé (`assets/logo-net.png`) est un **candidat graphique** recalculé à partir de l'original fourni. L'original est sauvegardé dans `assets/logo-kenta-original.png`. Vérifier visuellement les détails avant publication.
 

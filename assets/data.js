@@ -106,8 +106,8 @@ window.KENTA_DATA = {
       organes: ['Remembrement'], maturite: 'En service.' },
 
     { id: 'forge', nom: 'Forge gouvernée', fam: 'gouvernance', statut: 'service', demo: 'forge',
-      accroche: 'Un organe naît par l’unanimité.',
-      role: 'Sept gardiens votent, chacun à son niveau de conscience. Cent pour cent, l’organe naît ; 99,99, il est refusé. Minato scelle en constatant le collège, Craag matérialise. Aucune signature humaine : l’humain porte le sens, le collège garde l’autorité.',
+      accroche: 'Le collège vote sur les organes candidats.',
+      role: 'Sept gardiens examinent le candidat. L’agrégateur confronte le score au seuil d’acceptation. Minato scelle la décision du collège et Craag matérialise l’organe admis.',
       facultes: ['Collège de sept votants', 'Sceau collégial avec empreintes des votes', 'Matérialisation conforme à l’empreinte'],
       liens: ['Reçoit les propositions du bord', 'Éprouvée d’abord en Salle'],
       organes: ['Hinata', 'Jiraiya', 'Minato', 'Tsunade', 'Célégans', 'Itachi', 'Sakura', 'Craag'], maturite: 'En service : plusieurs organes déjà nés au vivant par ce chemin.' },
@@ -161,7 +161,7 @@ window.KENTA_DATA = {
       liens: ['Ouvre la chaîne canonique', 'Miimé, sans corps, manie la matière noire'],
       organes: ['Cyrano', 'Miimé', 'Procyon'], maturite: 'Entonnoir déterministe en construction.' },
 
-    { id: 'clippy', nom: 'Clippy', fam: 'langage', statut: 'dev', demo: '',
+    { id: 'lire-avant-agir', nom: 'Lire avant d’agir', fam: 'langage', statut: 'dev', demo: '',
       accroche: 'Lire avant d’agir.',
       role: 'Compagnon qui lit le code et la commande avant exécution, en comprend le sens, montre où cela casse et conseille, sans jamais corriger à votre place.',
       facultes: ['Lecture préalable', 'Repérage de la casse', 'Conseil sans action'],
@@ -393,7 +393,7 @@ window.KENTA_DATA = {
   combos: [
     { titre: 'Le juste moment', chaine: ['Arcana', 'Human Design', 'Gaïa', 'Rythma'], effet: 'Le profil, la terre et la saison convergent en une fenêtre, lue sur la Toile sans appel direct.', cmd: 'rythma' },
     { titre: 'Le réflexe de l’inconnu', chaine: ['Kirigakure', 'Byakugan', 'Célégans', 'Bingo Book', 'Remembrement', 'Le bord'], effet: 'Un écart entre ce que l’on voit et ce qui est : toute la smala s’active, chacun à son niveau, et le rappel se fait sans geste.', cmd: 'kirigakure' },
-    { titre: 'Un organe naît', chaine: ['Le bord', 'Tachikoma', 'Salle', 'Collège des sept', 'Minato', 'Craag'], effet: 'Un manque constaté devient proposition, la proposition s’éprouve en salle, l’unanimité la fait naître.', cmd: 'forge' },
+    { titre: 'Un organe naît', chaine: ['Le bord', 'Tachikoma', 'Salle', 'Collège des sept', 'Minato', 'Craag'], effet: 'Un manque constaté devient proposition. Le candidat est éprouvé en salle puis soumis au vote du collège.', cmd: 'forge' },
     { titre: 'Publier seul', chaine: ['Kabuto', 'Chroniques', 'Tic et Tac', 'Rythma', 'Postier'], effet: 'Tendance captée, histoire née, voix habillée, moment choisi, publication tracée.', cmd: 'mission publie une histoire' },
     { titre: 'Le ticket devient comptabilité', chaine: ['Lecture locale', 'Hinata', 'Rétro-calcul', 'Rythma'], effet: 'Une image de ticket devient lignes qualifiées, montants vérifiés, budget alimentaire.', cmd: 'retro 2 3 6 | 4 5 20 | 7 3 21' },
     { titre: 'Entendre le muscle', chaine: ['KENTA PHY', 'Kirigakure', 'Matière noire', 'Les Cercles', 'KENTA Gaming'], effet: 'Les signaux écartés comme bruit deviennent matière pour apparier une prothèse à son porteur.', cmd: '' },

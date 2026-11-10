@@ -174,7 +174,7 @@
     { re: /(publi|poste|histoir|recit|raconte|chroniq)/, proches: ['publier', 'raconter'], geste: 'publier', objet: 'mission_publier', gardiens: ['Célégans', 'Tachikoma', 'Rythma'], capacite: 'faire naître une histoire, engager la publication', effet: 'histoire assemblée sans modèle ; les voix habillent, Rythma choisit le moment', suite: '' },
     { re: /(ticket|caisse|compta|depens|facture)/, proches: ['ticket', 'compta'], geste: 'qualifier', objet: 'ticket_texte_recu', gardiens: ['Hinata', 'Kabuto'], capacite: 'qualifier le ticket, rétro-calcul', effet: 'lignes qualifiées ; les inconnus restent inconnus', suite: 'retro 2 3 6 | 4 5 20 | 7 3 21' },
     { re: /(calcul|regle|colonne|chiffr|nombre)/, proches: ['calculer', 'règle'], geste: 'calculer', objet: 'retro_calcul', gardiens: ['Kabuto'], capacite: 'rétro-calcul', effet: 'règle retrouvée avec son taux de confiance', suite: 'retro 2 3 6 | 4 5 20 | 7 3 21' },
-    { re: /(forg|organe|fabriqu|naitre|creer)/, proches: ['forger', 'créer'], geste: 'forger', objet: 'proposition_a_voter', gardiens: ['Hinata', 'Jiraiya', 'Minato', 'Tsunade', 'Célégans', 'Itachi', 'Sakura'], capacite: 'vote de forge', effet: 'le collège vote ; l’unanimité seule fait naître', suite: 'forge' },
+    { re: /(forg|organe|fabriqu|naitre|creer)/, proches: ['forger', 'créer'], geste: 'forger', objet: 'proposition_a_voter', gardiens: ['Hinata', 'Jiraiya', 'Minato', 'Tsunade', 'Célégans', 'Itachi', 'Sakura'], capacite: 'vote de forge', effet: 'le collège vote sur la proposition', suite: 'forge' },
     { re: /(attaq|intrus|inject|pirat|menace|defend|virus)/, proches: ['défendre', 'attaque'], geste: 'défendre', objet: 'anomalie_comportement', gardiens: ['Hinata', 'Itachi', 'Tsunade'], capacite: 'isolement', effet: 'comportement repéré, isolé, puis vérifié', suite: 'tsukuyomi' },
     { re: /(coeur|stress|tachy|pouls|signal|muscle|prothes|sante)/, proches: ['cœur', 'signal'], geste: 'surveiller', objet: 'diagnostic_physiologique', gardiens: ['Hinata', 'Célégans'], capacite: 'motif individuel', effet: 'écart au motif propre de la personne, alerte si besoin', suite: '' },
     { re: /(inconnu|myster|bizarre|anomal|etrange)/, proches: ['inconnu', 'étrange'], geste: 'percevoir', objet: 'presence_inconnue', gardiens: ['Célégans'], capacite: 'kirigakure', effet: 'présence nommée, cause non inventée', suite: 'kirigakure' },
@@ -463,7 +463,7 @@
     const refus = args.some(a => /refus|99/.test(norm(a)));
     const votes = COLLEGE.map(([g]) => (refus && g === 'Jiraiya') ? 99.99 : 100);
     let k = -1, phase = 0;
-    scene('Forge gouvernée · le collège des sept', 'Rejeu illustratif du protocole : votants et sceau conformes, libellés des prismes simplifiés.', refus ? 'variante : un vote à 99,99' : 'unanimité requise');
+    scene('Forge gouvernée · le collège des sept', 'Simulation de deux issues du vote du collège.', refus ? 'variante de refus simulée' : 'variante d’admission simulée');
     const draw = () => {
       begin();
       const cx = VW / 2, cy = 230, R0 = 165;
@@ -480,10 +480,10 @@
       dot(cx, cy, 38, sealed ? (refus ? '#4a2a24' : '#2a5a4c') : '#173a33');
       ctx.beginPath(); ctx.arc(cx, cy, 38, 0, 6.283); ctx.strokeStyle = sealed ? (refus ? P.red : P.acc) : P.line; ctx.lineWidth = 2; ctx.stroke();
       text(phase < 2 ? 'proposition' : (refus ? 'recalée' : 'scellée'), cx, cy - 6, P.white, 11, 'center', 700);
-      text(phase < 2 ? 'à voter' : (refus ? 'aucun sceau' : 'collège unanime'), cx, cy + 10, P.dim, 10, 'center');
+      text(phase < 2 ? 'à voter' : (refus ? 'aucun sceau' : 'vote validé'), cx, cy + 10, P.dim, 10, 'center');
       if (phase >= 3 && !refus) text('Craag matérialise · organe greffé', cx, 448, P.acc, 12, 'center', 700);
       if (phase >= 3 && refus) text('rien n’est écrit · le refus est tracé', cx, 448, P.red, 12, 'center', 700);
-      text('100 % : l’organe naît.   99,99 % : il est refusé.', cx, 482, P.dim, 10.5, 'center');
+      text('Deux scénarios illustratifs : admission ou refus.', cx, 482, P.dim, 10.5, 'center');
     };
     draw();
     (async () => {
@@ -497,16 +497,16 @@
         vibrer(g, 'vote_forge', String(votes[i]), true);
       }
       phase = 1; draw();
-      if (!await say(tok, 'Célégans › agrégation : ' + (refus ? 'bilan recalé (unanimité manquée)' : 'bilan valide, score 100'), refus ? 'warn' : 'ok', 380)) return;
+      if (!await say(tok, 'Célégans › agrégation : ' + (refus ? 'score sous le seuil dans ce scénario' : 'score au seuil dans ce scénario'), refus ? 'warn' : 'ok', 380)) return;
       phase = 2; draw();
       if (refus) {
         await say(tok, 'Minato › aucun sceau. Le refus est tracé avec sa cause, pour reprise bornée.', 'warn', 380);
         phase = 3; draw();
         vibrer('Célégans', 'bilan_vote_recale');
-        line('Pas de vote à la majorité, pas de moyenne pondérée. Le coût du vote fait la rareté.', 'dim');
+        line('Le scénario de refus s’arrête au bilan du vote.', 'dim');
         return;
       }
-      if (!await say(tok, 'Minato › sceau collégial : autorité « collège unanime », sept empreintes de votes, aucune signature humaine.', 'ok', 380)) return;
+      if (!await say(tok, 'Minato › sceau collégial : autorité du collège, sept empreintes de votes, aucune signature humaine.', 'ok', 380)) return;
       vibrer('Minato', 'autorisation_scellee');
       phase = 3; draw();
       if (!await say(tok, 'Craag › matérialisation conforme à l’empreinte · capacité greffée chez son porteur.', 'ok', 300)) return;
@@ -912,7 +912,7 @@
   function doctrine() {
     ++seqTok;
     lines(['KENTA ne comprend pas.', 'Il réduit vers une action interne ou demande clarification.'], 'title');
-    lines(['La Toile est le flux. Procyon est la bouche. Cyrano est la réduction.', 'Le code est libre ; c’est la mission qui porte le sens.', 'Un organe, un geste. L’unanimité fait naître. Des yeux, jamais de mains.', 'Ce n’est pas que KENTA ne comprend pas : il refuse de faire semblant de comprendre.'], 'sys');
+    lines(['La Toile est le flux. Procyon est la bouche. Cyrano est la réduction.', 'Le code est libre ; c’est la mission qui porte le sens.', 'Un organe, un geste. Le collège vote sur les organes candidats. Des yeux, jamais de mains.', 'Ce n’est pas que KENTA ne comprend pas : il refuse de faire semblant de comprendre.'], 'sys');
   }
   function voirToile() {
     ++seqTok;

@@ -1,5 +1,5 @@
 'use strict';
-/* KENTA · site V3 · catalogue, gardiens, combinaisons, fiches, Clippy. Aucun appel réseau. */
+/* KENTA · site V3 · catalogue, gardiens, combinaisons, fiches et guide. Aucun appel réseau. */
 (function () {
   const D = window.KENTA_DATA;
   if (!D) return;
@@ -158,7 +158,7 @@
   const vGrid = document.getElementById('voiceGrid');
   D.voix.forEach(v => { const a = el('article'); a.append(el('h4', null, v.nom), el('p', null, v.role)); vGrid.append(a); });
 
-  /* Clippy : dire avant de lancer */
+  /* Guide des commandes */
   const guide = [
     ['cercles', 'Lance l’empilement de 26 cercles par vibration. Rien n’est calculé à l’avance.'],
     ['labyrinthe', 'Célégans cherche la sortie en sept tentatives, guidé par ses phéromones.'],
@@ -176,5 +176,5 @@
     row.append(el('code', null, cmd), el('span', null, txt), b);
     gc.append(row);
   });
-  document.getElementById('clippyBtn').addEventListener('click', () => showDialog('guideDialog'));
+  document.getElementById('guideBtn').addEventListener('click', () => showDialog('guideDialog'));
 })();
