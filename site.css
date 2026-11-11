@@ -42,3 +42,47 @@ body:has(.six-figure) .page-hero .page-title{font-size:clamp(34px,3.6vw,56px);li
     height: clamp(210px, 40vw, 290px);
   }
 }
+
+/* Applications : la démonstration reprend le terminal du laboratoire. */
+.applications-hero { align-items: start; }
+.applications-hero .intro { margin-bottom: 24px; }
+.applications-hero .terminal-frame,
+.applications-hero .scene-frame { min-width: 0; overflow: hidden; border-radius: 10px; background: #0b1d1a; color: #e6f0e9; }
+.applications-hero .term-top,
+.applications-hero .scene-top { padding: 12px 16px; border-bottom: 1px solid #2c4943; font-size: .84rem; }
+.applications-hero .scene-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px; }
+.applications-hero #sceneMeta { color: #dcb98e; }
+.applications-hero #scene { display: block; width: 100%; height: auto; aspect-ratio: 640 / 520; }
+.applications-hero .scene-note { margin: 0; padding: 12px 16px; border-top: 1px solid #2c4943; font-size: .85rem; }
+.applications-hero .term-out { height: 192px; overflow: auto; padding: 12px 16px; font: .82rem/1.5 ui-monospace, monospace; overflow-wrap: anywhere; }
+.applications-hero .term-out .tl { min-height: 1.5em; }
+.applications-hero .term-out .ok { color: #91d6b8; }
+.applications-hero .term-out .warn { color: #ffc2a6; }
+.applications-hero .term-out .yaml { color: #b2d6f2; }
+.applications-hero .term-out .cmd,
+.applications-hero .term-out .vib { color: #ebc99f; }
+.applications-hero .term-form { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; padding: 12px; border-top: 1px solid #2c4943; font: .84rem ui-monospace, monospace; }
+.applications-hero .term-form input { flex: 1 1 10rem; min-width: 0; padding: 7px; border: 1px solid #77918a; border-radius: 4px; color: inherit; background: transparent; font: inherit; }
+.applications-hero .term-form button,
+.applications-hero .term-chips button { padding: 7px 10px; border: 1px solid var(--line); border-radius: 4px; background: var(--bg); color: var(--ink); cursor: pointer; }
+.applications-hero .term-commands { margin-top: 12px; }
+.applications-hero .term-commands summary { cursor: pointer; font-size: .9rem; }
+.applications-hero .term-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.card-fonction { margin-top: 0; font-weight: 700; }
+.light-card button.btn, .catalog-card button.btn { cursor: pointer; font-family: inherit; }
+.light-card .btn + .btn { margin-top: 8px; }
+.catalog-card .catalog-essai { align-self: flex-start; margin-top: 12px; }
+
+.faq-page { max-width: 920px; padding-block: 72px; }
+.faq-page .intro { max-width: 680px; }
+.faq-group { margin-top: 48px; }
+.faq-group h2 { margin-bottom: 16px; }
+.faq-item { margin-bottom: 10px; border: 1px solid var(--line); border-radius: 8px; background: #fff; }
+.faq-item summary { padding: 16px 20px; cursor: pointer; font-weight: 700; }
+.faq-item summary:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.faq-item[open] summary { border-bottom: 1px solid var(--line); }
+.faq-answer { padding: 2px 20px 18px; color: var(--muted); line-height: 1.65; }
+.faq-answer dt { font-weight: 700; color: var(--ink); }
+.faq-answer dd { margin: 0 0 8px; }
+.faq-answer a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+.faq-answer :last-child { margin-bottom: 0; }

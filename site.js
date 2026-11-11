@@ -1,4 +1,73 @@
 "use strict";
 document.querySelector('.menu-button')?.addEventListener('click',function(){const n=document.getElementById('site-nav');const open=n.classList.toggle('open');this.setAttribute('aria-expanded',String(open))});
-function catalog(){if(!document.getElementById('catalog-grid'))return;const d=window.KENTA_DATA;if(!d||!Array.isArray(d.apps)){document.getElementById('app-count').textContent='Registre indisponible';return;}const search=document.getElementById('app-search'),family=document.getElementById('app-family'),status=document.getElementById('app-status'),grid=document.getElementById('catalog-grid'),count=document.getElementById('app-count');Object.entries(d.familles).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v;family.append(o)});Object.entries(d.statuts).forEach(([k,v])=>{const o=document.createElement('option');o.value=k;o.textContent=v.label;status.append(o)});function render(){const q=search.value.trim().toLocaleLowerCase('fr');const found=d.apps.filter(a=>(!family.value||a.fam===family.value)&&(!status.value||a.statut===status.value)&&(!q||[a.nom,a.accroche,a.description,d.familles[a.fam]].filter(Boolean).join(' ').toLocaleLowerCase('fr').includes(q)));grid.replaceChildren();for(const a of found){const card=document.createElement('article');card.className='catalog-card';const cat=document.createElement('span');cat.className='category';cat.textContent=d.familles[a.fam]||'Application';const h=document.createElement('h3');h.textContent=a.nom;const p=document.createElement('p');p.textContent=a.accroche||'Présentation en cours';const s=document.createElement('span');s.className='status';s.textContent=d.statuts[a.statut]?.label||'Statut à qualifier';card.append(cat,h,p,s);grid.append(card)}count.textContent=found.length+' application'+(found.length>1?'s':'')+' affichée'+(found.length>1?'s':'')+' sur '+d.apps.length}for(const x of [search,family,status])x.addEventListener(x===search?'input':'change',render);render()}
-document.addEventListener('DOMContentLoaded',catalog);
+function catalog() {
+  const grid = document.getElementById('catalog-grid');
+  if (!grid) return;
+
+  const data = window.KENTA_DATA;
+  const count = document.getElementById('app-count');
+  if (!data || !Array.isArray(data.apps)) {
+    count.textContent = 'Registre indisponible';
+    return;
+  }
+
+  const search = document.getElementById('app-search');
+  const family = document.getElementById('app-family');
+  const status = document.getElementById('app-status');
+  const maturity = app => app.statutPublic || app.statut;
+  const normalize = value => value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('fr');
+  function element(tag, text, className) {
+    const node = document.createElement(tag);
+    node.textContent = text;
+    if (className) node.className = className;
+    return node;
+  }
+  for (const [key, label] of Object.entries(data.familles)) family.add(new Option(label, key));
+  for (const [key, item] of Object.entries(data.statuts)) status.add(new Option(item.label, key));
+
+  function render() {
+    const query = normalize(search.value.trim());
+    const found = data.apps.filter(app =>
+      (!family.value || app.fam === family.value) &&
+      (!status.value || maturity(app) === status.value) &&
+      (!query || normalize([app.nom, app.nomPublic, app.accroche, app.accrochePublique, app.description, data.familles[app.fam]].join(' ')).includes(query))
+    );
+    grid.replaceChildren();
+    for (const app of found) {
+      const card = element('article', '', 'catalog-card');
+      card.append(
+        element('span', data.familles[app.fam] || 'Application', 'category'),
+        element('h3', app.nom)
+      );
+      const subtitle = app.nomPublic?.split(' · ').at(-1);
+      if (subtitle && subtitle !== app.nom) card.append(element('p', subtitle, 'card-fonction'));
+      card.append(
+        element('p', app.accrochePublique || app.accroche || ''),
+        element('span', data.statuts[maturity(app)]?.label || 'Statut à qualifier', 'status')
+      );
+      if (app.demo && window.KENTA_TERM) {
+        const button = element('button', 'Essayer', 'btn catalog-essai');
+        button.type = 'button';
+        button.dataset.essai = app.demo;
+        button.setAttribute('aria-label', 'Essayer ' + app.nom);
+        card.append(button);
+      }
+      grid.append(card);
+    }
+    const plural = found.length > 1 ? 's' : '';
+    count.textContent = found.length + ' application' + plural + ' affichée' + plural + ' sur ' + data.apps.length;
+  }
+  search.addEventListener('input', render);
+  family.addEventListener('change', render);
+  status.addEventListener('change', render);
+  render();
+
+  document.addEventListener('click', event => {
+    const button = event.target.closest('button[data-essai]');
+    if (!button || !window.KENTA_TERM) return;
+    window.KENTA_TERM.run(button.dataset.essai);
+    document.getElementById('termOut').focus({ preventScroll: true });
+    document.getElementById('terminal').scrollIntoView({ block: 'start' });
+  });
+}
+document.addEventListener('DOMContentLoaded', catalog);

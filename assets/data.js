@@ -3,7 +3,7 @@
    Source : travaux, traces et missions de KENTA. Aucun chemin interne, port ni secret n’y figure. */
 window.KENTA_DATA = {
   statuts: {
-    service:   { label: 'En service*',       detail: 'Maturité éditoriale issue des échanges ; preuves et périmètre à confirmer auprès de KENTA.' },
+    service:   { label: 'En service',        detail: 'Capacité en usage dans le périmètre décrit par sa fiche.' },
     eprouve:   { label: 'Éprouvé',           detail: 'Expérience menée et tracée, primitive à généraliser.' },
     dev:       { label: 'En développement',  detail: 'Organes présents, raccords en cours.' },
     prototype: { label: 'Prototype',         detail: 'Version d’essai, en simulation ou archivée.' },
@@ -11,7 +11,7 @@ window.KENTA_DATA = {
   },
   familles: {
     symbolique:  'Symbolique & rythmes',
-    perception:  'Perception & inconnu',
+    perception:  'Observation, signaux et traces',
     gouvernance: 'Gouvernance & défense',
     langage:     'Langage & récit',
     representation: 'Représentation',
@@ -22,6 +22,7 @@ window.KENTA_DATA = {
 
   apps: [
     { id: 'arcana', nom: 'Arcana · Valdoie', fam: 'symbolique', statut: 'service', demo: 'arcana 1984',
+      nomPublic: "Arcana · Profils symboliques", accrochePublique: "Croiser plusieurs grilles de lecture pour restituer un profil.",
       accroche: 'Lire un profil à travers six traditions symboliques.',
       role: 'Moteur de profil symbolique : cinq éléments de la médecine chinoise, astrologie chinoise, Yi King, chakras, doshas, ennéagramme. Un questionnement pondéré conduit à une révélation composée depuis des bibliothèques de phrases, jamais inventée.',
       facultes: ['Questionnement pondéré multi-traditions', 'Moteur de révélation sur 44 séquences déclarées', 'Graphe symbolique de plus de 1 460 triplets', 'Profil cristallisé, réutilisable par les autres territoires', 'Agenda symbolique de la semaine'],
@@ -36,6 +37,7 @@ window.KENTA_DATA = {
       organes: ['Arcana', 'Rythma'], maturite: 'Interface en service ; dérivation type, autorité et croix en cours.' },
 
     { id: 'rythma', nom: 'Rythma', fam: 'symbolique', statut: 'service', demo: 'rythma',
+      nomPublic: "Rythma · Lecture des rythmes", accrochePublique: "Restituer un agenda de rythmes sur une période définie.",
       accroche: 'Le juste moment, pour soi comme pour publier.',
       role: 'Rythma ne prescrit pas de tâches : il montre l’état énergétique de chaque moment d’après les rythmes biologiques, les douze méridiens, le contexte astral et le profil Arcana. Le même sens du tempo choisit la fenêtre de publication des récits de KENTA.',
       facultes: ['Lecture des douze méridiens', 'Bandeaux du jour et de la semaine', 'Fenêtre de publication pour Chroniques'],
@@ -43,6 +45,7 @@ window.KENTA_DATA = {
       organes: ['Arcana', 'Gaïa', 'Chroniques'], maturite: 'En service avec profil Arcana branché ; Gaïa et Human Design en raccordement.' },
 
     { id: 'gaia', nom: 'Gaïa', fam: 'metiers', statut: 'service', demo: '',
+      nomPublic: "Gaïa · Planification des interventions", accrochePublique: "Choisir quand intervenir, selon la culture, la saison et la météo.",
       accroche: 'Choisir quand intervenir, de la vigne au jardin.',
       role: 'Gaïa aide à choisir quand intervenir en tenant compte de la culture, de la saison et de la météo.',
       facultes: ['Aide au choix d’une période d’intervention'],
@@ -50,6 +53,7 @@ window.KENTA_DATA = {
       organes: ['Gaïa'], maturite: 'Produit fonctionnel. Présentation sur demande.' },
 
     { id: 'byakugan', nom: 'Byakugan', fam: 'perception', statut: 'service', demo: 'byakugan',
+      nomPublic: "Inspection ciblée en lecture seule", accrochePublique: "Observer les fichiers d’un dossier dans les limites fixées par la mission.", statutPublic: 'eprouve',
       accroche: 'Voir sans angle mort.',
       role: 'La vision de Hinata : lecture complète, en lecture seule. Principe unique, la mission dit où regarder. C’est l’œil partagé des voix de KENTA : aucune ne parle sans avoir d’abord vu.',
       facultes: ['Lecture intégrale sans écriture', 'Mesures et homéostasie', 'Œil commun des SLM'],
@@ -57,6 +61,7 @@ window.KENTA_DATA = {
       organes: ['Hinata'], maturite: 'En service.' },
 
     { id: 'kunai', nom: 'Kunaï de Minato', fam: 'perception', statut: 'service', demo: 'mission marque ce repère',
+      nomPublic: "Repérage par identité stable", accrochePublique: "Associer un repère à une cible ou à l’identité stable d’un volume.", statutPublic: 'eprouve',
       accroche: 'Marquer, relier, retrouver.',
       role: 'Primitive unique de marquage : la mission porte où, comment et pourquoi. Les kunaïs sont des repères internes, KENTA ne dépend d’aucun lieu pour se situer. Minato trace aussi la physiologie d’une mission, fil par fil, et montre où elle coupe.',
       facultes: ['Marquer une cible, un volume, un méridien', 'Vérifier une position', 'Tracer la physiologie d’une mission'],
@@ -64,6 +69,7 @@ window.KENTA_DATA = {
       organes: ['Minato'], maturite: 'En service.' },
 
     { id: 'kirigakure', nom: 'Kirigakure', fam: 'perception', statut: 'eprouve', demo: 'kirigakure',
+      nomPublic: "Détection de signaux inattendus", accrochePublique: "Signaler une présence observée dont la cause reste à instruire.",
       accroche: 'Une présence sans cause connue.',
       role: 'Perçoit une perturbation que rien ne déclare et pose la seule question honnête : pourquoi cette présence existe-t-elle ? Inventer une cause lui est interdit.',
       facultes: ['Détection de présence non déclarée', 'Niveau de suspicion', 'Interdit de qualification causale inventée'],
@@ -71,6 +77,7 @@ window.KENTA_DATA = {
       organes: ['Célégans'], maturite: 'Éprouvé par mission ; raccord vers le bord en cours.' },
 
     { id: 'bord', nom: 'L’inconnu par le bord', fam: 'perception', statut: 'eprouve', demo: 'bord image_ticket_recu',
+      nomPublic: "Signalement des capacités manquantes", accrochePublique: "Remonter le besoin quand une demande ne correspond à aucune capacité disponible.",
       accroche: 'Apprendre de ce qu’on ne sait pas faire.',
       role: 'Quand un gardien reçoit un objet qu’aucune de ses capacités ne traite, ce bord signale l’inconnu sans avoir à le nommer. Iruka cherche localement, Tachikoma propose une hypothèse, le collège qualifiera.',
       facultes: ['Signal d’insuffisance de capacité', 'Recherche locale par Iruka', 'Proposition d’effet de bord par Tachikoma'],
@@ -78,6 +85,7 @@ window.KENTA_DATA = {
       organes: ['Iruka', 'Tachikoma'], maturite: 'Prouvé jusqu’à la proposition ; l’autorité qui la qualifie reste à raccorder.' },
 
     { id: 'matiere-noire', nom: 'Matière noire', fam: 'perception', statut: 'recherche', demo: 'matiere-noire',
+      nomPublic: "Cartographie des capacités chargées à la demande", accrochePublique: "Étudier les modules que l’inventaire statique ne décrit pas.",
       accroche: 'Ce qui agit sans être déclaré.',
       role: 'Des organes chargés à la demande, invisibles à l’analyse statique, et l’emprunt de capacités entre gardiens. KENTA apprend à cartographier sa propre part d’ombre, puis à s’en servir.',
       facultes: ['Emprunt de capacités entre gardiens', 'Distillation par Miimé', 'Cartographie de l’ombre'],
@@ -85,6 +93,7 @@ window.KENTA_DATA = {
       organes: ['Miimé', 'Célégans'], maturite: 'Emprunt de capacités validé ; cartographie de l’ombre en recherche.' },
 
     { id: 'shisui', nom: 'Shisui', fam: 'perception', statut: 'recherche', demo: '',
+      nomPublic: "Liaison mobile et événements de connexion", accrochePublique: "Étudier la transmission d’événements depuis un téléphone relié à KENTA.",
       accroche: 'Le téléphone devient un influx.',
       role: 'Tunnel chiffré entre le téléphone et KENTA, puis saut de point d’accès en point d’accès, puis maillage Bluetooth de proximité. Connexion et déconnexion deviennent des événements pour les gardiens.',
       facultes: ['Tunnel chiffré permanent', 'Suivi par kunaï', 'Trois niveaux de liaison en cascade'],
@@ -92,6 +101,7 @@ window.KENTA_DATA = {
       organes: ['Shisui', 'Minato'], maturite: 'ADN et organe présents ; raccord à la Toile à faire.' },
 
     { id: 'aura', nom: 'AuraProject', fam: 'perception', statut: 'recherche', demo: '',
+      nomPublic: "Analyse visuelle des contours", accrochePublique: "Explorer une représentation symbolique à partir des contours d’une image.",
       accroche: 'Une caméra qui lit l’archétype, pas les pixels.',
       role: 'Vision par ordinateur symbolique : détecter les contours, puis dessiner l’aura d’un objet ou d’un lieu selon ses propriétés. Racine de la lignée de KENTA.',
       facultes: ['Détection de contours', 'Lecture symbolique d’une image', 'Aura générée'],
@@ -99,6 +109,7 @@ window.KENTA_DATA = {
       organes: ['AuraProject'], maturite: 'Fondations posées ; réintégration prévue.' },
 
     { id: 'bingo', nom: 'Bingo Book', fam: 'gouvernance', statut: 'service', demo: 'bingo hinata',
+      nomPublic: "Inventaire des capacités déclarées", accrochePublique: "Lister les modules, fonctions et conditions de déclenchement.",
       accroche: 'L’organisme se décrit lui-même.',
       role: 'Lecteur canonique : ADN, capacités, organes, résonances. Il signale les capacités déclarées jamais incarnées. Déclarer sans incarner, c’est mentir, et le Bingo le dit.',
       facultes: ['Fiche par gardien', 'Détection des capacités absentes', 'Source des cartes Vision'],
@@ -106,6 +117,7 @@ window.KENTA_DATA = {
       organes: ['Remembrement'], maturite: 'En service.' },
 
     { id: 'forge', nom: 'Forge gouvernée', fam: 'gouvernance', statut: 'service', demo: 'forge',
+      nomPublic: "Admission gouvernée de modules", accrochePublique: "Éprouver un candidat et soumettre son admission à une décision collégiale.",
       accroche: 'Le collège vote sur les organes candidats.',
       role: 'Sept gardiens examinent le candidat. L’agrégateur confronte le score au seuil d’acceptation. Minato scelle la décision du collège et Craag matérialise l’organe admis.',
       facultes: ['Collège de sept votants', 'Sceau collégial avec empreintes des votes', 'Matérialisation conforme à l’empreinte'],
@@ -113,6 +125,7 @@ window.KENTA_DATA = {
       organes: ['Hinata', 'Jiraiya', 'Minato', 'Tsunade', 'Célégans', 'Itachi', 'Sakura', 'Craag'], maturite: 'En service : plusieurs organes déjà nés au vivant par ce chemin.' },
 
     { id: 'salle', nom: 'Salle de l’esprit et du temps', fam: 'gouvernance', statut: 'service', demo: '',
+      nomPublic: "Environnement d’essai isolé", accrochePublique: "Éprouver un candidat dans une copie bornée de l’installation.",
       accroche: 'Éprouver sans toucher au vivant.',
       role: 'Copie bornée de l’organisme derrière un mur réel : vivant monté en lecture seule, réseau coupé, empreinte avant et après. Les mutations s’y jouent avant d’être portées.',
       facultes: ['Mur effectif, pas seulement surveillé', 'Témoin d’empreinte', 'Rejeu de cycles complets'],
@@ -120,6 +133,7 @@ window.KENTA_DATA = {
       organes: ['Jiraiya', 'Minato'], maturite: 'En service.' },
 
     { id: 'banc', nom: 'Banc de tir', fam: 'gouvernance', statut: 'service', demo: '',
+      nomPublic: "Banc d’évaluation des modèles locaux", accrochePublique: "Conserver des témoins et les rejouer pour comparer des réponses.",
       accroche: 'Mesurer les voix, rejouer sans modèle.',
       role: 'Témoins durables rejouables sans modèle, évaluation déterministe et épistémique. Cible : KENTA conduit lui-même ses SLM au Banc et en tire les meilleurs réglages.',
       facultes: ['Tir, campagne, historique', 'Témoins rejouables', 'Mesure des hallucinations après preuve'],
@@ -127,6 +141,7 @@ window.KENTA_DATA = {
       organes: ['Shikamaru', 'Tachikoma'], maturite: 'En service ; pilotage autonome en développement.' },
 
     { id: 'sentinelle', nom: 'Sceau & sentinelle', fam: 'gouvernance', statut: 'dev', demo: 'tsukuyomi',
+      nomPublic: "Contrôle d’intégrité des événements", accrochePublique: "Vérifier la signature à l’entrée et traiter les événements non conformes.",
       accroche: 'Une rupture d’intégrité ne passe pas.',
       role: 'Empreintes de l’ADN critique, signature des influx avec durée de vie et nonce, sentinelle des invariants. Un influx écrit à la main part en quarantaine.',
       facultes: ['Signature HMAC des influx', 'Quarantaine', 'Scanner d’invariants'],
@@ -134,6 +149,7 @@ window.KENTA_DATA = {
       organes: ['Procyon', 'Jiraiya', 'Hinata'], maturite: 'Signature et quarantaine en service ; sentinelle à armer.' },
 
     { id: 'cyber', nom: 'Itachi · Tsukuyomi · Izanami', fam: 'gouvernance', statut: 'eprouve', demo: 'izanami',
+      nomPublic: "Détection d’anomalies de comportement", accrochePublique: "Observer les écarts et conserver des traces pour l’analyse.",
       accroche: 'Détecter un comportement, pas une signature.',
       role: 'Détection d’anomalie comportementale : Hinata repère, Itachi isole, Tsunade vérifie, le collectif apprend. Tsukuyomi piège une injection et en garde la trace ; Izanami signale toute action sans influx traçable.',
       facultes: ['Preuve industrielle : 92 corrections sur 93 occurrences', 'Audit d’intrusion et recherche de secrets dans un code', 'Scan d’intégrité de KENTA', 'Piège d’injection avec trace forensique', 'Détection d’action sans influx'],
@@ -141,6 +157,7 @@ window.KENTA_DATA = {
       organes: ['Itachi', 'Hinata', 'Tsunade'], maturite: 'Éprouvé ; capacités d’Itachi en reconstruction.' },
 
     { id: 'tsunade', nom: 'Régénération', fam: 'gouvernance', statut: 'eprouve', demo: '',
+      nomPublic: "Reprise après arrêt d’un composant", accrochePublique: "Relancer un composant arrêté dans le périmètre éprouvé.",
       accroche: 'Survivre à un kill -9.',
       role: 'Tsunade veille et relève un gardien abattu ; les gardiens ignorent l’interruption clavier. KENTA se souvient aussi de ses morts.',
       facultes: ['Résurrection observée en quelques secondes', 'Mémoire des disparitions', 'Résistance à l’interruption'],
@@ -148,6 +165,7 @@ window.KENTA_DATA = {
       organes: ['Tsunade'], maturite: 'Éprouvé quand Tsunade veille.' },
 
     { id: 'poi', nom: 'Person of Interest', fam: 'gouvernance', statut: 'dev', demo: '',
+      nomPublic: "Protection des données en mobilité", accrochePublique: "Étudier une distribution chiffrée et fragmentée de données.",
       accroche: 'La donnée suit la personne, jamais sur elle.',
       role: 'Données fragmentées, chiffrées, nomades. Pour journalistes, lanceurs d’alerte et zones de conflit.',
       facultes: ['Fragmentation', 'Chiffrement', 'Nomadisme'],
@@ -155,6 +173,7 @@ window.KENTA_DATA = {
       organes: ['Itachi'], maturite: 'En développement.' },
 
     { id: 'cyrano', nom: 'Cyrano & Miimé · l’entonnoir', fam: 'langage', statut: 'dev', demo: 'mission analyse la relique',
+      nomPublic: "Qualification des demandes en langage naturel", accrochePublique: "Rapprocher une formulation d’une capacité déclarée et identifier les précisions nécessaires.",
       accroche: 'Réduire la parole humaine à une action.',
       role: 'KENTA ne comprend pas : il réduit vers une action interne ou demande clarification. Un terme inconnu déclenche deux à quatre questions ; la réponse devient une association apprise, réutilisée ensuite sans question.',
       facultes: ['Détection d’incompréhension', 'Clarification bornée', 'Cristallisation d’associations lexicales'],
@@ -169,6 +188,7 @@ window.KENTA_DATA = {
       organes: ['Hinata', 'Sakura'], maturite: 'Vision posée ; version guide déjà active sur ce site.' },
 
     { id: 'vscodium', nom: 'Survol vivant', fam: 'langage', statut: 'dev', demo: '',
+      nomPublic: "Aide contextuelle dans l’éditeur de code", accrochePublique: "Consulter le glossaire et les ressources KENTA au survol d’un terme.",
       accroche: 'Survolez un terme, KENTA répond.',
       role: 'Au survol d’un terme dans l’éditeur, une cascade interroge gardiens, glossaire et cristallisations. Si le terme est inconnu, une mission part d’elle-même et la réponse apparaît au tour suivant, sans geste.',
       facultes: ['Cascade de lecture', 'Mission automatique sur l’inconnu', 'Coach de code et suggestions', 'Serveur de langage KENTA'],
@@ -176,6 +196,7 @@ window.KENTA_DATA = {
       organes: ['Kabuto', 'Iruka'], maturite: 'A fonctionné ; pont à reconstruire après la migration de la machine.' },
 
     { id: 'tictac', nom: 'Tachikoma & Qwen · Tic et Tac', fam: 'langage', statut: 'service', demo: '',
+      nomPublic: "Dialogue et contradiction entre modèles locaux", accrochePublique: "Faire examiner une proposition par un second modèle dans un salon local.",
       accroche: 'Deux voix locales, aucune main.',
       role: 'Deux petits modèles de langage locaux : Tachikoma propose, Qwen contredit, le collège des gardiens tranche. Ils lisent par le Byakugan et ne modifient jamais. Salon à trois avec l’humain, mémoire commune.',
       facultes: ['Candidat et contradicteur', 'Refus tracé et montré', 'Nulle voix sans observation préalable'],
@@ -183,6 +204,7 @@ window.KENTA_DATA = {
       organes: ['Tachikoma', 'Qwen', 'Hinata'], maturite: 'Salon vivant ; accès gouverné dans la Bouche en finition.' },
 
     { id: 'chroniques', nom: 'Chroniques', fam: 'langage', statut: 'dev', demo: 'mission publie une histoire',
+      nomPublic: "Chroniques · Composition et publication", accrochePublique: "Organiser des sources et leurs relations pour préparer des récits.",
       accroche: 'Un patrimoine narratif pour composer des récits.',
       role: 'Chroniques organise des matières, des relations, des structures et des contours pour composer des récits. Le chantier vise à relier ce patrimoine à la préparation des histoires et à leur publication gouvernée.',
       facultes: ['Composition de récits en développement', 'Engagement de publication documenté', 'Organisation en univers et saisons'],
@@ -190,6 +212,7 @@ window.KENTA_DATA = {
       organes: ['Célégans', 'Rythma', 'Tachikoma'], maturite: 'Composition des récits en développement. Une publication Discord après décision humaine est attestée le 16 septembre 2026.' },
 
     { id: 'publication', nom: 'Albator · Chroniques sur Discord', fam: 'langage', statut: 'eprouve', demo: '',
+      nomPublic: "Diffusion éditoriale avec reçu", accrochePublique: "Publier une Chronique sur Discord après décision humaine et conserver le reçu.",
       accroche: 'Diffuser une Chronique après décision humaine.',
       role: 'Le 16 septembre 2026, Albator a publié une Chronique sur Discord à la suite d’une décision humaine explicite et d’un engagement temporel. Le reçu de publication 000007 consigne la réponse HTTP 200 et l’identifiant du message.',
       facultes: ['Engagement temporel avec Rythma', 'Publication Discord par Albator', 'Conservation du reçu de publication'],
@@ -197,6 +220,7 @@ window.KENTA_DATA = {
       organes: ['Albator', 'Rythma'], maturite: 'Publication Discord attestée le 16 septembre 2026.' },
 
     { id: 'cnv', nom: 'CNV · la girafe', fam: 'langage', statut: 'dev', demo: '',
+      nomPublic: "Reformulation selon la communication non violente", accrochePublique: "Structurer une formulation autour des observations, besoins et demandes.",
       accroche: 'Parler sans juger.',
       role: 'Moteur de communication non violente : observation, sentiment, besoin, demande. Il servira de rails aux voix de KENTA, en amont pour reformuler, en aval pour contraindre, jamais dans la décision.',
       facultes: ['Repérage des jugements', 'Reformulation girafe', 'Gradation des tons'],
@@ -204,6 +228,7 @@ window.KENTA_DATA = {
       organes: ['Kabuto', 'Itachi'], maturite: 'Moteur existant ; vocabulaire en descente vers l’ADN.' },
 
     { id: 'concerto', nom: 'Concerto · Orphée', fam: 'experiences', statut: 'recherche', demo: '',
+      nomPublic: "Composition sonore à partir d’événements", accrochePublique: "Explorer la restitution sonore des événements locaux.",
       accroche: 'Les vibrations deviennent mélodie.',
       role: 'Babillage, chant, langage : les vibrations des gardiens composées en musique, puis archivées comme toute trace.',
       facultes: ['Composition depuis la Toile', 'Mélodie exprimée', 'Archivage par Nono'],
@@ -211,6 +236,7 @@ window.KENTA_DATA = {
       organes: ['Orphée'], maturite: 'Organe compositeur en recherche.' },
 
     { id: 'atlas', nom: 'Atlas', fam: 'representation', statut: 'dev', demo: 'constellation',
+      nomPublic: "Atlas · Cartographie des composants", accrochePublique: "Restituer les liens issus de l’inventaire de KENTA.",
       accroche: 'KENTA dessine sa propre carte.',
       role: 'Auto-représentation spatiale : c’est KENTA qui produit sa figure, le moteur graphique n’est qu’une vitre. Longueur des internœuds, zones d’intimité comme entre les houppiers, superposition en étages seulement quand la matière est trop dense.',
       facultes: ['Chantiers en cours et prévus', 'Gardiens, organes, méridiens, territoires', 'Kunaïs comme repères internes'],
@@ -218,6 +244,7 @@ window.KENTA_DATA = {
       organes: ['Minato', 'Remembrement'], maturite: 'Vitre en service ; géométrie déclarative en cours.' },
 
     { id: 'vision', nom: 'Vision & Remembrement', fam: 'representation', statut: 'service', demo: 'chaine',
+      nomPublic: "Cartographie technique des dépendances", accrochePublique: "Consulter les liens entre composants et les parcours de mission documentés.",
       accroche: 'Voir l’organisme tel qu’il est câblé.',
       role: 'Carte des gardiens comme territoires, liens d’import et de contenance ; couche physiologique des missions avec leurs coupures : « personne n’écoute », « écouté sans suite ». L’état se régénère à chaque passage de chaîne.',
       facultes: ['Carte tactique', 'Toile en direct', 'Physiologie des missions', 'État frais à chaque passage'],
@@ -225,6 +252,7 @@ window.KENTA_DATA = {
       organes: ['Minato', 'Hinata'], maturite: 'En service.' },
 
     { id: 'blender', nom: 'KENTA dans Blender', fam: 'representation', statut: 'recherche', demo: 'constellation',
+      nomPublic: "Visualisation 3D de l’inventaire", accrochePublique: "Explorer les liens entre composants dans une maquette Blender.",
       accroche: 'L’organisme en trois dimensions.',
       role: 'Une scène générée par script : chaque gardien contient ses capacités, chaque capacité ses modules, reliés par des arêtes nommées. La hiérarchie est fidèle à l’anatomie.',
       facultes: ['Collections par gardien', 'Arêtes gardien → organe', 'Scène reproductible'],
@@ -232,6 +260,7 @@ window.KENTA_DATA = {
       organes: ['Remembrement'], maturite: 'Première scène obtenue ; la géométrie doit encore venir de l’ADN.' },
 
     { id: 'cercles', nom: 'Les Cercles', fam: 'experiences', statut: 'eprouve', demo: 'cercles',
+      nomPublic: "Placement sous contraintes", accrochePublique: "Explorer le placement de cercles dans une surface bornée.",
       accroche: 'Verser, vibrer, laisser s’emboîter.',
       role: 'Empiler 26 cercles dans un carré, problème réputé difficile. Dans la démonstration publique, les positions résultent d’itérations et de contraintes de contact, non de coordonnées prédéfinies. Cela ne constitue pas la géométrie native de l’Atlas.',
       facultes: ['Score 2,15 en architecture NO-DEF pure', '81,6 % du meilleur résultat publié (2,635)', 'Aucun chevauchement'],
@@ -239,6 +268,7 @@ window.KENTA_DATA = {
       organes: ['Craag', 'Célégans', 'Tsunade'], maturite: 'Éprouvé ; primitive à remembrer dans le Banc.' },
 
     { id: 'celegans', nom: 'Célégans & le labyrinthe', fam: 'experiences', statut: 'eprouve', demo: 'labyrinthe',
+      nomPublic: "Exploration de parcours avec mémoire", accrochePublique: "Réutiliser les traces de tentatives dans un labyrinthe.",
       accroche: 'Trouver la sortie, se souvenir du chemin.',
       role: 'Inspiré du nématode : chaque pas est annoncé sur la Toile, les phéromones marquent la trajectoire, la tentative suivante en hérite. Célégans tient aussi l’homéostasie et signale le vide.',
       facultes: ['Série réelle : 1000 (échec), 118, 86, 534, 146, 474, 54 mouvements', 'Signalement des absences de résonance', 'Agrégation des votes du collège'],
@@ -246,6 +276,7 @@ window.KENTA_DATA = {
       organes: ['Célégans'], maturite: 'Éprouvé ; test ROS2 industriel en préparation.' },
 
     { id: 'sudoku', nom: 'Sudoku vivant', fam: 'experiences', statut: 'prototype', demo: 'sudoku',
+      nomPublic: "Assistance progressive au sudoku", accrochePublique: "Explorer un indice borné lorsque le joueur stagne.",
       accroche: 'Les gardiens jouent à découvert.',
       role: 'Une grille où l’on voit les gardiens réfléchir. Quand vous stagnez, Shikamaru donne un indice borné qui oriente sans résoudre.',
       facultes: ['Détection de stagnation', 'Indice borné', 'Chat des gardiens visible'],
@@ -253,6 +284,7 @@ window.KENTA_DATA = {
       organes: ['Shikamaru', 'Nono', 'Iruka'], maturite: 'Prototype mobile archivé ; principe repris par le Banc.' },
 
     { id: 'gaming', nom: 'KENTA Gaming · Compagnon Actif', fam: 'experiences', statut: 'dev', demo: '',
+      nomPublic: "KENTA Gaming · Accompagnement adaptatif", accrochePublique: "Étudier l’ajustement d’un exercice au contexte de l’apprenant.",
       accroche: 'Une pédagogie qui lit l’apprenant.',
       role: 'Moteur d’accompagnement adaptatif : il distingue la nature stable d’une personne de son état du moment et ajuste formations, stages et exercices en conséquence.',
       facultes: ['Lecture de l’apprenant réel', 'Changement d’état du joueur perçu', 'Adaptation par homéostasie', 'Rôles tournants pour éprouver les voix'],
@@ -260,6 +292,7 @@ window.KENTA_DATA = {
       organes: ['Iruka', 'Shikamaru'], maturite: 'En développement.' },
 
     { id: 'picsou', nom: 'Picsou · KENTA Trader', fam: 'experiences', statut: 'prototype', demo: 'picsou',
+      nomPublic: "Simulation de décisions sur flux temporel", accrochePublique: "Tester des décisions sur un flux bruité en simulation.",
       accroche: 'Lire un flux bruité, décider rarement.',
       role: 'Lecture d’un flux temporel bruité, décision achat, vente ou attente. Chaque motif gagnant est renforcé, chaque motif perdant affaibli ; une énergie limitée interdit l’agitation.',
       facultes: ['Cristallisation de motifs', 'Énergie et fatigue', 'Attente comme décision', 'Analyse de reliques : jauger un ancien code avant assimilation'],
@@ -267,6 +300,7 @@ window.KENTA_DATA = {
       organes: ['Picsou', 'Hinata', 'Tsunade'], maturite: 'Prototype en simulation, aucun capital engagé.' },
 
     { id: 'phy', nom: 'KENTA PHY', fam: 'corps', statut: 'dev', demo: 'mission surveille le cœur',
+      nomPublic: "KENTA PHY · Analyse de signaux physiologiques", accrochePublique: "Étudier les variations individuelles dans des signaux mesurés localement.",
       accroche: 'Surveiller le corps, hors ligne, par règles.',
       role: 'Surveillance physiologique : variabilité cardiaque, température, conductance cutanée. KENTA apprend les motifs propres à une personne et alerte sur ce qui s’en écarte. Aucun nuage, aucun modèle opaque.',
       facultes: ['Motifs individuels cristallisés', 'Alerte précoce', 'Diagnostic physiologique de KENTA lui-même et état de ses méridiens', 'Fonctionnement entièrement local'],
@@ -309,6 +343,7 @@ window.KENTA_DATA = {
       organes: ['Itachi', 'Iruka'], maturite: 'Chaîne prouvée sur un corpus de backlog.' },
 
     { id: 'supply', nom: 'Supply Twin', fam: 'metiers', statut: 'dev', demo: '',
+      nomPublic: "Modélisation de chaîne d’approvisionnement", accrochePublique: "Décrire les objets, règles et cycles de vie d’une chaîne d’approvisionnement.",
       accroche: 'Le modèle vivant d’une chaîne d’approvisionnement.',
       role: 'KENTA bâtit et entretient le modèle : objets, relations, cycles de vie, règles dans les jalons, maintenance par observation des données d’exploitation. Une plateforme de modélisation l’exécute. Cas d’épreuve : dix-huit mois de gestion de commandes.',
       facultes: ['Modélisation', 'Maintenance par observation', 'Analyse des dysfonctionnements'],
@@ -316,6 +351,7 @@ window.KENTA_DATA = {
       organes: ['Kabuto', 'Shikamaru'], maturite: 'En développement avec un partenaire.' },
 
     { id: 'bouche', nom: 'La Bouche · KENTA Chat', fam: 'langage', statut: 'dev', demo: 'regarde le jardin',
+      nomPublic: "Interface conversationnelle locale", accrochePublique: "Formuler une demande et consulter la réponse de KENTA.",
       accroche: 'Parler à KENTA par la porte humaine.',
       role: 'La porte de conversation du tableau de bord. Trois niveaux de liberté déclarés : gouverné strict, libéré dans KENTA, libre et journalisé. Le mode ignore le moteur, le moteur ignore le mode : la voix change de modèle sans heurt.',
       facultes: ['Requête et réponse par la porte humaine', 'Trois niveaux de liberté', 'Moteurs interchangeables déclarés dans l’ADN', 'Aucune action système depuis la conversation'],
@@ -323,6 +359,7 @@ window.KENTA_DATA = {
       organes: ['Procyon', 'Tachikoma', 'Hinata'], maturite: 'En service sur le tableau de bord ; raccord gouverné en finition.' },
 
     { id: 'miroir', nom: 'Miroir de l’œuvre', fam: 'symbolique', statut: 'dev', demo: '',
+      nomPublic: "Interface dédiée à une œuvre", accrochePublique: "Explorer la restitution d’une œuvre dans une interface dédiée.",
       accroche: 'Accueillir une œuvre dans un organisme.',
       role: 'Une graine KENTA dédiée à une créatrice : son œuvre entre par un influx propre et se projette dans une interface d’accueil. Chaque graine porte un ADN de base et s’habille selon le poste qui la reçoit.',
       facultes: ['Projection d’accueil', 'Graine dédiée', 'Influx d’œuvre'],
@@ -337,6 +374,7 @@ window.KENTA_DATA = {
       organes: ['Hinata', 'Minato'], maturite: 'En service ; une console de lancement, le Pupitre, est en préparation.' },
 
     { id: 'constellation', nom: 'Constellation', fam: 'representation', statut: 'dev', demo: 'constellation',
+      nomPublic: "Vue de l’état des composants", accrochePublique: "Visualiser les états collectés par KENTA.",
       accroche: 'La carte vivante, rafraîchie à chaque passage.',
       role: 'Couche d’exécution de la carte : à chaque passage de chaîne, l’état de l’organisme est recueilli et la constellation redessinée. Prochaine étape : animer les rayons, voir l’énergie circuler et l’endroit où elle coupe.',
       facultes: ['État régénéré à chaque passage', 'Patterns collectifs', 'Rayons animés à venir'],
@@ -344,6 +382,7 @@ window.KENTA_DATA = {
       organes: ['Minato', 'Nono'], maturite: 'Collecte en service ; animation en développement.' },
 
     { id: 'postier-reel', nom: 'Postier du réel', fam: 'metiers', statut: 'eprouve', demo: '',
+      nomPublic: "Préparation de publications photo", accrochePublique: "Préparer et historiser une proposition de publication pour validation humaine.",
       accroche: 'Préparer une publication photo pour validation humaine.',
       role: 'Le Postier du réel est conçu pour alléger la préparation des publications des métiers de l’image. Le 28 avril 2026, un essai a produit une proposition avec une image et une légende, l’a mise en file pour validation, puis l’a historisée sur décision de l’opérateur.',
       facultes: ['Proposition avec image et légende', 'File de validation humaine', 'Historique local de la proposition'],

@@ -1,0 +1,144 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Questions techniques sur les missions, les gardiens, les preuves et les démonstrations de KENTA."><meta name="color-scheme" content="light"><meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; script-src 'self'; style-src 'self' 'unsafe-inline'; font-src 'self'; connect-src 'none'; object-src 'none'; frame-src 'self'; base-uri 'self'; form-action 'none'"><title>FAQ technique · KENTA</title><link rel="stylesheet" href="assets/fonts/dejavu-math.css">
+<link rel="stylesheet" href="site.css?v=faq-20261111"><script defer src="site.js"></script><link rel="stylesheet" href="assets/mentions-legales.css">
+</head><body><a class="skip" href="#contenu">Aller au contenu</a><header class="site-head"><div class="shell head-inner"><a class="identity" href="index.html" aria-label="KENTA, accueil"><img src="assets/logo-net.png" alt=""/>KENTA</a><button class="menu-button" aria-expanded="false" aria-controls="site-nav" type="button">Menu ☰</button><nav class="site-nav" id="site-nav" aria-label="Navigation principale"><a href="index.html" >Accueil</a><a href="histoire.html" >Histoire</a><a href="architecture.html">Architecture</a><a href="applications.html" >Applications</a><a href="experiences.html" >Expériences</a><a href="atlas.html" >Atlas</a><a href="faq.html" aria-current="page">FAQ</a><a href="contact.html" >Contact</a></nav></div></header><main id="contenu">
+<section class="shell faq-page" aria-labelledby="titre-faq">
+  <h1 class="page-title" id="titre-faq">FAQ technique</h1>
+  <p class="intro">KENTA exécute des missions sur une installation locale. Voici comment une demande devient une action, qui peut la refuser et quelles traces permettent de vérifier ce qui s’est passé.</p>
+
+  <section class="faq-group" aria-labelledby="faq-execution">
+    <h2 id="faq-execution">De la déclaration à l’exécution</h2>
+
+    <details class="faq-item" id="tableur" open>
+      <summary>« Mais c’est une feuille Excel ? »</summary>
+      <div class="faq-answer">
+        <p>Un tableur peut tenir l’inventaire des capacités. Dans KENTA, une déclaration fixe à quel événement un gardien répond, quel organe il peut appeler et sous quelles conditions. Le moteur d’exécution applique ces contrats. Le code de l’organe se trouve dans une bibliothèque.</p>
+        <p>Le 10 novembre 2026, une mission signée a demandé un audit. Procyon l’a transmise sur la Toile, Jiraiya a produit un rapport et Creig a formulé une proposition de réparation. Le rapport et la proposition portent le même identifiant de mission. On peut ainsi vérifier le passage de la demande à la proposition.</p>
+        <a href="experiences.html">Voir l’audit documenté</a>
+      </div>
+    </details>
+
+    <details class="faq-item" id="yaml">
+      <summary>À quoi servent le YAML, l’ADN et les organes ?</summary>
+      <div class="faq-answer">
+        <dl>
+          <dt>YAML</dt><dd>Une notation utilisée pour écrire les déclarations du DSL de KENTA.</dd>
+          <dt>ADN</dt><dd>Le contrat d’un gardien. Il déclare ses capacités, les événements auxquels il réagit et les conditions d’appel de ses organes.</dd>
+          <dt>Mission</dt><dd>Une demande qui porte une intention et, selon le contrat, une cible et des paramètres.</dd>
+          <dt>Organe</dt><dd>Le code exécutable qui réalise la capacité déclarée, par exemple une inspection ou une qualification.</dd>
+        </dl>
+        <p>Cette séparation entre déclarations et bibliothèques constitue la règle d’architecture <strong>NO-DEF</strong>.</p>
+        <a href="architecture.html">Lire l’architecture</a>
+      </div>
+    </details>
+
+    <details class="faq-item" id="declenchement">
+      <summary>Qui déclenche le travail ? Où est l’orchestrateur ?</summary>
+      <div class="faq-answer">
+        <ol>
+          <li>Un geste déclaré ouvre un cycle. Une mission signée peut constituer son entrée.</li>
+          <li>Procyon transmet l’influx sur la Toile. La Toile est un espace passif de circulation des événements.</li>
+          <li>Chaque gardien examine les événements qui relèvent de son ADN. Les contrats déterminent quelles capacités peuvent répondre.</li>
+          <li>Une réponse peut publier un nouvel événement, produire un résultat ou consigner un refus.</li>
+        </ol>
+        <p>La suite dépend des événements et des contrats des gardiens. L’audit de Jiraiya suivi de la proposition de Creig montre cette rétroaction dans un parcours documenté.</p>
+      </div>
+    </details>
+
+    <details class="faq-item" id="planification">
+      <summary>Comment KENTA observe-t-il les effets d’une action et les suites possibles ?</summary>
+      <div class="faq-answer">
+        <p>Une observation peut déclencher une proposition. Cette proposition peut être examinée et produire à son tour un événement. Une mission d’audit a ainsi conduit à un diagnostic, puis à une proposition de réparation. La validation, l’application et le contrôle d’une réparation demandent leurs propres traces.</p>
+        <p>Le chantier d’autonomie consiste à éprouver ces enchaînements, y compris les refus, les reprises et les cas où une capacité manque.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="faq-group" aria-labelledby="faq-autorite">
+    <h2 id="faq-autorite">Contrats, preuves et autorité</h2>
+
+    <details class="faq-item" id="gardiens">
+      <summary>Les gardiens sont-ils des agents IA ? Qui décide ?</summary>
+      <div class="faq-answer">
+        <p>Un gardien tient son rôle d’un ADN déclaratif et exécute les organes que ses contrats lui permettent d’appeler. Les modèles de langage peuvent formuler, proposer du code ou contredire une hypothèse. L’admission d’un organe relève des contrôles et de la décision du collège dans la Forge.</p>
+        <p>Dans un cas documenté, Sakura a refusé une proposition à la détection de <code>subprocess</code>. Le motif a été conservé. Le terminal propose un scénario de refus de la Forge à essayer séparément.</p>
+        <a href="applications.html#associations">Essayer le refus de la Forge</a>
+      </div>
+    </details>
+
+    <details class="faq-item" id="permissions">
+      <summary>Qu’est-ce qu’un harnais ou un filtre d’IA apporterait ?</summary>
+      <div class="faq-answer">
+        <p>Un harnais peut borner les outils et les ressources auxquels un assistant externe accède. Dans KENTA, l’ADN du gardien fixe les conditions d’appel d’une capacité. Pour le code candidat, les contrôles de la Forge et la décision du collège déterminent l’admission.</p>
+        <p>Une clé d’API peut donner accès à un modèle utilisé comme contributeur. Une réponse du modèle reste une proposition soumise à cette gouvernance.</p>
+      </div>
+    </details>
+
+    <details class="faq-item" id="rag">
+      <summary>Un RAG ou un registre d’outils ferait-il la même chose ?</summary>
+      <div class="faq-answer">
+        <p>Un RAG peut aider un assistant à retrouver des passages dans la documentation. KENTA s’appuie sur ses déclarations pour lire les capacités et leurs conditions d’appel, et sur la mission pour désigner ce qu’il doit observer.</p>
+        <p>Le Bingo Book donne accès aux déclarations. Byakugan observe la cible demandée. Le Remembrement rapproche les éléments observés et déclarés. La filiation permet de suivre de quelle mission et de quelles pièces provient un résultat.</p>
+      </div>
+    </details>
+
+    <details class="faq-item" id="integrite">
+      <summary>Comment vérifier les entrées, l’isolement et les refus ?</summary>
+      <div class="faq-answer">
+        <p>Les missions signées, les empreintes et les traces de décision permettent d’examiner des points différents du parcours. Pour une entrée, on vérifie sa provenance et son passage sur la Toile. Pour un candidat, on consulte le dossier de la Forge et sa décision. Pour un essai isolé, le témoin utile décrit les accès, le réseau et les empreintes avant et après l’essai.</p>
+        <p>L’audit documenté permet de vérifier un parcours précis, depuis le dépôt signé jusqu’au rapport et à la proposition.</p>
+        <a href="experiences.html">Consulter le cas d’audit</a>
+      </div>
+    </details>
+
+    <details class="faq-item" id="restauration">
+      <summary>Peut-on revenir en arrière ?</summary>
+      <div class="faq-answer">
+        <p>Le retrait d’un organe lié au chantier Blender est documenté sur un dossier précis. Pour vérifier une restauration, il faut identifier l’opération, l’état de départ et le résultat après le retour. Les empreintes permettent de comparer ces états. L’étendue du retour dépend du périmètre éprouvé.</p>
+      </div>
+    </details>
+  </section>
+
+  <section class="faq-group" aria-labelledby="faq-essai">
+    <h2 id="faq-essai">Essayer, intégrer et contribuer</h2>
+
+    <details class="faq-item" id="public">
+      <summary>À qui s’adresse ce site ?</summary>
+      <div class="faq-answer">
+        <p>Les pages Architecture et Applications présentent KENTA aux curieux, aux partenaires et aux intégrateurs. Le terminal permet de manipuler ses principes dans le navigateur. Les cas documentés donnent aux développeurs des parcours à examiner sur pièces.</p>
+      </div>
+    </details>
+
+    <details class="faq-item" id="terminal-public">
+      <summary>Le terminal du site parle-t-il à l’instance KENTA ?</summary>
+      <div class="faq-answer">
+        <p>Le terminal exécute une démonstration dans le navigateur. On peut y lancer Byakugan, associer Hinata et Minato ou suivre un refus de la Forge. Les cas documentés décrivent des exécutions sur l’instance et précisent ce que leurs traces attestent.</p>
+        <p>Des séances sur une instance réelle sont envisagées. Leur périmètre et les données accessibles seront à définir avant ouverture.</p>
+        <a href="applications.html#terminal">Ouvrir le terminal de démonstration</a>
+      </div>
+    </details>
+
+    <details class="faq-item" id="atlas">
+      <summary>Que montre la constellation ? Et où en est l’Atlas ?</summary>
+      <div class="faq-answer">
+        <p>La constellation du navigateur représente les gardiens, les facultés et leurs relations à partir du registre de la démonstration. Le chantier Atlas vise une représentation que KENTA produit à partir de ses propres observations. Blender peut servir à afficher les données qu’il fournit. La circulation en direct relève de ce chantier.</p>
+        <a href="atlas.html">Voir le chantier Atlas</a>
+      </div>
+    </details>
+
+    <details class="faq-item" id="code">
+      <summary>Où sont le code, l’installation et le point d’entrée pour un développeur ?</summary>
+      <div class="faq-answer">
+        <p>Le dépôt GitHub public contient le code de la vitrine. Pour découvrir KENTA, commencez par une commande du terminal et rapprochez-la d’un cas documenté. Pour une installation, une intégration ou une contribution au moteur, contactez le projet avec le parcours que vous souhaitez éprouver.</p>
+        <p><a href="https://github.com/Kenta-Arcadia/kenta-arcadia.github.io">Voir le dépôt de la vitrine</a> · <a href="contact.html">Contacter KENTA</a></p>
+      </div>
+    </details>
+
+    <details class="faq-item" id="autonomie">
+      <summary>Quel travail reste-t-il avant de parler d’autonomie ?</summary>
+      <div class="faq-answer">
+        <p>Le prochain progrès se mesure sur une mission bout en bout. Il faut pouvoir suivre l’intention, les réponses des gardiens, une décision et son effet. Pour contribuer, un développeur peut choisir un raccordement, définir le résultat attendu et aider à éprouver le parcours par la chaîne native, avec un cas de refus et des traces relisibles.</p>
+      </div>
+    </details>
+  </section>
+</section>
+</main><footer class="footer"><div class="shell"><div class="footer-inner"><div><strong>KENTA</strong><p>Produit commercial de souveraineté numérique.</p></div><nav class="footer-nav" aria-label="Liens de pied de page"><a href="index.html">Accueil</a><a href="histoire.html">Histoire</a><a href="architecture.html">Architecture</a><a href="applications.html">Applications</a><a href="experiences.html">Expériences</a><a href="atlas.html">Atlas</a><a href="contact.html">Contact</a></nav></div><div class="footer-note">Site de présentation · Démonstrations locales dans le navigateur · Aucun accès à une instance privée de KENTA · États des projets indiqués à titre éditorial.</div><div class="footer-legal"><a class="legal-link" href="mentions-legales.html">Mentions légales</a></div></div></footer></body></html>
